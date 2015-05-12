@@ -1,15 +1,19 @@
  #header{
-	background: url("../images/menu_top.jpg") repeat-x scroll 0 0 #f3f3f3;
+	background: url("../images/header-bg.png") repeat-x scroll 0 0 #f3f3f3; */
+	/*background-color:#FFC000;*/
+	height:120px;
     }
  #nav{
-	height: 27px;
+	height: 70px;
 	margin:0;
-	padding: 5px 20px 0 15px;
+	padding: 6px 20px 0 15px;
 	position: relative;
+	margin-top: -60px;
 }
 
  #nav ul{
 	list-style: none;
+	padding-top:12px;
 }
 #nav ul li.upp{
 	display: inline;
@@ -25,7 +29,7 @@
 	padding: 0px 20px 11px 0px;
 	text-align: center;
 	text-shadow: #000 0px 1px 1px;
-	font-size:12px;
+	font-size:17px;
 	
 }
 #nav ul li.upp a:hover{

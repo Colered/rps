@@ -3,11 +3,12 @@
 	padding: 0;
 }
 body{
-	background: #f3f3f3 url(../images/bg_top.jpg) repeat-x;
+	/*background: #f3f3f3 url(../images/menu-bg.png) repeat-x;*/
 	color: #909090;
 	font-family: Tahoma, Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	margin: 0;
+	background-position: 0% 32%; 
 }
 
 h1, h2, h3, h4{
@@ -23,7 +24,7 @@ a:hover{
 }
 .logo-img
 {
-height:67px;
+height:85px;
 /*width:199px;*/
 }
 .lock-img
@@ -89,7 +90,7 @@ border:1px solid #8bcf54; font-size:12px;font-family:arial, helvetica, sans-seri
 }
 
 #header #top{
-	height: 71px;
+	height: 172px;
 	padding: 6px 20px 0 10px;
 }
 #header #top p{
@@ -100,7 +101,7 @@ border:1px solid #8bcf54; font-size:12px;font-family:arial, helvetica, sans-seri
 }
 
 #content{
-	margin: 30px 0 0px 0;
+	/*margin: 75px 0 0px 0;*/
 	position:relative;
 }
 #content .b1{
@@ -543,7 +544,7 @@ table .chb{
 
 .clear{ clear: both; }
 
-.left{ 	float: left;width:325px; }
+.left{ 	float: left;width:325px; padding-top:12px; }
 .right{ float: right; }
 
 .align-left{ text-align: left; }

@@ -5,7 +5,7 @@ require_once('config.php');
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>RAS Admin</title>
+	 <title>REGISTRATION PRE-SELECTION SOLUTION</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="css/navi.css" media="screen" />
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -29,10 +29,10 @@ require_once('config.php');
 	<div class="wrap">
 		<div id="header">
 			<div id="top">
-				<div class="left">
-					<a href="index.php"><img src="images/logo.png"  border="0" class="logo-img"/></a>
-					<span style="float: right; margin-top: 35px; color: #ffffff;"><h3 style="color:#fff;"><i>SUBJECT PRE-SELECTION MODULE</i></h3></span>
-				</div>
+				<div class="left" style="width:506px;">
+                        <a href="index.php"><img src="images/logo.png"  border="0" class="logo-img"/></a>
+						<span style="float: right; margin-top: -55px; color: #ffffff; font-size:20px;">REGISTRATION PRE-SELECTION SOLUTION</span>
+                    </div>
 				<div class="right">
 					<div class="align-right">
 					</div>
