@@ -42,9 +42,10 @@ if($_SERVER['REQUEST_URI']=='/rps/forgot.php' || $_SERVER['REQUEST_URI']=='/forg
                 <div id="top">
                     <div class="left">
                         <a href="index.php"><img src="images/logo.png"  border="0" class="logo-img"/></a>
+						<span style="float: right; margin-top: 35px; color: #ffffff;"><h3 style="color:#fff;"><i>SUBJECT PRE-SELECTION MODULE</i></h3></span>
                     </div>
                     <div class="right">
-                        <div class="align-right">
+                        <div class="align-right" style="color: #ffffff;">
 						Welcome <B> <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){ 
 											$objU = new Users();
 											$user_name = $objU->getUserName($_SESSION['user_id']);

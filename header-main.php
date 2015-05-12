@@ -31,6 +31,7 @@ require_once('config.php');
 			<div id="top">
 				<div class="left">
 					<a href="index.php"><img src="images/logo.png"  border="0" class="logo-img"/></a>
+					<span style="float: right; margin-top: 35px; color: #ffffff;"><h3 style="color:#fff;"><i>SUBJECT PRE-SELECTION MODULE</i></h3></span>
 				</div>
 				<div class="right">
 					<div class="align-right">
