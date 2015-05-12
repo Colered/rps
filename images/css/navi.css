@@ -1,0 +1,68 @@
+#header #nav{
+	height: 27px;
+	margin:0;
+	padding: 5px 20px 0 15px;
+	position: relative;
+}
+
+#header #nav ul{
+	list-style: none;
+}
+#header #nav ul li.upp{
+	display: inline;
+	float: left;
+	position: relative;
+	margin: 0;
+	text-align: center;
+}
+#header #nav ul li.upp a{
+	color: #fff;
+	display: block;
+	padding: 0px 20px 11px 0px;
+	text-align: center;
+	text-shadow: #000 0px 1px 1px;
+	font-size:12px;
+	
+}
+#header #nav ul li.upp a:hover{
+	color: #29BC69;
+	text-decoration:none;
+}
+#header #nav ul li.upp a .active{
+	color: #29BC69;
+	text-decoration:none;
+}
+
+#header #nav ul li.upp ul{
+	display: none;
+}
+#header #nav ul li.upp:hover ul{
+	background: #153260;
+	border: 1px solid #58585a;
+	border-top: none;
+	display: block;
+	position: absolute;
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	z-index: 9999;
+}
+#header #nav ul li.upp ul li{
+	color: #fff;
+	display: block;
+	padding: 0 0 0 8px;	
+	text-align: left;
+	width: 150px;	
+
+}
+#header #nav ul li.upp ul li a{
+	background: none;
+	display: inline-block;
+	padding: 6px 25px 6px 4px;
+	color:#76B9ED;
+}
+#header #nav ul li.upp ul li a:hover{color:#fff;}
+
