@@ -1,5 +1,5 @@
 <?php
-include('header-main.php');
+include('../header-main.php');
 if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){
 	header('Location: dashboard.php');
 }
@@ -8,10 +8,10 @@ if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){
     <div id="main">
         <div class="full_w">
             <div class="h_title">Login</div>
-            <form action="postdata.php" method="post" autocomplete="off">
-				<input type="hidden" name="form_action" value="Login" />
+            <form action="../postdata.php" method="post" autocomplete="off">
+				<input type="hidden" name="form_action" value="adminLogin" />
                 <div class="custtable_left">
-                    <img src="images/lock.jpg" id="lock-img" class="lock-img" />
+                    <img src="../images/lock.jpg" id="lock-img" class="lock-img" />
                 </div>
                 <div class="custtable_left " style="padding-left:14px;">
 					<div class="custtd_left error">
@@ -53,5 +53,5 @@ if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){
     </div>
     <div class="clear"></div>
 </div>
-<?php include('footer.php'); ?>
+<?php include('../footer.php'); ?>
 

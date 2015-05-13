@@ -1,4 +1,5 @@
 <?php
+//die("here");
 session_start();
 define('DB_SERVER', "localhost");
 define('DB_DATABASE', "rps");

@@ -18,6 +18,7 @@ class Users extends Base {
 					$_SESSION['user_id']=$data['id'];
 					$_SESSION['username']=$data['username'];
 					$_SESSION['user_email']=$data['email'];
+					$_SESSION['role']=$data['isAdmin'];
 				}
 				return 1;
 			}else{

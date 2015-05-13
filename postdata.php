@@ -3,17 +3,17 @@ require_once('config.php');
 if (isset($_POST['form_action']) && $_POST['form_action']!=""){
 	$formPost = $_POST['form_action'];
 	switch ($formPost) {
-		case 'Login':
+		case 'adminLogin':
 			//conditions for user login
 			if($_POST['txtUName']!="" && $_POST['txtPwd']!="" ){
 				$obj = new Users();
 				$resp = $obj->userLogin();
-				$location = ($resp == 1) ? "dashboard.php" : "index.php";
+				$location = ($resp == 1) ? "admin/dashboard.php" : "admin/index.php";
 				header('Location: '.$location);
 			}else{
 				$message="Please enter username and password";
 				$_SESSION['error_msg'] = $message;
-				header('Location: index.php');
+				header('Location: admin/index.php');
 			}
 		break;	
 		case "changePwd":
