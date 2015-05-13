@@ -550,150 +550,31 @@ table .chb{
 .align-left{ text-align: left; }
 .align-right{ text-align: right; }
 .align-center{ text-align: center; }
-
-.cylcebox{width:120px; float:left; text-align: left;}
-.cylcebox h3{ color: #5A5A5A;
-    font-family: 'Tahoma';
-    font-size: 12px;
-    font-weight: normal;}
-.sessionbox{width:178px; float:left; text-align: left;}
-.sessionbox h3{ color: #5A5A5A;
-    font-family: 'Tahoma';
-    font-size: 12px;
-    font-weight: normal;}	
-	
-	
 .gird-addnew{
 float:right; padding-right:20px; color:#006e2f;}
-
 .table1{ 
 	border: 1px solid #CCCCCC; 
 	margin: 10px; 
 	width: 98%;
-	border-spacing:0;
-	  
+	border-spacing:0;	  
 }
-.inp_txt_session{
-	border: 1px solid #C0C0C0;
-    color: #666666;
-    font: 12px/25px Arial,Helvetica,sans-serif;
-    height: 25px;
-    padding-left: 10px;
-    width: 136px;
+.main-sidebar{
+float:right;
+margin-right: 20px;
 }
-div.divSession{
-    float: left;
-    padding-bottom: 10px;
-    padding-left: 2px;
-    text-align: right;
-
+.side-div{
+border:1px solid #000;
+margin: 10px;
+width: 100px;
+height: 100px;
+padding: 20px;
+color: #000;
+font-size: large;
+font-weight: bold;
 }
-.remove_field{cursor:pointer;}
-.addbtnSession{padding-top:16px;}
-.tmSlot{width:136px;float: left; text-align: left;}
-.tmSlotc1w1{width:136px;float: left; text-align: left;}
-.tmSlotc1w2{width:136px;float: left; text-align: left;}
-.tmSlotc2w1{width:136px;float: left; text-align: left;}
-.tmSlotc2w2{width:136px;float: left; text-align: left;}
-.tmSlotc3w1{width:136px;float: left; text-align: left;}
-.tmSlotc3w2{width:136px;float: left; text-align: left;}
-.dayName{font-size:13px; padding:5px; padding-top:0px;}
-.main-title{ list-style:none;}
-#rules{margin:0px!important;}
-.listing{margin:5px!important;}
-.sched-data{width:200px; vertical-align:top; border:1px solid #E3E3E3!important;}
-.slctTs{min-width:92px;}
-.divException{ text-align:right}
-.exceptionTbl,.additionTbl{ width:40%;}
-.divAddition1,.divAddition2,.divAddition3
-{
-	margin-top:60px;
-	margin-left:270px;
+.subject-heading-1{
+text-decoration: underline;
+margin-left: 15px;
 }
 
-.divException{ padding-left:80px}
-#sesssionTable th, td {
- border: 1px solid #E3E3E3;
-} 
-#sesssionTable th{
- color: #383838;
-}
-.divRulecls{
-    overflow-x: scroll;
-	overflow-y: scroll;
- 	width:235px;
- 	height:120px;
-}
-.ruleOptDate{color:#993300;font-weight:bold} 
-.wait-text{ 
-    float: right;
-    padding-top: 12px;
-}
-.createScheduleBlock{border:1px solid #CCCCCC; padding:20px; 20px 20px 20px; margin-bottom:10px; width:1200px;margin-top:37px}
-.scheduleBlock{border:1px solid #CCCCCC; padding:20px; 20px 20px 20px; margin-bottom:10px; width:1200px}
-.divException{ text-align:right}
-.exceptionTbl{ width:60px;}
-.divException{ padding-left:80px}
-.btnSessiondiv{padding-top:0px!important; margin-left:20px;}
-.sessionboxSub {
-width: 150px;
-float: left;
-text-align: left;
-}
-.filteration{
-float:right;
-color:#333399;
-width: 92px;
-}
-.filteration-lable{
-width:auto;
-}
-.filter-teache-report {
-    float: left;
-    height: 32px;
-    width: auto;
- 	padding-left:45px;
-	color:#000066;
-}
-.filter-teache-report1 {
-    float: left;
-}
-.select-filter{
- width: 88px;
-}
-.btn-export{
-float:right;
-position:relative;
-border:medium outset;
-padding:7px 12px 7px 30px!important;
-}
-.btn-export-text{
-position:absolute;top:0;left:0;
-width:40px;
-}
-.minical td.hasevents{background-color:#FFFF33;}
-.clsbtnGenrtTimtblDisable{background-color:#CCCCCC; background-image:none;}
-.showDragHandle {
-	background-image: url(images/updown2.gif);
-	background-repeat: no-repeat;
-	background-position: center center;
-	cursor: move;
-}
-.activity-color-filteration{float:left;}
-.btnAcceptAllocation{float:right;padding-bottom:5px;padding-top:5px;}
-.unreservedAlloctedAct{ font-style:italic;color:red;}
-.edit-tt{width: 50px;}
-.rule-list li{ list-style:none; padding:5px;}
-.rule h2{color: #5A5A5A;
-font-family: 'Tahoma';
-font-size: 13px;
-line-height: 27px; margin-left:20px; margin-top:10px;}
-.act_color a{color: #565656!important;}
-table tr:hover td a{color: #000000!important;}
-.removeWKRErr{padding-bottom:10px;height:15px;}
-h2.blod-text{font-weight:bold;}
-.ipt{
-	font-family: Tahoma, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-}
-.teach-excel-report-tbl{margin-top:50px}
+
