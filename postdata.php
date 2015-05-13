@@ -16,7 +16,7 @@ if (isset($_POST['form_action']) && $_POST['form_action']!=""){
 				header('Location: admin/index.php');
 			}
 		break;	
-		case "changePwd":
+		case "adminChangePwd":
 		 if(isset($_POST['currentPassword']) && $_POST['currentPassword']!=""){
 			 $obj = new Users();
 			 $resp = $obj->changePwd();
@@ -25,9 +25,9 @@ if (isset($_POST['form_action']) && $_POST['form_action']!=""){
 				session_start();
 				$message= "New password has been updated successfully";
 				$_SESSION['succ_msg'] = $message;
-			 	header('Location: index.php');
+			 	header('Location: admin/index.php');
 			 }else{
-			 	header('Location: change_password.php');
+			 	header('Location: admin/change_password.php');
 			 }
 		}
 		break;
@@ -35,7 +35,7 @@ if (isset($_POST['form_action']) && $_POST['form_action']!=""){
 		 if(isset($_POST['email']) && $_POST['email']!=""){
 			 $obj = new Users();
 			 $resp = $obj->forgotPwd();
-			 header('Location: forgot.php');
+			 header('Location: admin/forgot.php');
 		}
 		break;
 	}

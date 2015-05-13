@@ -1,6 +1,6 @@
 <?php
 require_once('../config.php');
-if($_SERVER['REQUEST_URI']=='/rps/forgot.php' || $_SERVER['REQUEST_URI']=='/forgot.php'){
+if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']=='/admin/forgot.php'){
 		//Do Nothing
 }elseif(!isset($_SESSION['user_id'])){
 		header('Location: index.php');
@@ -64,7 +64,6 @@ if($_SERVER['REQUEST_URI']=='/rps/forgot.php' || $_SERVER['REQUEST_URI']=='/forg
 						<li class="upp"><a href="#">Subject Groups Creation</a></li>
 						<li class="upp"><a href="#">General SPS Config</a></li>
 						<li class="upp"><a href="#">Reports</a></li>					
-						<li class="upp right"  style="float:right"><a href="help.php"><img src="../images/help.png" class="help-img"/></a></li>							
 						<li class="upp right"  style="float:right"><a href="../logout.php">Logout</a></li>						
 						<li class="upp right"  style="float:right"><a href="change_password.php">Change Password</a></li>		
                     </ul>

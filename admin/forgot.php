@@ -1,9 +1,9 @@
-<?php include('header.php');?>
+<?php include('../header.php');?>
 <div id="content">
     <div id="main">
         <div class="full_w">
             <div class="h_title">Forgot Password</div>
-            <form name="forgotPwdForm" id="forgotPwdForm" action="postdata.php" method="post">
+            <form name="forgotPwdForm" id="forgotPwdForm" action="../postdata.php" method="post">
 				<input type="hidden" name="form_action" value="forgotPwd" />
 			    <div class="custtable_left">
 					<div class="error">
@@ -37,4 +37,4 @@
     </div>
     <div class="clear"></div>
 </div>
-<?php include('footer.php'); ?>
+<?php include('../footer.php'); ?>
