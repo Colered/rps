@@ -1,5 +1,6 @@
 //validate form 
 $(document).ready(function(){
+		//validating admin and student change password				   
 		$( "#changePwdForm" ).validate({
 			rules: {
 			currentPassword: {
@@ -19,11 +20,12 @@ $(document).ready(function(){
 			}
 			}
 		});
-		$( "#studentLogin" ).validate({
+		//validating admin and student login
+		$( ".login" ).validate({
 			rules: {
 			txtUName: {
 				required: true,
-				minlength: 6,
+				minlength: 5,
 				maxlength: 20
 			},	
 			txtPwd: {

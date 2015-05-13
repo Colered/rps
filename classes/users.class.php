@@ -165,10 +165,17 @@ class Users extends Base {
 				return 1;
 		}
 	}
-	//getting the username
+	//getting the admin username
 	function getUserName($Id){
-	    $sql="select username from users where id='".$_SESSION['user_id']."'";
+		$sql="select username from users where id='".$_SESSION['user_id']."'";
 		$q_res = mysqli_query($this->connrps, $sql);
+		$data = mysqli_fetch_assoc($q_res);
+		return $data;
+	}
+	//getting the student username
+	function getStuUname($Id){
+		$sql="select username from users where id='".$_SESSION['user_id']."'";
+		$q_res = mysqli_query($this->connfed, $sql);
 		$data = mysqli_fetch_assoc($q_res);
 		return $data;
 	}

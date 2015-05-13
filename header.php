@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
                         <div class="align-right" style="color: #ffffff;">
 						Welcome <B> <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){ 
 											$objU = new Users();
-											$user_name = $objU->getUserName($_SESSION['user_id']);
+											$user_name = $objU->getStuUname($_SESSION['user_id']);
 											echo ucfirst($user_name['username']);
 										} ?>
 									  </B>
