@@ -2,7 +2,7 @@
 //die("here");
 session_start();
 define('DB_SERVER', "localhost");
-define('DB_DATABASE', "rps");
+define('DB_DATABASE', "fedena");
 define('DB_USER', "root");
 define('DB_PASS', "");
 // include database and object files

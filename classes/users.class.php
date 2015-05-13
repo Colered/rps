@@ -3,7 +3,7 @@ class Users extends Base {
     public function __construct(){
    		 parent::__construct();
    	}
-	/*function for user login*/
+	/*function for admin login*/
 	public function userLogin() {
 		if(isset($_POST['txtUName']))
 		{
@@ -21,6 +21,34 @@ class Users extends Base {
 					$_SESSION['role']=$data['isAdmin'];
 				}
 				return 1;
+			}else{
+				$message="Incorrect Username or Password";
+				$_SESSION['error_msg'] = $message;
+				return 0;
+			}
+		}
+	}
+	/*function for student log in*/
+	public function stuUserLogin() {
+		if(isset($_POST['txtUName'])){
+			$hash_salt_query="select id,hashed_password,salt,email from users where email='".trim($_POST['txtUName'])."' ";
+			$hash_salt_res = mysqli_query($this->conn, $hash_salt_query);
+			if(mysqli_num_rows($hash_salt_res)>0){	
+			 	$row=mysqli_fetch_assoc($hash_salt_res);
+				$hash_pwd = $row['hashed_password'];
+				$salt = $row['salt'];
+				$pwd=$salt.$_POST['txtPwd'];
+				$hash_new_pwd=hash('sha1',$pwd);
+				if ($hash_pwd==$hash_new_pwd) {
+					 $_SESSION['user_id']=$row['id'];
+					 $_SESSION['username']=$row['username'];
+					 $_SESSION['user_email']=$row['email'];
+					 return 1;
+				}else{
+					 $message="Paasword does not matched.";
+					 $_SESSION['error_msg'] = $message;	
+					 return 0;
+				}
 			}else{
 				$message="Incorrect Username or Password";
 				$_SESSION['error_msg'] = $message;
@@ -76,7 +104,7 @@ class Users extends Base {
 				}
 		 }
    }
-   //function to chnage the password
+   //function to chnage the admin password
    public function changePwd(){
         $uesr_id=$_SESSION['user_id'];
 		$sql="select * from users where id='$uesr_id'";
@@ -102,6 +130,39 @@ class Users extends Base {
 			$message= "New password has been updated successfully";
 			$_SESSION['succ_msg'] = $message;
 			return 1;
+		}
+	}
+   //function to chnage the student password
+   public function changeStuPwd(){
+        $uesr_id=$_SESSION['user_id'];
+		$sql="select * from users where id='$uesr_id'";
+		$query = mysqli_query($this->conn, $sql);
+		while ($row = mysqli_fetch_array($query)) {
+			$hase_pwd= $row['hashed_password'];
+			$salt = $row['salt'];
+		}
+		$cur_password=$salt.$_POST['currentPassword'];
+		$hash_new_curr_pwd=hash('sha1',$cur_password);
+		$new_pwd=$_POST['newPassword'];
+		$confirm_pwd=$_POST['confirmPassword'];
+		if ($hash_new_curr_pwd != $hase_pwd) {
+				$message= "Current password does not matched.";
+				$_SESSION['error_msg'] = $message;
+				return 0;
+		}else if ($new_pwd != $confirm_pwd) {
+				$message= "Confirm password does not matched";
+				$_SESSION['error_msg'] = $message;
+				return 0;
+		}else {
+				$size = mcrypt_get_iv_size(MCRYPT_CAST_256, MCRYPT_MODE_CFB);
+				$random_salt = mcrypt_create_iv($size, MCRYPT_DEV_RANDOM);
+				$new_hash_pwd=$random_salt.$new_pwd;
+				$new_hash_pwd=hash('sha1',$new_hash_pwd);
+				$query_updt = "UPDATE users SET hashed_password = '".$new_hash_pwd."',salt='".$random_salt."' WHERE id='$uesr_id'";
+				$query_updt = mysqli_query($this->conn, $query_updt);
+				$message= "New password has been updated successfully";
+				$_SESSION['succ_msg'] = $message;
+				return 1;
 		}
 	}
 	//getting the username

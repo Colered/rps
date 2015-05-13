@@ -1,5 +1,5 @@
 <?php
-require_once('../config.php');
+require_once('config.php');
 if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']=='/admin/forgot.php'){
 		//Do Nothing
 }elseif(!isset($_SESSION['user_id'])){
@@ -10,9 +10,9 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <title>REGISTRATION PRE-SELECTION SOLUTION</title>
-        <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="../css/navi.css" media="screen" />
+        <title>SUBJECT PRE-SELECTION MODULE</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/navi.css" media="screen" />
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 		<link rel="icon" href="favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" href="js/jquery-ui.css">
@@ -41,7 +41,7 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
             <div id="header">
                 <div id="top">
                     <div class="left" style="width:506px;">
-                        <a href="index.php"><img src="../images/logo.png"  border="0" class="logo-img"/></a>
+                        <a href="index.php"><img src="images/logo.png"  border="0" class="logo-img"/></a>
 						<span style="float: right; margin-top: -55px; color: #ffffff; font-size:20px;">REGISTRATION PRE-SELECTION SOLUTION</span>
                     </div>
                     <div class="right">
@@ -61,10 +61,9 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
                     <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){ ?>
 					<ul>
 						<li class="upp"><a href="dashboard.php">Dashboard</a></li>
-						<li class="upp"><a href="#">Subject Groups Creation</a></li>
-						<li class="upp"><a href="#">General SPS Config</a></li>
+						<li class="upp"><a href="#">Subject PRE-SELECTION</a></li>
 						<li class="upp"><a href="#">Reports</a></li>					
-						<li class="upp right"  style="float:right"><a href="../logout.php">Logout</a></li>						
+						<li class="upp right"  style="float:right"><a href="logout.php">Logout</a></li>						
 						<li class="upp right"  style="float:right"><a href="change_password.php">Change Password</a></li>		
                     </ul>
 					<?php } ?>

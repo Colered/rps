@@ -42,6 +42,34 @@ if (isset($_POST['form_action']) && $_POST['form_action']!=""){
 				header('Location: admin/forgot.php');
 		}
 		break;
+		case 'StuLogin':
+			//conditions for student login
+			if($_POST['txtUName']!="" && $_POST['txtPwd']!="" ){
+				$obj = new Users();
+				$resp = $obj->stuUserLogin();
+				$location = ($resp == 1) ? "dashboard.php" : "index.php";
+				header('Location: '.$location);
+			}else{
+				$message="Please enter username and password";
+				$_SESSION['error_msg'] = $message;
+				header('Location: index.php');
+			}
+		break;	
+		case "changeStuPwd":
+		 if(isset($_POST['currentPassword']) && $_POST['currentPassword']!=""){
+			 $obj = new Users();
+			 $resp = $obj->changeStuPwd();
+			 if($resp){
+			 	session_destroy();
+				session_start();
+				$message= "New password has been updated successfully";
+				$_SESSION['succ_msg'] = $message;
+			 	header('Location: index.php');
+			 }else{
+			 	header('Location: change_password.php');
+			 }
+		}
+		break;
 	}
 }
 ?>
