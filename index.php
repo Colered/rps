@@ -8,7 +8,7 @@ if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){
     <div id="main">
         <div class="full_w">
             <div class="h_title">Student Login</div>
-            <form action="postdata.php" method="post" autocomplete="off">
+            <form action="postdata.php" method="post" autocomplete="off" id="studentLogin">
 				<input type="hidden" name="form_action" value="StuLogin"/>
                 <div class="custtable_left">
                     <img src="images/lock.jpg" id="lock-img" class="lock-img" />
