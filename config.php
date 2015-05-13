@@ -2,9 +2,10 @@
 //die("here");
 session_start();
 define('DB_SERVER', "localhost");
-define('DB_DATABASE', "fedena");
 define('DB_USER', "root");
 define('DB_PASS', "");
+define('DB_FEDENA', "fedena");
+define('DB_RPS', "rps");
 // include database and object files
 if(!function_exists('classAutoLoader')){
 	function classAutoLoader($class){
@@ -16,6 +17,7 @@ if(!function_exists('classAutoLoader')){
 spl_autoload_register('classAutoLoader');
 // instantiate database object
 $database = new Database();
-$db = $database->getConnection();
+$db_FED = $database->getFedenaConnection();
+$db_RPS = $database->getConnection();
 //date_default_timezone_set("America/New_York");
 ?>

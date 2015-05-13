@@ -10,7 +10,7 @@ class Users extends Base {
 			//check if user account exists
 			$encPwd = base64_encode($_POST['txtPwd']);
 			$login_query="select * from users where username='".$_POST['txtUName']."' and password='".$encPwd."' and is_active='1'";
-			$q_res = mysqli_query($this->conn, $login_query);
+			$q_res = mysqli_query($this->conn1, $login_query);
 			if(mysqli_num_rows($q_res)>0)
 			{
 				while($data = mysqli_fetch_assoc($q_res))
@@ -61,7 +61,7 @@ class Users extends Base {
 		if (isset($_POST['email'])){
 				$email = $_POST['email'];
 				$query="select * from users where email='$email'";
-				$result   = mysqli_query($this->conn,$query);
+				$result   = mysqli_query($this->conn1,$query);
 				$count=mysqli_num_rows($result);
 				// If the count is equal to one, we will send message other wise display an error message.
 				if($count==1){
@@ -108,7 +108,7 @@ class Users extends Base {
    public function changePwd(){
         $uesr_id=$_SESSION['user_id'];
 		$sql="select * from users where id='$uesr_id'";
-		$query = mysqli_query($this->conn, $sql);
+		$query = mysqli_query($this->conn1, $sql);
 		while ($row = mysqli_fetch_array($query)) {
 			$username = $row['username'];
 			$password = $row['password'];
@@ -126,7 +126,7 @@ class Users extends Base {
 			return 0;
 		}else {
 			$query_updt = "UPDATE users SET password = '$new_pwd' WHERE id='$uesr_id'";
-			$query_updt = mysqli_query($this->conn, $query_updt);
+			$query_updt = mysqli_query($this->conn1, $query_updt);
 			$message= "New password has been updated successfully";
 			$_SESSION['succ_msg'] = $message;
 			return 1;
@@ -168,7 +168,7 @@ class Users extends Base {
 	//getting the username
 	function getUserName($Id){
 	    $sql="select username from users where id='".$_SESSION['user_id']."'";
-		$q_res = mysqli_query($this->conn, $sql);
+		$q_res = mysqli_query($this->conn1, $sql);
 		$data = mysqli_fetch_assoc($q_res);
 		return $data;
 	}

@@ -42,7 +42,7 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
                 <div id="top">
                     <div class="left" style="width:506px;">
                         <a href="index.php"><img src="../images/logo.png"  border="0" class="logo-img"/></a>
-						<span style="float: right; margin-top: -55px; color: #ffffff; font-size:20px;">REGISTRATION PRE-SELECTION SOLUTION</span>
+						<span style="float: right; margin-top: -55px; color: #ffffff; font-size:20px;">ADMINISTRATION PANEL RPS</span>
                     </div>
                     <div class="right">
                         <div class="align-right" style="color: #ffffff;">

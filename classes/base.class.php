@@ -3,8 +3,10 @@ abstract class Base
 {
 	public $conn;
 	public function __construct(){
-		global $db;
-		$this->conn = $db;
+		global $db_FED;
+		global $db_RPS;
+		$this->conn = $db_FED;
+		$this->conn1 = $db_RPS;
 	}
 
 	//function to date format by datetime
