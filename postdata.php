@@ -36,6 +36,10 @@ if (isset($_POST['form_action']) && $_POST['form_action']!=""){
 			 $obj = new Users();
 			 $resp = $obj->forgotPwd();
 			 header('Location: admin/forgot.php');
+		}else{
+				$message="Please enter email";
+				$_SESSION['error_msg'] = $message;
+				header('Location: admin/forgot.php');
 		}
 		break;
 	}

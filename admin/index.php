@@ -1,5 +1,5 @@
 <?php
-include('../header-main.php');
+include('header-main.php');
 if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){
 	header('Location: dashboard.php');
 }

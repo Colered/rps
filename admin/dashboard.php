@@ -1,5 +1,5 @@
 <?php
-include('../header.php');?>
+include('header.php');?>
 <div class="custtable_left fontstyles" style="margin-left:20px">
 				<p align="justify">
 				<strong>Barna Business School</strong>, the first School of Business at the Dominican Republic and the Caribbean, was founded by a group of young leaders and entrepreneurs international training, to transform the Latin American business vision through management training.</span></span><span><span class="style6">			    To do this, Barna cultivates a contemporary academic philosophy, independent, and practice-oriented value creation, with a strong component of ethics and social responsibility.Search directly influence for the School, its members and business related:</span>
