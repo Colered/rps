@@ -4,7 +4,7 @@ include('header.php');?>
 	<table id="datatables-left" class="display">
 		<thead>
 			<tr>
-				<th >SUBJECTS CURRENTLY TAKING </th>
+				<th >Subjects Currently Taking</th>
 			</tr>
 		</thead>
 		<tbody>
