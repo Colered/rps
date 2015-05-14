@@ -311,7 +311,7 @@ div.custtd_right {
 }
 div.txtfield {
    /*border-left: 1px dotted #BEBEBE;*/ 
-    float: left;
+    float: right;
     padding-bottom: 10px;
     padding-left: 12px;
     text-align: right;

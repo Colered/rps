@@ -24,9 +24,7 @@
 				</div>
 				<div class="clear"></div>			
 				<div class="txtfield" style="padding-left:41px; padding-top:10px;">
-					<input type="button" name="btnSPSConfig" class="buttonsub btnSPSConfig" value="Save">
-				</div>
-				<div class="txtfield" style="padding-top:10px;">
+					<input type="button" name="btnSPSConfig" class="buttonsub btnSPSConfig" value="Save">				
 					<input type="button" name="btnCancel" class="buttonsub" value="Cancel" onclick="location.href = '';">
 				</div>
             </div>	

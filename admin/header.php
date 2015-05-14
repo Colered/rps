@@ -56,6 +56,7 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
 					<ul>
 						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='dashboard.php'){ echo "selected"; } ?>"><a href="dashboard.php">Dashboard</a></li>
 						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='subject_group_creation.php'){ echo "selected"; } ?>"><a href="subject_group_creation.php">Subject Groups Creation</a></li>
+						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='add_subject_group_creation.php'){ echo "selected"; } ?>"><a href="add_subject_group_creation.php">Subject Groups Creation1</a></li>
 						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='sps_config.php'){ echo "selected"; } ?>"><a href="sps_config.php">General SPS Config</a></li>
 						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='reports.php'){ echo "selected"; } ?>"><a href="reports.php">Reports</a></li>					
 						<li class="upp right"  style="float:right"><a href="../logout.php">Logout</a></li>						
