@@ -576,5 +576,26 @@ font-weight: bold;
 text-decoration: underline;
 margin-left: 15px;
 }
-
-
+#datatables-right{ 
+	border: 1px solid #CCCCCC; 
+	margin: 10px; 
+	width: 72%!important;
+	border-spacing:0;
+	  
+}
+#datatables-left{ 
+	border: 1px solid #CCCCCC; 
+	margin: 10px; 
+	width: 25%!important;
+	border-spacing:0;
+	float:left;
+	min-height:120px;
+	  
+}
+.header-title{
+	margin-top: -58px;
+	margin-left: 115px; 
+	color: #ffffff; 
+	font-size:20px;
+}
+.selected, .selected a, .selected a:hover{color:#FFCC00!important;}

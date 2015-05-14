@@ -10,7 +10,7 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <title>REGISTRATION PRE-SELECTION SOLUTION</title>
+        <title>Admin - REGISTRATION PRE-SELECTION SOLUTION (RPS)</title>
         <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="../css/navi.css" media="screen" />
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
                 <div id="top">
                     <div class="left" style="width:506px;">
                         <a href="index.php"><img src="../images/logo.png"  border="0" class="logo-img"/></a>
-						<span style="float: right; margin-top: -55px; color: #ffffff; font-size:20px;">ADMINISTRATION PANEL RPS</span>
+						<div class="header-title">ADMINISTRATION PANEL RPS</div>
                     </div>
                     <div class="right">
                         <div class="align-right" style="color: #ffffff;">
@@ -50,14 +50,14 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
                 </div>
 			 </div>
                 <div id="nav">
-                    <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){ ?>
+					<?php if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){ $urlData = explode("/",$_SERVER['PHP_SELF']); ?>
 					<ul>
-						<li class="upp"><a href="dashboard.php">Dashboard</a></li>
-						<li class="upp"><a href="#">Subject Groups Creation</a></li>
-						<li class="upp"><a href="#">General SPS Config</a></li>
-						<li class="upp"><a href="#">Reports</a></li>					
+						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='dashboard.php'){ echo "selected"; } ?>"><a href="dashboard.php">Dashboard</a></li>
+						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='dashboard.php'){ echo "selected"; } ?>"><a href="#">Subject Groups Creation</a></li>
+						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='dashboard.php'){ echo "selected"; } ?>"><a href="#">General SPS Config</a></li>
+						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='dashboard.php'){ echo "selected"; } ?>"><a href="#">Reports</a></li>					
 						<li class="upp right"  style="float:right"><a href="../logout.php">Logout</a></li>						
-						<li class="upp right"  style="float:right"><a href="change_password.php">Change Password</a></li>		
+						<li class="upp right <?php if(isset($urlData[2]) && $urlData[2]=='change_password.php'){ echo "selected"; } ?>"  style="float:right"><a href="change_password.php">Change Password</a></li>		
                     </ul>
 					<?php } ?>
 					</div>
