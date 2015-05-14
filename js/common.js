@@ -59,5 +59,29 @@ function strip_tags(str, allow) {
 function stripslashes(str) {
  return str.replace(/\\'/g,'\'').replace(/\"/g,'"').replace(/\\\\/g,'\\').replace(/\\0/g,'\0');
 }
+$(function() {
+	$("#fromSPS").datepicker({
+	    dateFormat: 'dd-mm-yy',
+		defaultDate: "+1w",
+		changeMonth: true,
+		numberOfMonths: 1,
+		changeMonth: true, 
+		changeYear: true,
+		onClose: function(selectedDate) {
+			$("#toSPS").datepicker("option", "minDate", selectedDate);
+		}
+	});
+	$("#toSPS").datepicker({
+	    dateFormat: 'dd-mm-yy',
+		defaultDate: "+1w",
+		changeMonth: true,
+		numberOfMonths: 1,
+		changeMonth: true, 
+		changeYear: true,
+		onClose: function(selectedDate) {
+			$("#fromSPS").datepicker("option", "maxDate", selectedDate);
+		}
+	});
+});
 
 

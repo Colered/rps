@@ -257,6 +257,7 @@ border:1px solid #8bcf54; font-size:12px;font-family:arial, helvetica, sans-seri
 }
 .custtable_left {
     float: left;
+	min-height:300px;
 }
 .custtd_left {
     float: left;
@@ -601,3 +602,4 @@ margin-left: 15px;
 .selected, .selected a, .selected a:hover{color:#FFCC00!important;}
 .activity-color-filteration{float:right;margin-right:20px;}
 .report-name{float:left;margin-left:20px;}
+.btnSPSConfig{margin-left:195px;}
