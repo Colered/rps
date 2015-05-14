@@ -52,15 +52,15 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
                 </div>
 			 </div>
                 <div id="nav">
-					<?php if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){ $urlData = explode("/",$_SERVER['PHP_SELF']); ?>
+					<?php if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){ $urlData = explode("admin/",$_SERVER['PHP_SELF']);?>
 					<ul>
-						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='dashboard.php'){ echo "selected"; } ?>"><a href="dashboard.php">Dashboard</a></li>
-						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='subject_group_creation.php'){ echo "selected"; } ?>"><a href="subject_group_creation.php">Subject Groups Creation</a></li>
-						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='add_subject_group_creation.php'){ echo "selected"; } ?>"><a href="add_subject_group_creation.php">Subject Groups Creation1</a></li>
-						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='sps_config.php'){ echo "selected"; } ?>"><a href="sps_config.php">General SPS Config</a></li>
-						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='reports.php'){ echo "selected"; } ?>"><a href="reports.php">Reports</a></li>					
+						<li class="upp <?php if(isset($urlData[1]) && $urlData[1]=='dashboard.php'){ echo "selected"; } ?>"><a href="dashboard.php">Dashboard</a></li>
+						<li class="upp <?php if(isset($urlData[1]) && $urlData[1]=='subject_group_creation.php'){ echo "selected"; } ?>"><a href="subject_group_creation.php">Subject Groups Creation</a></li>
+						<li class="upp <?php if(isset($urlData[1]) && $urlData[1]=='add_subject_group_creation.php'){ echo "selected"; } ?>"><a href="add_subject_group_creation.php">Subject Groups Creation1</a></li>
+						<li class="upp <?php if(isset($urlData[1]) && $urlData[1]=='sps_config.php'){ echo "selected"; } ?>"><a href="sps_config.php">General SPS Config</a></li>
+						<li class="upp <?php if(isset($urlData[1]) && $urlData[1]=='reports.php'){ echo "selected"; } ?>"><a href="reports.php">Reports</a></li>					
 						<li class="upp right"  style="float:right"><a href="../logout.php">Logout</a></li>						
-						<li class="upp right <?php if(isset($urlData[2]) && $urlData[2]=='change_password.php'){ echo "selected"; } ?>"  style="float:right"><a href="change_password.php">Change Password</a></li>		
+						<li class="upp right <?php if(isset($urlData[1]) && $urlData[1]=='change_password.php'){ echo "selected"; } ?>"  style="float:right"><a href="change_password.php">Change Password</a></li>		
                     </ul>
 					<?php } ?>
 					</div>

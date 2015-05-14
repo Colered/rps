@@ -15,7 +15,9 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
         <link rel="stylesheet" type="text/css" href="css/navi.css" media="screen" />
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="js/jquery-ui.css">
 		<script src="js/jquery-1.10.2.js"></script>
+		<script src="js/jquery-ui.js"></script>
 		<script src="js/jquery.validate.js"></script>
 		<script src="js/common.js"></script>
 		<script type="text/javascript">
