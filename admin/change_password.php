@@ -39,9 +39,7 @@
 					<div class="custtd_left">
                      </div>
                     <div class="txtfield">
-                        <input type="submit" name="forgotPwdBtn" class="buttonsub" value="Submit">
-                    </div>
-                    <div class="txtfield">
+                        <input type="submit" name="forgotPwdBtn" class="buttonsub" value="Submit">                    
                         <input type="button" name="btnCancel" class="buttonsub" value="Cancel" onclick="location.href = 'dashboard.php';">
                     </div>
 					<div class="clear"></div>

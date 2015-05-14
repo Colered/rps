@@ -257,6 +257,7 @@ border:1px solid #8bcf54; font-size:12px;font-family:arial, helvetica, sans-seri
 }
 .custtable_left {
     float: left;
+	min-height:300px;
 }
 .custtd_left {
     float: left;
@@ -310,7 +311,7 @@ div.custtd_right {
 }
 div.txtfield {
    /*border-left: 1px dotted #BEBEBE;*/ 
-    float: left;
+    float: right;
     padding-bottom: 10px;
     padding-left: 12px;
     text-align: right;
@@ -619,3 +620,4 @@ margin-left: 15px;
 	min-height:120px;
 }
 .highFont{font-size:32px; font-weight:normal;}
+.btnSPSConfig{margin-left:195px;}
