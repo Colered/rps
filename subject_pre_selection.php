@@ -4,7 +4,7 @@ include('header.php');?>
 	<table id="datatables-left" class="display">
 		<thead>
 			<tr>
-				<th >SUBJECTS CURRENTLY TAKING </th>
+				<th >Suggested Subjects for Next Semester </th>
 			</tr>
 		</thead>
 		<tbody>
@@ -30,55 +30,55 @@ include('header.php');?>
 	<table id="datatables-right" class="display">
 		<thead>
 			<tr>
-				<th >SUBJECT CODE</th>
-				<th >SUBJECT NAME</th>                        
-				<th >GROUPS AVAILABLE</th>
-				<th >SUBJECT PRE-REQUISITE</th>
-				<th >STUDENTS SUBSCRIBED</th>				
+				<th >Groups for {Sem Name} for <br /> {Course Name} For {Student Name}</th>
+				<th >Credits</th>                        
+				<th >Seats</th>
+				<th >Action</th>
+				<th >Selected Subject Groups</th>				
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td class="align-center">SBJCT01</td>
-				<td class="align-center">SUBJECT1</td>                        
-				<td class="align-center">4 <span class="subject-heading-1"><a href="#">See Groups</a></span></td>
-				<td class="align-center">SBJCTA, SBJCTB <span class="subject-heading-1"><a href="#">Edit</a></span></td>
-				<td class="align-center">59 <span class="subject-heading-1"><a href="#">See Group Distribution</a></span></td>	
+				<td class="align-center">L-M-V-17:00-19:00 - A3 206 - Prof. Maritza Guzman</td>
+				<td class="align-center">3</td>                        
+				<td class="align-center">30</td>
+				<td class="align-center"><span class="subject-heading-1"><a href="#">Select</a></span></td>
+				<td class="align-center">SBJCT011 - S-8:00-12:00 Prof. Julia Smith</td>	
 			</tr>
 			<tr>
-				<td class="align-center">SBJCT01</td>
-				<td class="align-center">SUBJECT1</td>                        
-				<td class="align-center">4 <span class="subject-heading-1"><a href="#">See Groups</a></span></td>
-				<td class="align-center">SBJCTA, SBJCTB <span class="subject-heading-1"><a href="#">Edit</a></span></td>
-				<td class="align-center">59 <span class="subject-heading-1"><a href="#">See Group Distribution</a></span></td>		
+				<td class="align-center">L-M-V-17:00-19:00 - A3 206 - Prof. Maritza Guzman</td>
+				<td class="align-center">3</td>                        
+				<td class="align-center">30</td>
+				<td class="align-center"><span class="subject-heading-1"><a href="#">Select</a></span></td>
+				<td class="align-center">SBJCT011 - S-8:00-12:00 Prof. Julia Smith</td>	
 			</tr>
 			<tr>
-				<td class="align-center">SBJCT01</td>
-				<td class="align-center">SUBJECT1</td>                        
-				<td class="align-center">4 <span class="subject-heading-1"><a href="#">See Groups</a></span></td>
-				<td class="align-center">SBJCTA, SBJCTB <span class="subject-heading-1"><a href="#">Edit</a></span></td>
-				<td class="align-center">59 <span class="subject-heading-1"><a href="#">See Group Distribution</a></span></td>	
+				<td class="align-center">L-M-V-17:00-19:00 - A3 206 - Prof. Maritza Guzman</td>
+				<td class="align-center">3</td>                        
+				<td class="align-center">30</td>
+				<td class="align-center"><span class="subject-heading-1"><a href="#">Select</a></span></td>
+				<td class="align-center">SBJCT011 - S-8:00-12:00 Prof. Julia Smith</td>	
 			</tr>
 			<tr>
-				<td class="align-center">SBJCT01</td>
-				<td class="align-center">SUBJECT1</td>                        
-				<td class="align-center">4 <span class="subject-heading-1"><a href="#">See Groups</a></span></td>
-				<td class="align-center">SBJCTA, SBJCTB <span class="subject-heading-1"><a href="#">Edit</a></span></td>
-				<td class="align-center">59 <span class="subject-heading-1"><a href="#">See Group Distribution</a></span></td>		
+				<td class="align-center">L-M-V-17:00-19:00 - A3 206 - Prof. Maritza Guzman</td>
+				<td class="align-center">3</td>                        
+				<td class="align-center">30</td>
+				<td class="align-center"><span class="subject-heading-1"><a href="#">Select</a></span></td>
+				<td class="align-center">SBJCT011 - S-8:00-12:00 Prof. Julia Smith</td>	
 			</tr>
 			<tr>
-				<td class="align-center">SBJCT01</td>
-				<td class="align-center">SUBJECT1</td>                        
-				<td class="align-center">4 <span class="subject-heading-1"><a href="#">See Groups</a></span></td>
-				<td class="align-center">SBJCTA, SBJCTB <span class="subject-heading-1"><a href="#">Edit</a></span></td>
-				<td class="align-center">59 <span class="subject-heading-1"><a href="#">See Group Distribution</a></span></td>	
+				<td class="align-center">L-M-V-17:00-19:00 - A3 206 - Prof. Maritza Guzman</td>
+				<td class="align-center">3</td>                        
+				<td class="align-center">30</td>
+				<td class="align-center"><span class="subject-heading-1"><a href="#">Select</a></span></td>
+				<td class="align-center">SBJCT011 - S-8:00-12:00 Prof. Julia Smith</td>	
 			</tr>
 			<tr>
-				<td class="align-center">SBJCT01</td>
-				<td class="align-center">SUBJECT1</td>                        
-				<td class="align-center">4 <span class="subject-heading-1"><a href="#">See Groups</a></span></td>
-				<td class="align-center">SBJCTA, SBJCTB <span class="subject-heading-1"><a href="#">Edit</a></span></td>
-				<td class="align-center">59 <span class="subject-heading-1"><a href="#">See Group Distribution</a></span></td>		
+				<td class="align-center">L-M-V-17:00-19:00 - A3 206 - Prof. Maritza Guzman</td>
+				<td class="align-center">3</td>                        
+				<td class="align-center">30</td>
+				<td class="align-center"><span class="subject-heading-1"><a href="#">Select</a></span></td>
+				<td class="align-center">SBJCT011 - S-8:00-12:00 Prof. Julia Smith</td>	
 			</tr>
 		</tbody>
 	</table>			 
