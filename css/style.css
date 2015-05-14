@@ -601,3 +601,21 @@ margin-left: 15px;
 .selected, .selected a, .selected a:hover{color:#FFCC00!important;}
 .activity-color-filteration{float:right;margin-right:20px;}
 .report-name{float:left;margin-left:20px;}
+#datatables1{ 
+	border: 1px solid #CCCCCC; 
+	margin: 10px; 
+	width: 28%!important;
+	border-spacing:0;
+	float:left;
+	min-height:120px;
+	  
+}
+#datatables2{ 
+	border: 1px solid #CCCCCC; 
+	margin: 10px; 
+	width: 35%!important;
+	border-spacing:0;
+	float:left;
+	min-height:120px;
+}
+.highFont{font-size:32px; font-weight:normal;}
