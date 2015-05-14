@@ -71,7 +71,7 @@ include('header.php');?>
 		</tbody>
 	</table>			 
 </div>
-<?php include('sidebar-right.php');
+<?php include('sidebar_right.php');
 	  include('footer.php');
 ?>
 

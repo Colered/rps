@@ -1,6 +1,33 @@
-<?php include('header.php');?>
+<?php
+include('header.php');?>
 <div class="custtable_left fontstyles" style="margin-left:20px;width:80%;">
-	<table id="datatables" class="display">
+	<table id="datatables-left" class="display">
+		<thead>
+			<tr>
+				<th >SUBJECTS CURRENTLY TAKING </th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="align-center">SBJCT01 <span class="subject-heading-1"><a href="#">See Details</a></span></td>
+			</tr>
+			<tr>
+				<td class="align-center">SBJCT01 <span class="subject-heading-1"><a href="#">See Details</a></span></td>
+			</tr>
+			<tr>
+				<td class="align-center">SBJCT01 <span class="subject-heading-1"><a href="#">See Details</a></span></td>
+			</tr>
+			<tr>
+				<td class="align-center">SBJCT01 <span class="subject-heading-1"><a href="#">See Details</a></span></td>
+			</tr><tr>
+				<td class="align-center">SBJCT01 <span class="subject-heading-1"><a href="#">See Details</a></span></td>
+			</tr><tr>
+				<td class="align-center">SBJCT01 <span class="subject-heading-1"><a href="#">See Details</a></span></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<table id="datatables-right" class="display">
 		<thead>
 			<tr>
 				<th >SUBJECT CODE</th>
@@ -56,7 +83,7 @@
 		</tbody>
 	</table>			 
 </div>
-<?php include('sidebar_right.php');?>
-<?php include('../footer.php');?>
-
+<?php include('sidebar_right.php');
+	  include('footer.php');
+?>
 

@@ -599,3 +599,5 @@ margin-left: 15px;
 	font-size:20px;
 }
 .selected, .selected a, .selected a:hover{color:#FFCC00!important;}
+.activity-color-filteration{float:right;margin-right:20px;}
+.report-name{float:left;margin-left:20px;}

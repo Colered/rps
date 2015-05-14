@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
         <title>SUBJECT PRE-SELECTION MODULE</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="css/navi.css" media="screen" />
@@ -53,7 +53,7 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
                     <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){ $urlData = explode("/",$_SERVER['PHP_SELF']); ?>
 					<ul>
 						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='dashboard.php'){ echo "selected"; } ?>"><a href="dashboard.php">Dashboard</a></li>
-						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='subject-pre-selection.php'){ echo "selected"; } ?>"><a href="subject-pre-selection.php">Subject PRE-SELECTION</a></li>
+						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='subject_pre_selection.php'){ echo "selected"; } ?>"><a href="subject_pre_selection.php">Subject PRE-SELECTION</a></li>
 						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='reports.php'){ echo "selected"; } ?>"><a href="reports.php">Reports</a></li>					
 						<li class="upp right"  style="float:right"><a href="logout.php">Logout</a></li>						
 						<li class="upp right <?php if(isset($urlData[2]) && $urlData[2]=='change_password.php'){ echo "selected"; } ?>"  style="float:right"><a href="change_password.php">Change Password</a></li>		

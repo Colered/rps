@@ -5,53 +5,60 @@
 			<tr>
 				<th >SUBJECT CODE</th>
 				<th >SUBJECT NAME</th>                        
-				<th >GROUPS AVAILABLE</th>
+				<th >SUBJECT GROUP CODE</th>
 				<th >SUBJECT PRE-REQUISITE</th>
-				<th >STUDENTS SUBSCRIBED</th>				
+				<th >ACTION</th>
+				<th >STATUS</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td class="align-center">SBJCT01</td>
 				<td class="align-center">SUBJECT1</td>                        
-				<td class="align-center">4 <span class="subject-heading-1"><a href="#">See Groups</a></span></td>
+				<td class="align-center">T-001</td>
 				<td class="align-center">SBJCTA, SBJCTB <span class="subject-heading-1"><a href="#">Edit</a></span></td>
-				<td class="align-center">59 <span class="subject-heading-1"><a href="#">See Group Distribution</a></span></td>	
+				<td class="align-center"><span class="subject-heading-1"><a href="#">Disable</a></span></td>
+				<td class="align-center">ACTIVE</td>
 			</tr>
 			<tr>
 				<td class="align-center">SBJCT01</td>
 				<td class="align-center">SUBJECT1</td>                        
-				<td class="align-center">4 <span class="subject-heading-1"><a href="#">See Groups</a></span></td>
+				<td class="align-center">T-001</td>
 				<td class="align-center">SBJCTA, SBJCTB <span class="subject-heading-1"><a href="#">Edit</a></span></td>
-				<td class="align-center">59 <span class="subject-heading-1"><a href="#">See Group Distribution</a></span></td>		
+				<td class="align-center"><span class="subject-heading-1"><a href="#">Disable</a></span></td>
+				<td class="align-center">ACTIVE</td>
 			</tr>
 			<tr>
 				<td class="align-center">SBJCT01</td>
 				<td class="align-center">SUBJECT1</td>                        
-				<td class="align-center">4 <span class="subject-heading-1"><a href="#">See Groups</a></span></td>
+				<td class="align-center">T-001</td>
 				<td class="align-center">SBJCTA, SBJCTB <span class="subject-heading-1"><a href="#">Edit</a></span></td>
-				<td class="align-center">59 <span class="subject-heading-1"><a href="#">See Group Distribution</a></span></td>	
+				<td class="align-center"><span class="subject-heading-1"><a href="#">Disable</a></span></td>
+				<td class="align-center">ACTIVE</td>
 			</tr>
 			<tr>
 				<td class="align-center">SBJCT01</td>
 				<td class="align-center">SUBJECT1</td>                        
-				<td class="align-center">4 <span class="subject-heading-1"><a href="#">See Groups</a></span></td>
+				<td class="align-center">T-001</td>
 				<td class="align-center">SBJCTA, SBJCTB <span class="subject-heading-1"><a href="#">Edit</a></span></td>
-				<td class="align-center">59 <span class="subject-heading-1"><a href="#">See Group Distribution</a></span></td>		
+				<td class="align-center"><span class="subject-heading-1"><a href="#">Disable</a></span></td>
+				<td class="align-center">ACTIVE</td>
 			</tr>
 			<tr>
 				<td class="align-center">SBJCT01</td>
 				<td class="align-center">SUBJECT1</td>                        
-				<td class="align-center">4 <span class="subject-heading-1"><a href="#">See Groups</a></span></td>
+				<td class="align-center">T-001</td>
 				<td class="align-center">SBJCTA, SBJCTB <span class="subject-heading-1"><a href="#">Edit</a></span></td>
-				<td class="align-center">59 <span class="subject-heading-1"><a href="#">See Group Distribution</a></span></td>	
+				<td class="align-center"><span class="subject-heading-1"><a href="#">Disable</a></span></td>
+				<td class="align-center">ACTIVE</td>
 			</tr>
 			<tr>
 				<td class="align-center">SBJCT01</td>
 				<td class="align-center">SUBJECT1</td>                        
-				<td class="align-center">4 <span class="subject-heading-1"><a href="#">See Groups</a></span></td>
+				<td class="align-center">T-001</td>
 				<td class="align-center">SBJCTA, SBJCTB <span class="subject-heading-1"><a href="#">Edit</a></span></td>
-				<td class="align-center">59 <span class="subject-heading-1"><a href="#">See Group Distribution</a></span></td>		
+				<td class="align-center"><span class="subject-heading-1"><a href="#">Disable</a></span></td>
+				<td class="align-center">ACTIVE</td>
 			</tr>
 		</tbody>
 	</table>			 
