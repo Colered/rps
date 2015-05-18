@@ -1,5 +1,10 @@
 <?php
 include('header_main.php');
+//echo $_SERVER['SERVER_NAME'];
+$subdomain='';
+$domain = 'fedtest.colered.edu.do';
+$tmp = explode('.', $domain);
+$subdomain = current($tmp);
 if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){
 	header('Location: dashboard.php');
 }
@@ -10,6 +15,7 @@ if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){
             <div class="h_title">Student Login</div>
             <form action="postdata.php" method="post" autocomplete="off" id="studentLogin" class="login">
 				<input type="hidden" name="form_action" value="StuLogin"/>
+				 <input type="hidden" name="subDomain" id="subDomain" value="<?php echo $subdomain; ?>" />
                 <div class="custtable_left">
                     <img src="images/lock.jpg" id="lock-img" class="lock-img" />
                 </div>
