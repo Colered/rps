@@ -35,7 +35,7 @@ class Users extends Base {
 			$schl_query_res = mysqli_query($this->connfed, $schl_query);
 		  if(mysqli_num_rows($schl_query_res)>0){
 			$school_data=mysqli_fetch_assoc($schl_query_res);
-			$hash_salt_query="select id,hashed_password,salt,email from users where username='".trim($_POST['txtUName'])."' and school_id='".$school_data['id']."' ";
+			$hash_salt_query="select id,hashed_password,salt,email from users where username='".trim($_POST['txtUName'])."' and school_id='".$school_data['id']."' and admin!=1";
 			$hash_salt_res = mysqli_query($this->connfed, $hash_salt_query);
 			if(mysqli_num_rows($hash_salt_res)>0){	
 			 	$row=mysqli_fetch_assoc($hash_salt_res);
