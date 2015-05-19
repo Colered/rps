@@ -1,10 +1,9 @@
 <?php
 include('header_main.php');
-//echo $_SERVER['SERVER_NAME'];
 $subdomain='';
-$domain = 'fedtest.colered.edu.do';
+$domain = $_SERVER['SERVER_NAME'];
 $tmp = explode('.', $domain);
-$subdomain = current($tmp);
+$subdomain = str_replace("rps","",$tmp[0]);
 if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){
 	header('Location: dashboard.php');
 }
@@ -59,4 +58,3 @@ if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){
     <div class="clear"></div>
 </div>
 <?php include('footer.php'); ?>
-
