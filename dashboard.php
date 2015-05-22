@@ -1,5 +1,12 @@
 <?php
-include('header.php');?>
+include('header.php');
+
+$obj_fedena=new Fedena();
+$stuendt_subjects=$obj_fedena->getCurrentStuSemSub();
+/*echo '<pre>';
+print_r($stuendt_subjects);
+die;*/
+?>
 <div class="custtable_left fontstyles" style="margin-left:20px;width:80%;">
 	<table id="datatables-left" class="display">
 		<thead>
@@ -8,22 +15,11 @@ include('header.php');?>
 			</tr>
 		</thead>
 		<tbody>
+			<?php foreach($stuendt_subjects as $key=>$val){ ?>
 			<tr>
-				<td class="align-center">SBJCT01 <span class="subject-heading-1"><a href="#">See Details</a></span></td>
+				<td class="align-left"><?php echo $key;//echo '<pre>'; print_r($val); ?> <span class="subject-heading-1"><a href="#">See Details</a></span></td>
 			</tr>
-			<tr>
-				<td class="align-center">SBJCT02 <span class="subject-heading-1"><a href="#">See Details</a></span></td>
-			</tr>
-			<tr>
-				<td class="align-center">SBJCT03 <span class="subject-heading-1"><a href="#">See Details</a></span></td>
-			</tr>
-			<tr>
-				<td class="align-center">SBJCT04 <span class="subject-heading-1"><a href="#">See Details</a></span></td>
-			</tr><tr>
-				<td class="align-center">SBJCT05 <span class="subject-heading-1"><a href="#">See Details</a></span></td>
-			</tr><tr>
-				<td class="align-center">SBJCT06 <span class="subject-heading-1"><a href="#">See Details</a></span></td>
-			</tr>
+			<?php }?>
 		</tbody>
 	</table>
 	

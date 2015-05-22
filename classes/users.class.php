@@ -47,6 +47,7 @@ class Users extends Base {
 					 $_SESSION['user_id']=$row['id'];
 					 $_SESSION['username']=$row['username'];
 					 $_SESSION['user_email']=$row['email'];
+					 $_SESSION['school_id']=$school_data['id'];
 					 return 1;
 				}else{
 					 $message="Paasword does not matched.";
