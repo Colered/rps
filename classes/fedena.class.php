@@ -33,10 +33,7 @@ class Fedena extends Base {
 			}
 		  }	
 			return $sub_name_arr;
-		}else{
-		 	echo $message= "No Subject found of a student who has admission number <b>'".$std_array['stu_admission_no']."'</b>";
-		  	$_SESSION['error_msg'] = $message;
-			}
+		 }
 		}else{
 		  $message= "No student found with user credential";
 		  $_SESSION['error_msg'] = $message;

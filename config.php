@@ -4,7 +4,7 @@ session_start();
 define('DB_SERVER', "localhost");
 define('DB_USER', "root");
 define('DB_PASS', "");
-define('DB_FEDENA', "fedena_tallahassee");
+define('DB_FEDENA', "fedena_new");
 define('DB_RPS', "rps");
 // include database and object files
 if(!function_exists('classAutoLoader')){
