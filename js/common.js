@@ -61,7 +61,7 @@ function stripslashes(str) {
 }
 $(function() {
 	$("#fromSPS").datepicker({
-	    dateFormat: 'dd-mm-yy',
+	    dateFormat: 'yy-mm-dd',
 		defaultDate: "+1w",
 		changeMonth: true,
 		numberOfMonths: 1,
@@ -72,7 +72,7 @@ $(function() {
 		}
 	});
 	$("#toSPS").datepicker({
-	    dateFormat: 'dd-mm-yy',
+	    dateFormat: 'yy-mm-dd',
 		defaultDate: "+1w",
 		changeMonth: true,
 		numberOfMonths: 1,
@@ -92,3 +92,30 @@ $(document).ready(function(){
 		return false;
 	});
 });
+
+//ajax delete the configuration
+function deleteConf($id){
+	if($id==""){
+		alert("Please select a configuration range to delete");
+		return false;
+	}else if(confirm("Are you sure you want to delete the configuration?")) {
+	    $.ajax({
+                type: "POST",
+                url: "../ajax_common.php",
+                data: {
+					'id': $id,
+					'codeBlock': 'del_conf',
+				},
+                success: function($succ){
+					if($succ==1){
+                        $('#'+$id).closest('tr').remove();
+						$('.green, .red').hide();
+					}else{
+						alert("Cannot delete the selected configuration, Please try again.");
+						$('.green, .red').hide();
+					}
+                }
+        });
+    }
+    return false;
+}

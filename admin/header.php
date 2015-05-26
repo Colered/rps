@@ -57,7 +57,18 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
 						<li class="upp <?php if(isset($urlData[1]) && $urlData[1]=='dashboard.php'){ echo "selected"; } ?>"><a href="dashboard.php">Dashboard</a></li>
 						<li class="upp <?php if(isset($urlData[1]) && $urlData[1]=='subject_group_creation.php'){ echo "selected"; } ?>"><a href="subject_group_creation.php">Subject Groups Creation</a></li>
 						<li class="upp <?php if(isset($urlData[1]) && $urlData[1]=='add_subject_group_creation.php'){ echo "selected"; } ?>"><a href="add_subject_group_creation.php">Subject Groups Creation1</a></li>
-						<li class="upp <?php if(isset($urlData[1]) && $urlData[1]=='sps_config.php'){ echo "selected"; } ?>"><a href="sps_config.php">General SPS Config</a></li>
+						<?php 
+							$obj = new Spsconfig();
+							$allData = $obj->getAllConfig();
+							$allDataRows = $allData->fetch_assoc();
+							if(isset($allDataRows['id']) && $allDataRows['id'] !="" )
+							{
+								$link = "sps_config_view.php";
+							}else{
+								$link = "sps_config.php";
+							}
+						?>
+						<li class="upp <?php if(isset($urlData[1]) && $urlData[1]=='sps_config_view.php'){ echo "selected"; } ?>"><a href="<?php echo $link ?>">Manage SPS Config</a></li>
 						<li class="upp <?php if(isset($urlData[1]) && $urlData[1]=='reports.php'){ echo "selected"; } ?>"><a href="reports.php">Reports</a></li>					
 						<li class="upp right"  style="float:right"><a href="../logout.php">Logout</a></li>						
 						<li class="upp right <?php if(isset($urlData[1]) && $urlData[1]=='change_password.php'){ echo "selected"; } ?>"  style="float:right"><a href="change_password.php">Change Password</a></li>		

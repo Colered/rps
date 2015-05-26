@@ -2,6 +2,7 @@
 include('header_main.php');
 $subdomain='';
 $domain = $_SERVER['SERVER_NAME'];
+$domain = 'superiorsv.colered.edu.do/';
 $tmp = explode('.', $domain);
 $subdomain = str_replace("rps","",$tmp[0]);
 if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){
