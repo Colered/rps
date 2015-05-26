@@ -39,4 +39,31 @@ class Fedena extends Base {
 		  $_SESSION['error_msg'] = $message;
 		}
 	}
+	function getStudentCourse()
+	{
+		$sql="select course_name 
+			  from courses c inner join batches b on b.course_id = c.id
+			  inner join students s on s.batch_id = b.id where s.user_id='".$_SESSION['user_id']."' and s.school_id='".$_SESSION['school_id']."' and s.is_active='1' and b.is_active='1' and b.is_deleted='0' and c.is_deleted='0' and s.is_deleted='0'";
+		$qry_rslt= mysqli_query($this->connfed,$sql);		
+		if(mysqli_num_rows($qry_rslt)>0){
+			$row = mysqli_fetch_array($qry_rslt);
+			return $row['course_name'];
+		}
+	}
+	function getAllSubjects()
+	{
+		$sql="select distinct eg.name from subjects s
+			  inner join elective_groups eg on eg.id = s.elective_group_id
+			  where s.batch_id = '".$_SESSION['batch_id']."' and s.school_id='".$_SESSION['school_id']."' and s.is_deleted='0' ";
+		$qry_rslt= mysqli_query($this->connfed,$sql);		
+		if(mysqli_num_rows($qry_rslt)>0){
+			$subjects = array();
+			while($row = mysqli_fetch_array($qry_rslt))
+			{
+				$subjects[] = trim($row['name']);
+
+			}
+			return $subjects;
+		}
+	}
 }

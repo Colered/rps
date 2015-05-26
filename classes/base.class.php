@@ -5,8 +5,10 @@ abstract class Base
 	public function __construct(){
 		global $db_FED;
 		global $db_RPS;
+		global $db_RAS;
 		$this->connfed = $db_FED;
 		$this->connrps = $db_RPS;
+		$this->connras = $db_RAS;
 	}
 	//function to clean input text
 	public static function cleanText($txt){

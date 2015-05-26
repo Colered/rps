@@ -3,6 +3,7 @@ class Database{
 	// specify your own database credentials
 	private $host = DB_SERVER;
 	private $db_RPS = DB_RPS;
+	private $db_RAS = DB_RAS;
 	private $username = DB_USER;
 	private $password = DB_PASS;
 	private $db_fed = DB_FEDENA;
@@ -27,5 +28,15 @@ class Database{
 			trigger_error("Failed to conencto to MySQL: " . mysqli_connect_error(),E_USER_ERROR);
 		}
 		return $this->conn1;
+	}
+	// get the RAS database connection
+	public function getRASConnection(){
+		$this->conn2 = null;
+		$this->conn2 = new mysqli($this->host, $this->username, $this->password, $this->db_RAS);
+				// Error handling
+		if(mysqli_connect_error()) {
+			trigger_error("Failed to conencto to MySQL: " . mysqli_connect_error(),E_USER_ERROR);
+		}
+		return $this->conn2;
 	}	
 }
