@@ -1,20 +1,7 @@
 <?php
-include('header.php');?>
-<link type='text/css' href='css/demo.css' rel='stylesheet' media='screen' />
-<link href="http://www.jqueryscript.net/css/top.css" rel="stylesheet" type="text/css">
-<!-- Contact Form CSS files -->
-<link rel="stylesheet" type="text/css" href="css/basic.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="css/demo.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
-<script type='text/javascript' src='js/jquery.simplemodal.js'></script> 
-<script type='text/javascript' src='js/basic.js'></script>
-<?php
+include('header.php');
 $obj_fedena=new Fedena();
 $stuendt_subjects=$obj_fedena->getCurrentStuSemSub();
-/*echo '<pre>';
-echo "yes";
-print_r($stuendt_subjects);
-die;*/	
 ?>
 <div class="custtable_left fontstyles" style="margin-left:20px;width:80%;">
 	<table id="datatables-left" class="display">

@@ -83,5 +83,12 @@ $(function() {
 		}
 	});
 });
-
-
+/* To open pop up for current semester subject detail of a student */
+$(document).ready(function(){
+	$('.basic').click(function (e) {
+		var subject_link_id=$(this).attr("id");
+		var sub_sees_id='#sub_sees_detail_'+subject_link_id;
+		$(sub_sees_id).modal();
+		return false;
+	});
+});
