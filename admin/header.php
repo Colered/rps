@@ -68,7 +68,7 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
 								$link = "sps_config.php";
 							}
 						?>
-						<li class="upp <?php if(isset($urlData[1]) && $urlData[1]=='sps_config_view.php'){ echo "selected"; } ?>"><a href="<?php echo $link ?>">Manage SPS Config</a></li>
+						<li class="upp <?php if(isset($urlData[1]) && ($urlData[1]=='sps_config_view.php' || $urlData[1]=='sps_config.php')){ echo "selected"; } ?>"><a href="<?php echo $link ?>">Manage SPS Config</a></li>
 						<li class="upp <?php if(isset($urlData[1]) && $urlData[1]=='reports.php'){ echo "selected"; } ?>"><a href="reports.php">Reports</a></li>					
 						<li class="upp right"  style="float:right"><a href="../logout.php">Logout</a></li>						
 						<li class="upp right <?php if(isset($urlData[1]) && $urlData[1]=='change_password.php'){ echo "selected"; } ?>"  style="float:right"><a href="change_password.php">Change Password</a></li>		
