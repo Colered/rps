@@ -45,7 +45,7 @@
 	display: none;
 }
 #nav ul li.upp:hover ul{
-	background: #153260;
+	background: #006ABC;
 	border: 1px solid #58585a;
 	border-top: none;
 	display: block;
@@ -70,7 +70,7 @@
 	background: none;
 	display: inline-block;
 	padding: 6px 25px 6px 4px;
-	color:#76B9ED;
+	color:#fff;
 	font-size:13px;
 }
 #nav ul li.upp ul li a:hover{color:#fff;}

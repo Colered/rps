@@ -20,7 +20,9 @@ $(document).ready(function(){
 <div id="content">
     <div id="main">
 	<?php if(isset($_SESSION['succ_msg'])){ echo '<div class="full_w green center">'.$_SESSION['succ_msg'].'</div>'; unset($_SESSION['succ_msg']);} ?>
+	<?php if($result->num_rows > 0){?>
 	<div style="float:right;padding:5px 5px;"><input  type="button" class="buttonsub" value="Save & Finish" name="btnPrgmClone" id="btnPrgmClone" onclick="updatePrerequistie();"/>		</div>
+	<?php } ?>
         <div class="full_w">
             <div class="h_title">Prerequisite Subject View</div>		
 			 <table id="datatables" class="display">
