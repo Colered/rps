@@ -2,7 +2,9 @@
 <div id="content">
     <div id="main">
 		<?php 
-		if(isset($_SESSION['succ_msg'])){ echo '<div class="full_w green center">'.$_SESSION['succ_msg'].'</div>'; unset($_SESSION['succ_msg']);} ?>
+		if(isset($_SESSION['succ_msg'])){ echo '<div class="full_w green center">'.$_SESSION['succ_msg'].'</div>'; unset($_SESSION['succ_msg']);}
+		if(isset($_SESSION['error_msg'])){ echo '<div class="full_w red center">'.$_SESSION['error_msg'].'</div>'; unset($_SESSION['error_msg']);}
+		?>
         <div class="full_w">
             <div class="h_title">Session Upload</div>
             <form name="session_upload" id="session_upload" action="../postdata_import.php" method="post" enctype="multipart/form-data">
@@ -12,7 +14,7 @@
                         <h2>File Path<span class="redstar">*</span></h2>
                     </div>
                     <div class="txtfield">
-						 <input type="file" name="uploadSess" class="buttonsub" value="Upload"><input style="margin-left:20px;" type="submit" name="Upload" value="Upload" class="buttonsub" />
+						 <input type="file" name="uploadSess" class="buttonsub required" value="Upload"><input style="margin-left:20px;" type="submit" name="Upload" value="Upload" class="buttonsub" />
                     </div>
 					<div class="clear"></div>
 					<div style="float:left; margin-left:292px;">	

@@ -36,6 +36,7 @@ $(document).ready(function(){
 			}
 		});
 		$("#frmSubjectGroup").validate();
+		$("#session_upload").validate();		
 });
 //Function to validate the email ID
 function validateEmail(sEmail) {
@@ -172,7 +173,22 @@ function deleteConf($id){
     return false;
 }
 function updatePrerequistie(){
-		var Id = new Array();
+		max = $("#total_rows").val();
+		for ( var i = 1; i <= max; i++ ){
+			max_stu = $("#max_students"+i).val();
+			if(!$.isNumeric(max_stu))
+			{
+				alert("Please select a numeric value for maximum students of row-"+i);
+				return false;
+			}
+			min_stu = $("#min_students"+i).val();
+			if(!$.isNumeric(min_stu))
+			{
+				alert("Please select a numeric value for minimum students of row-"+i);
+				return false;
+			}
+		}
+	    var Id = new Array();
 		$.each($("input[name='row_id[]']"), function() {
   			Id.push($(this).val());
     	});
@@ -196,8 +212,7 @@ function updatePrerequistie(){
 						 },
 						success: function($succ){
 							if($succ==1){
-								var sts='Y';
-								window.location.href = 'prerequisite_view.php';
+								window.location.href = 'prerequisite_view.php?msg=1';
 							}else if($succ==0){
 								 alert('Data is not corrected');	
 							}

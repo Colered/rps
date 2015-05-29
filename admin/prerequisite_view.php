@@ -20,6 +20,7 @@ $(document).ready(function(){
 <div id="content">
     <div id="main">
 	<?php if(isset($_SESSION['succ_msg'])){ echo '<div class="full_w green center">'.$_SESSION['succ_msg'].'</div>'; unset($_SESSION['succ_msg']);} ?>
+	<?php if(isset($_REQUEST['msg']) && $_REQUEST['msg'] == 1){ echo '<div class="green center" id="succ_msg">Data has been saved successfully</div>';}?>
 	<?php if($result->num_rows > 0){?>
 	<div style="float:right;padding:5px 5px;"><input  type="button" class="buttonsub" value="Save & Finish" name="btnPrgmClone" id="btnPrgmClone" onclick="updatePrerequistie();"/>		</div>
 	<?php } ?>
@@ -49,6 +50,7 @@ $(document).ready(function(){
 							<td class="align-center"><?php echo $data['course_name']; ?>
 								<input type="hidden" name="course_id" value="<?php echo $data['course_id']; ?>"/>
 								<input type="hidden" name="row_id[]" value="<?php echo $data['id']; ?>"/>
+								<input type="hidden" id="total_rows" name="total_rows" value="<?php echo $result->num_rows; ?>"/>
 							</td>
 							<td class="align-center"><?php echo $data['course_code']; ?></td>
 							<td class="align-center"><?php echo $data['batch_name']; ?>
@@ -60,8 +62,8 @@ $(document).ready(function(){
 							<td class="align-center"><?php echo $data['required_subject_name']; ?>
 								<input type="hidden" name="required_subject_id" value="<?php echo $data['required_subject_id']; ?>"/>
 							</td>
-							<td class="align-center"><input type="text" class="ipt" id="max_students<?php echo $data['id']; ?>" name="max_students[]" value="<?php echo $data['max_students']; ?>" size="10px"/></td>
-							<td class="align-center"><input type="text" class="ipt" id="min_students<?php echo $data['id']; ?>" name="min_students[]" value="<?php echo $data['min_students']; ?>" size="10px"/></td>
+							<td class="align-center"><input type="text" class="ipt" id="max_students<?php echo $i; ?>" name="max_students[]" value="<?php echo $data['max_students']; ?>" size="10px"/></td>
+							<td class="align-center"><input type="text" class="ipt" id="min_students<?php echo $i; ?>" name="min_students[]" value="<?php echo $data['min_students']; ?>" size="10px"/></td>
 							<td class="align-center"><?php echo $data['cost']; ?></td>
 							<td>
 							<?php if($data['status'] == 1) {?>

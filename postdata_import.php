@@ -3,6 +3,12 @@ if (isset($_POST['form_action']) && $_POST['form_action']!=""){
 	$formPost = $_POST['form_action'];
 	switch ($formPost) {
 		case "uploadSession":
+			if($_FILES['uploadSess']['name'] == '')
+			{
+				session_start();
+				$_SESSION['error_msg'] = "Please choose a file to upload.";
+				header('Location: admin/prerequistie_upload.php');
+			}else{
 			$course_id='';$batch_id = '';
 			require 'classes/PHPExcel.php';
 			require_once 'classes/PHPExcel/IOFactory.php';
@@ -153,13 +159,28 @@ if (isset($_POST['form_action']) && $_POST['form_action']!=""){
 										$subject_id_arr[] = $dRowQ['id'];										
 									}
 								}
+								$subject_id_str = implode(',',$subject_id_arr);
 								//check if the combination already exist in database
 								$resultQRY = mysqli_query($db_RPS, "SELECT id FROM subjects_prerequistie WHERE course_id='$course_id' and batch_id='$batch_id' and subject_id='$subject_id' and school_id='".$_SESSION['school_id']."' LIMIT 1");
 								$dRowQ = mysqli_fetch_assoc($resultQRY);
 								if (count($dRowQ) > 0) {
 									//$sessionId = $dRowQ['id'];
-								}else{
-									$subject_id_str = implode(',',$subject_id_arr);
+									$sql_upd = "update subjects_prerequistie set course_id = '".$course_id."',
+																				 course_name = '".mysql_real_escape_string(trim($values[0]))."',
+																				 course_code = '".mysql_real_escape_string(trim($values[1]))."',
+																				 batch_id = '".$batch_id."',
+																				 batch_name = '".mysql_real_escape_string(trim($values[2]))."',
+																				 subject_id = '".$subject_id."',
+																				 subject_name = '".mysql_real_escape_string(trim($values[3]))."',
+																				 required_subject_id = '".$subject_id_str."',
+																				 required_subject_name = '".mysql_real_escape_string(trim($values[4]))."',
+																				 max_students = '".mysql_real_escape_string(trim($values[5]))."',
+																				 min_students = '".mysql_real_escape_string(trim($values[6]))."',
+																				 cost = '".mysql_real_escape_string(trim($values[7]))."',
+																				 school_id = '".$_SESSION['school_id']."',
+																				 status = '".mysql_real_escape_string(trim($values[8]))."' where id='".$dRowQ['id']."'";
+									mysqli_query($db_RPS,$sql_upd);
+								}else{									
 									$result = mysqli_query($db_RPS, "INSERT INTO subjects_prerequistie(course_id,course_name,course_code,batch_id,batch_name,subject_id,subject_name,required_subject_id,required_subject_name,max_students,min_students,cost,school_id,status) VALUES ('" .$course_id. "', '" .mysql_real_escape_string(trim($values[0])). "','" .mysql_real_escape_string(trim($values[1])). "', '" .$batch_id. "', '" .mysql_real_escape_string(trim($values[2])). "', '" .$subject_id. "', '" .mysql_real_escape_string(trim($values[3])). "', '" .$subject_id_str. "', '" .mysql_real_escape_string(trim($values[4])). "', '" .mysql_real_escape_string(trim($values[5])). "', '" .mysql_real_escape_string(trim($values[6])). "', '" .mysql_real_escape_string(trim($values[7])). "','".$_SESSION['school_id']."','" .mysql_real_escape_string(trim($values[8])). "');");
 								}								
 						} $total++ ; 
@@ -177,7 +198,8 @@ if (isset($_POST['form_action']) && $_POST['form_action']!=""){
 				$_SESSION['error_msgArr'] = $errorArr;
 				header('Location: admin/prerequistie_upload.php');
 		}
-		break;		
+		break;	
+		}
  }
 }
 ?>
