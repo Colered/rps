@@ -7,24 +7,35 @@ class Users extends Base {
 	public function userLogin() {
 		if(isset($_POST['txtUName']))
 		{
-			//check if user account exists
-			$encPwd = base64_encode($_POST['txtPwd']);
-			$login_query="select * from users where username='".$_POST['txtUName']."' and password='".$encPwd."' and is_active='1'";
-			$q_res = mysqli_query($this->connrps, $login_query);
-			if(mysqli_num_rows($q_res)>0)
+			$schl_query="select id from schools where code='".trim($_POST['subDomain'])."'";
+			$schl_query_res = mysqli_query($this->connfed, $schl_query);
+			if(mysqli_num_rows($schl_query_res)>0)
 			{
-				while($data = mysqli_fetch_assoc($q_res))
-	  			{
-					$_SESSION['user_id']=$data['id'];
-					$_SESSION['username']=$data['username'];
-					$_SESSION['user_email']=$data['email'];
-					$_SESSION['role']=$data['isAdmin'];
+				$school_data=mysqli_fetch_assoc($schl_query_res);
+				//check if user account exists
+				$encPwd = base64_encode($_POST['txtPwd']);
+				$login_query="select * from users where username='".$_POST['txtUName']."' and password='".$encPwd."' and is_active='1'";
+				$q_res = mysqli_query($this->connrps, $login_query);
+				if(mysqli_num_rows($q_res)>0)
+				{
+					while($data = mysqli_fetch_assoc($q_res))
+					{
+						$_SESSION['user_id']=$data['id'];
+						$_SESSION['username']=$data['username'];
+						$_SESSION['user_email']=$data['email'];
+						$_SESSION['role']=$data['isAdmin'];
+						$_SESSION['school_id']=$school_data['id'];
+					}
+					return 1;
+				}else{
+					$message="Incorrect Username or Password";
+					$_SESSION['error_msg'] = $message;
+					return 0;
 				}
-				return 1;
 			}else{
-				$message="Incorrect Username or Password";
-				$_SESSION['error_msg'] = $message;
-				return 0;
+					$message="Incorrect school";
+					$_SESSION['error_msg'] = $message;
+					return 0;
 			}
 		}
 	}

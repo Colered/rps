@@ -66,4 +66,22 @@ class Fedena extends Base {
 			return $subjects;
 		}
 	}
+	function getAllCourses()
+	{
+		$sql="select id,course_name,code from courses where school_id='".$_SESSION['school_id']."' and is_deleted='0' ";
+		$q_res = mysqli_query($this->connfed, $sql);
+		return $q_res;
+	}
+	function getAllBatches($course_id)
+	{
+		$sql="select id,name from batches where course_id = '".$course_id."' and school_id='".$_SESSION['school_id']."' and is_deleted='0' and is_active='1' ";
+		$q_res = mysqli_query($this->connfed, $sql);
+		return $q_res;
+	}
+	function getSubjectList($batch_id)
+	{
+		$sql = "select id,name from elective_groups where batch_id='".$batch_id."' and school_id='".$_SESSION['school_id']."' and is_deleted='0'";
+		$q_res = mysqli_query($this->connfed, $sql);
+		return $q_res;
+	}
 }

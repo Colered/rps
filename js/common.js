@@ -35,6 +35,7 @@ $(document).ready(function(){
 			},
 			}
 		});
+		$("#frmSubjectGroup").validate();
 });
 //Function to validate the email ID
 function validateEmail(sEmail) {
@@ -92,7 +93,58 @@ $(document).ready(function(){
 		return false;
 	});
 });
-
+//getting subjects for career 
+$(document).ready(function() {
+  $('#career').on('change', function(){
+	var selected=$("#career option:selected").map(function(){ return this.value }).get().join(",");
+	var subject="subject";
+	ajaxCommonSubjects(selected,subject);
+  });
+});
+$(document).ready(function() {
+  $('#subject').on('change', function(){
+	var selected=$("#subject option:selected").map(function(){ return this.value }).get().join(",");
+	var subject_requistie="subject_requistie";
+	var career=$("#career option:selected").val();
+	ajaxCommonSubjectsRequistie(selected,subject_requistie,career);
+  });
+});
+//ajax function for fetching subjects
+function ajaxCommonSubjects(selectedVal,slctID){
+	var slctID = '#'+slctID;
+$.ajax({
+        url: "../ajax_common.php",
+        type: "POST",
+        data: {
+			'course': selectedVal,
+			'codeBlock': 'getSubjects'
+            },
+        success: function(data) {
+			 $(slctID).html(data);
+        },
+        error: function(errorThrown) {
+            console.log(errorThrown);
+        }
+    });	
+}
+function ajaxCommonSubjectsRequistie(selectedVal,slctID,career){
+	var slctID = '#'+slctID;
+$.ajax({
+        url: "../ajax_common.php",
+        type: "POST",
+        data: {
+			'id':selectedVal,
+			'course': career,
+			'codeBlock': 'getSubjects'
+            },
+        success: function(data) {
+			 $(slctID).html(data);
+        },
+        error: function(errorThrown) {
+            console.log(errorThrown);
+        }
+    });	
+}
 //ajax delete the configuration
 function deleteConf($id){
 	if($id==""){
@@ -119,3 +171,65 @@ function deleteConf($id){
     }
     return false;
 }
+function updatePrerequistie(){
+		var Id = new Array();
+		$.each($("input[name='row_id[]']"), function() {
+  			Id.push($(this).val());
+    	});
+		var maxStudents = new Array();
+		$.each($("input[name='max_students[]']"), function() {
+  			maxStudents.push($(this).val());
+    	});
+		var minStudents = new Array();
+		$.each($("input[name='min_students[]']"), function() {
+  			minStudents.push($(this).val());
+    	});
+		if(confirm("Are you sure ,you want to change the values?")){
+			$.ajax({
+				   type: "POST",
+				   url: "../ajax_common.php",
+				   data: {
+							'Id':Id,
+							'maxStudents': maxStudents,
+							'minStudents': minStudents,
+							'codeBlock': 'updatePrerequistie'
+						 },
+						success: function($succ){
+							if($succ==1){
+								var sts='Y';
+								window.location.href = 'prerequisite_view.php';
+							}else if($succ==0){
+								 alert('Data is not corrected');	
+							}
+						}
+				});
+		}
+		return false;
+}
+//active and deactive pre requistie
+function setStatus($id){
+	if($id==""){
+		alert("Please select a row to change the status");
+		return false;
+	}else {
+	    $.ajax({
+                type: "POST",
+                url: "../ajax_common.php",
+                data: {
+					'id': $id,
+					'codeBlock': 'set_requistie_status',
+				},
+                success: function($succ){
+					var imageId='#status-user'+$id;
+					if($succ==1){
+						//$(imageId).css('background-image','url(./images/bar-circle.gif)');
+                       	$(imageId).attr({src: '../images/status-active.png'});
+						$(imageId).attr({title: 'Desable'});
+					}else{
+						$(imageId).attr({src: '../images/status-deactive.png'});
+						$(imageId).attr({title: 'Enable'});
+					}
+                }
+        });
+    }
+ }

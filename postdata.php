@@ -105,6 +105,17 @@ if (isset($_POST['form_action']) && $_POST['form_action']!=""){
 			}
 		}
 		break;
+		case "add_subject_group":
+			if((isset($_POST['career']) && $_POST['career']!="") && (isset($_POST['subject']) && $_POST['subject']!="") && (isset($_POST['max_students']) && $_POST['max_students']!="") && (isset($_POST['min_students']) && $_POST['min_students']!="") && (isset($_POST['credits']) && $_POST['credits']!="") && (isset($_POST['subject_cost']) && $_POST['subject_cost']!="")){
+				$obj = new SubjectPreRequistie();
+				$obj->savePreRequistie();				
+			}else{
+				$message="Please enter all required fields";
+				$_SESSION['error_msg'] = $message;
+				header('Location: index.php');
+			}
+			break;
+		
 	}
 }
 ?>

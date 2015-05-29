@@ -1,5 +1,10 @@
 <?php
 include('header_main.php');
+$subdomain='';
+//$domain = $_SERVER['SERVER_NAME'];
+$domain = 'superiorsv.colered.edu.do';
+$tmp = explode('.', $domain);
+$subdomain = str_replace("rps","",$tmp[0]);
 if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){
 	header('Location: dashboard.php');
 }
@@ -10,6 +15,7 @@ if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){
             <div class="h_title">Administrator Login</div>
             <form action="../postdata.php" method="post" autocomplete="off" id="adminLogin" class="login">
 				<input type="hidden" name="form_action" value="adminLogin" />
+				 <input type="hidden" name="subDomain" id="subDomain" value="<?php echo $subdomain; ?>" />
                 <div class="custtable_left">
                     <img src="../images/lock.jpg" id="lock-img" class="lock-img" />
                 </div>

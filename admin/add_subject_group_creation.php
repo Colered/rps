@@ -1,4 +1,7 @@
-<?php include('header.php');?>
+<?php include('header.php');
+$obj_fedena=new Fedena();
+$all_courses = $obj_fedena->getAllCourses();
+?>
 <div id="content">
     <div id="main">
         <div class="full_w">
@@ -11,26 +14,23 @@
 					</div>
 					<div class="clear"></div>
 					<div class="custtd_left">
-					  <h2>Choose Career Program</h2>
+					  <h2>Choose Career Program<span class="redstar">*</span></h2>
 					</div>
 					<div class="txtfield">
-					<select id="career" name="career" class="select1">
-					<option value="">--Select--</option>
-					<option value="1">MBA</option>
-					<option value="2">MCA</option>
-					<option value="3">MEDICINA</option>					
-					</select>
+						<select id="career" name="career" class="select1 required">
+							<option value="">--Select--</option>					
+							<?php while ($courses = $all_courses->fetch_assoc()){ ?>	
+								<option value="<?php echo $courses['code']."#".$courses['course_name']; ?>"><?php echo $courses['course_name']; ?></option>
+							<?php } ?>
+						</select>
 					</div>
                     <div class="clear"></div>
 					<div class="custtd_left">
-					  <h2>Choose Subject</h2>
+					  <h2>Choose Subject<span class="redstar">*</span></h2>
 					</div>
 					<div class="txtfield">
-					<select id="career" name="career" class="select1">
-					<option value="">--Select--</option>
-					<option value="1">English</option>
-					<option value="2">Hindi</option>
-					<option value="3">Maths</option>					
+					<select id="subject" name="subject" class="select1 required">
+						<option value="">--Select--</option>
 					</select>
 					</div>
                     <div class="clear"></div>
@@ -38,40 +38,37 @@
 					  <h2>Select Subject PRE-REQUISITE</h2>
 					</div>
 					<div class="txtfield">
-					<select id="career" name="career" class="select1">
-					<option value="">--Select--</option>
-					<option value="1">English</option>
-					<option value="2">Hindi</option>
-					<option value="3">Maths</option>					
+					<select id="subject_requistie" name="subject_requistie" class="select1">
+						<option value="">--Select--</option>
 					</select>
 					</div>
                     <div class="clear"></div>
                     <div class="custtd_left">
-                        <h2>Maximum number of students</h2>
+                        <h2>Maximum number of students<span class="redstar">*</span></h2>
                     </div>
                     <div class="txtfield">
-                        <input type="text" class="inp_txt required" id="txtPname" maxlength="50" name="txtPname" value="">
+                        <input type="text" class="inp_txt required" id="max_students" maxlength="50" name="max_students" value="">
                     </div>
                     <div class="clear"></div>					
 					<div class="custtd_left">
-                        <h2>Minimum number of students</h2>
+                        <h2>Minimum number of students<span class="redstar">*</span></h2>
                     </div>
                     <div class="txtfield">
-                        <input type="text" class="inp_txt required" id="txtteacher_code" maxlength="50" name="txtteacher_code" value="">
+                        <input type="text" class="inp_txt required" id="min_students" maxlength="50" name="min_students" value="">
                     </div>
                     <div class="clear"></div>
 					<div class="custtd_left">
-                        <h2>Enter number of credits</h2>
+                        <h2>Enter number of credits<span class="redstar">*</span></h2>
                     </div>
                     <div class="txtfield">
-                        <input type="text" class="inp_txt required" id="txtteacher_code" maxlength="50" name="txtteacher_code" value="">
+                        <input type="text" class="inp_txt required" id="credits" maxlength="50" name="credits" value="">
                     </div>
                     <div class="clear"></div>
 					<div class="custtd_left">
-                        <h2>Enter subject cost/fee($)</h2>
+                        <h2>Enter subject cost/fee($)<span class="redstar">*</span></h2>
                     </div>
                     <div class="txtfield">
-                        <input type="text" class="inp_txt required" id="txtteacher_code" maxlength="50" name="txtteacher_code" value="">
+                        <input type="text" class="inp_txt required" id="subject_cost" maxlength="50" name="subject_cost" value="">
                     </div>
                     <div class="clear"></div>                    
                     <div class="txtfield">

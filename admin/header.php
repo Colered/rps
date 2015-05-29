@@ -55,8 +55,14 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
 					<?php if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){ $urlData = explode("admin/",$_SERVER['PHP_SELF']);?>
 					<ul>
 						<li class="upp <?php if(isset($urlData[1]) && $urlData[1]=='dashboard.php'){ echo "selected"; } ?>"><a href="dashboard.php">Dashboard</a></li>
-						<li class="upp <?php if(isset($urlData[1]) && $urlData[1]=='subject_group_creation.php'){ echo "selected"; } ?>"><a href="subject_group_creation.php">Subject Groups Creation</a></li>
-						<li class="upp <?php if(isset($urlData[1]) && $urlData[1]=='add_subject_group_creation.php'){ echo "selected"; } ?>"><a href="add_subject_group_creation.php">Subject Groups Creation1</a></li>
+						<!--<li class="upp <?php if(isset($urlData[1]) && $urlData[1]=='subject_group_creation.php'){ echo "selected"; } ?>"><a href="subject_group_creation.php">Subject Groups Creation</a></li>
+						<li class="upp <?php if(isset($urlData[1]) && $urlData[1]=='add_subject_group_creation.php'){ echo "selected"; } ?>"><a href="add_subject_group_creation.php">Subject Groups Creation1</a></li>-->
+						<li class="upp"><a href="#">Subject Prerequisite</a>
+							<ul>
+								<li <?php if(isset($urlData[1]) && $urlData[1]=='prerequisite_view.php'){ echo "selected"; } ?>"><a href="prerequisite_view.php">View Subject Prerequisite</a></li>
+								<li <?php if(isset($urlData[1]) && $urlData[1]=='prerequistie_upload.php'){ echo "selected"; } ?>"><a href="prerequistie_upload.php">Import Subject Prerequisite</a></li>								
+							</ul>
+						</li>						
 						<?php 
 							$obj = new Spsconfig();
 							$allData = $obj->getAllConfig();
