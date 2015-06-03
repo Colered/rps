@@ -20,7 +20,7 @@ class Users extends Base {
 				{
 					while($data = mysqli_fetch_assoc($q_res))
 					{
-						$_SESSION['user_id']=$data['id'];
+						$_SESSION['admin_id']=$data['id'];
 						$_SESSION['username']=$data['username'];
 						$_SESSION['user_email']=$data['email'];
 						$_SESSION['role']=$data['isAdmin'];
@@ -129,7 +129,7 @@ class Users extends Base {
    }
    //function to chnage the admin password
    public function changePwd(){
-        $uesr_id=$_SESSION['user_id'];
+        $uesr_id=$_SESSION['admin_id'];
 		$sql="select * from users where id='$uesr_id'";
 		$query = mysqli_query($this->connrps, $sql);
 		while ($row = mysqli_fetch_array($query)) {
@@ -190,7 +190,7 @@ class Users extends Base {
 	}
 	//getting the admin username
 	function getUserName($Id){
-		$sql="select username from users where id='".$_SESSION['user_id']."'";
+		$sql="select username from users where id='".$_SESSION['admin_id']."'";
 		$q_res = mysqli_query($this->connrps, $sql);
 		$data = mysqli_fetch_assoc($q_res);
 		return $data;

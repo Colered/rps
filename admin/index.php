@@ -5,7 +5,7 @@ $subdomain='';
 $domain = 'superiorsv.colered.edu.do';
 $tmp = explode('.', $domain);
 $subdomain = str_replace("rps","",$tmp[0]);
-if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){
+if(isset($_SESSION['admin_id']) && $_SESSION['admin_id']!=""){
 	header('Location: dashboard.php');
 }
 ?>
