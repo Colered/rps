@@ -1,9 +1,14 @@
 <?php
 include_once("config.php");
-if($_SESSION['role'] == 1)
-	$location = 'admin/index.php';
-else
-	$location = 'index.php';
-session_destroy();
+$location = 'index.php';
+if(isset($_SERVER['HTTP_REFERER'])){
+	$reqflds = explode('/', $_SERVER['HTTP_REFERER']);
+	if(in_array('admin', $reqflds )){
+		$location = 'admin/index.php';
+		unset($_SESSION['admin_id']);
+	}else{
+		unset($_SESSION['user_id']);
+	}
+}
 header('Location: '.$location);
 ?>

@@ -3,7 +3,8 @@ require_once('../config.php');
 if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']=='/admin/forgot.php'){
 		//Do Nothing
 }elseif(!isset($_SESSION['admin_id'])){
-		session_destroy();
+		//session_destroy();
+		unset($_SESSION['admin_id']);
 		header('Location: index.php');
 }
 ?>
