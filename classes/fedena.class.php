@@ -5,7 +5,7 @@ class Fedena extends Base {
    	}
 	//getting the student subject of a current semester
 	function getCurrentStuSemSub(){
-		$uesr_id=$_SESSION['user_id'];
+		$uesr_id=$_SESSION['std_id'];
 		$sub_name_arr=$stu_sub_arr=array();
 		$sql="select id,admission_no,batch_id,school_id from  students where user_id='".$uesr_id."' and school_id='".$_SESSION['school_id']."' and is_active='1' ";
 		$qry_rslt= mysqli_query($this->connfed,$sql);
@@ -43,7 +43,7 @@ class Fedena extends Base {
 	{
 		$sql="select course_name 
 			  from courses c inner join batches b on b.course_id = c.id
-			  inner join students s on s.batch_id = b.id where s.user_id='".$_SESSION['user_id']."' and s.school_id='".$_SESSION['school_id']."' and s.is_active='1' and b.is_active='1' and b.is_deleted='0' and c.is_deleted='0' and s.is_deleted='0'";
+			  inner join students s on s.batch_id = b.id where s.user_id='".$_SESSION['std_id']."' and s.school_id='".$_SESSION['school_id']."' and s.is_active='1' and b.is_active='1' and b.is_deleted='0' and c.is_deleted='0' and s.is_deleted='0'";
 		$qry_rslt= mysqli_query($this->connfed,$sql);		
 		if(mysqli_num_rows($qry_rslt)>0){
 			$row = mysqli_fetch_array($qry_rslt);

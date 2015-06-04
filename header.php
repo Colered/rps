@@ -2,8 +2,8 @@
 require_once('config.php');
 if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']=='/admin/forgot.php'){
 		//Do Nothing
-}elseif(!isset($_SESSION['user_id'])){
-		unset($_SESSION['user_id']);
+}elseif(!isset($_SESSION['std_id'])){
+		unset($_SESSION['std_id']);
 		header('Location: index.php');
 }
 ?>
@@ -45,9 +45,9 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
                     </div>
                     <div class="right">
                         <div class="align-right" style="color: #ffffff;">
-						Welcome <B> <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){ 
+						Welcome <B> <?php if(isset($_SESSION['std_id']) && $_SESSION['std_id']!=""){ 
 											$objU = new Users();
-											$user_name = $objU->getStuUname($_SESSION['user_id']);
+											$user_name = $objU->getStuUname($_SESSION['std_id']);
 											echo ucfirst($user_name['username']);
 										} ?>
 									  </B>
@@ -57,7 +57,7 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
                 </div>
 			 </div>
                 <div id="nav">
-                    <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=""){ $urlData = explode("/",$_SERVER['PHP_SELF']); ?>
+                    <?php if(isset($_SESSION['std_id']) && $_SESSION['std_id']!=""){ $urlData = explode("/",$_SERVER['PHP_SELF']); ?>
 					<ul>
 						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='dashboard.php'){ echo "selected"; } ?>"><a href="dashboard.php">Dashboard</a></li>
 						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='subject_pre_selection.php'){ echo "selected"; } ?>"><a href="subject_pre_selection.php">Subject PRE-SELECTION</a></li>

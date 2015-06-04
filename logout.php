@@ -7,7 +7,7 @@ if(isset($_SERVER['HTTP_REFERER'])){
 		$location = 'admin/index.php';
 		unset($_SESSION['admin_id']);
 	}else{
-		unset($_SESSION['user_id']);
+		unset($_SESSION['std_id']);
 	}
 }
 header('Location: '.$location);

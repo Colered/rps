@@ -55,7 +55,7 @@ class Users extends Base {
 				$pwd=$salt.$_POST['txtPwd'];
 				$hash_new_pwd=hash('sha1',$pwd);
 				if ($hash_pwd==$hash_new_pwd) {
-					 $_SESSION['user_id']=$row['id'];
+					 $_SESSION['std_id']=$row['id'];
 					 $_SESSION['username']=$row['username'];
 					 $_SESSION['user_email']=$row['email'];
 					 $_SESSION['batch_id']=$row['batch_id'];
@@ -157,7 +157,7 @@ class Users extends Base {
 	}
    //function to chnage the student password
    public function changeStuPwd(){
-        $uesr_id=$_SESSION['user_id'];
+        $uesr_id=$_SESSION['std_id'];
 		$sql="select * from users where id='$uesr_id'";
 		$query = mysqli_query($this->connfed, $sql);
 		while ($row = mysqli_fetch_array($query)) {
@@ -197,7 +197,7 @@ class Users extends Base {
 	}
 	//getting the student username
 	function getStuUname($Id){
-		$sql="select first_name,last_name,username from users where id='".$_SESSION['user_id']."'";
+		$sql="select first_name,last_name,username from users where id='".$_SESSION['std_id']."'";
 		$q_res = mysqli_query($this->connfed, $sql);
 		$data = mysqli_fetch_assoc($q_res);
 		return $data;
