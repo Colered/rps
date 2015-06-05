@@ -2,7 +2,7 @@
 include('header.php');
 $obj_fedena=new Fedena();
 $obj_ras=new RAS();
-$stuendt_subjects=$obj_fedena->getCurrentStuSemSub();
+$student_subjects=$obj_fedena->getCurrentStuSemSub();
 $course_name = $obj_fedena->getStudentCourse();
 $all_subjects = $obj_fedena->getAllSubjects();
 //print"<pre>";print_r($all_subjects);die;
@@ -16,9 +16,9 @@ $all_subjects = $obj_fedena->getAllSubjects();
 		</thead>
 		<tbody>
 			<?php 
-			if(count($stuendt_subjects)>0){
+			if(count($student_subjects)>0){
 				$i=1;
-				foreach($stuendt_subjects as $key=>$val){ 
+				foreach($student_subjects as $key=>$val){ 
 			?>
 			<tr>
 				<td class="align-left"><div style="float:left"><span><?php echo $key; ?></span></div> <div id='<?php echo "sub_detail_".$i;?>' style="float:right"><span class="subject-heading-1"><a href='#' class='basic'  id="<?php echo $i;?>">See detail</a> </span></div></td>
@@ -98,23 +98,37 @@ $all_subjects = $obj_fedena->getAllSubjects();
 			</tr>
 		</thead>
 		<tbody>
-		<?php foreach($all_subjects as $subject)
+		<?php 
+		foreach($all_subjects as $subject_key => $subject)
 		{
-			$match = $obj_ras->matchSubject($subject);
-			if($match)
-			{?>
+			$sub_cnt =  count($subject);$cnt = 0;
+			$subject_rule = array();
+			foreach($subject as $key=>$value)
+			{
+				if($obj_fedena->search_array($value,$student_subjects))
+				{
+					$cnt++;
+				}else{
+					$result = $obj_ras->getRulesofSubject($value);
+					while($data = $result->fetch_assoc())
+					 {
+						 $subject_rule[$subject_key][] = $data['rule_name'];
+					}
+				}
+			}
+			if($cnt != $sub_cnt)
+			{
+			?>		
 				<tr>
-					<td class="align-center"><?php echo $subject;?></td>                        
-					<td class="align-center"><span class="subject-heading-1"><a href="#">Confirm SG:</a></span> L-M-V-8:00-10:00 - A4 103 - Prof. Jose Disla </td>
-					<td class="align-center"><span class="subject-heading-1"><a href="#">See other availaible SG</a></span></td>	
-				</tr>
-			<?php } 
-		}?>			
+					<td class="align-center"><?php echo $subject_key;?></td>                       
+					<td class="align-center"><span class="subject-heading-1"><a href="#">Confirm SG:</a></span><?php if(isset($subject_rule[$subject_key])) {echo $subject_rule[$subject_key]['0'];} else echo 'No Rule';?></td>
+					<td class="align-center"><span class="subject-heading-1"><a href='#' class='basic-sub-grp'  id="<?php echo $i;?>">See other availaible SG</a></span></td>	
+				</tr>				
+		<?php } 
+		}?>					
 		</tbody>
 	</table>			 
 </div>
-
-
 <?php include('sidebar_right.php');
 	  include('footer.php');
 ?>

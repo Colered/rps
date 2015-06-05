@@ -74,4 +74,16 @@ abstract class Base
 			$passwd .= substr($str, mt_rand(0, strlen($str) - 1), 1);
 		return $passwd;
 	}
+	//Function to search a value in an array recursively
+	public function search_array($needle, $haystack)
+	{
+		 if(in_array($needle, $haystack)) {
+			  return true;
+		 }
+		 foreach($haystack as $element) {
+			  if(is_array($element) && $this->search_array($needle, $element))
+				   return true;
+		 }
+	   return false;
+	}
 }

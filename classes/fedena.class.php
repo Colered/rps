@@ -52,16 +52,23 @@ class Fedena extends Base {
 	}
 	function getAllSubjects()
 	{
-		$sql="select distinct eg.name from subjects s
+		$sql="select distinct eg.name,eg.id from subjects s
 			  inner join elective_groups eg on eg.id = s.elective_group_id
 			  where s.batch_id = '".$_SESSION['batch_id']."' and s.school_id='".$_SESSION['school_id']."' and s.is_deleted='0' ";
-		$qry_rslt= mysqli_query($this->connfed,$sql);		
-		if(mysqli_num_rows($qry_rslt)>0){
-			$subjects = array();
+		$qry_rslt= mysqli_query($this->connfed,$sql);
+		$subjects = array();
+		if(mysqli_num_rows($qry_rslt)>0){			
 			while($row = mysqli_fetch_array($qry_rslt))
 			{
-				$subjects[] = trim($row['name']);
-
+				 $sql_sub = "select s.id,s.name as sub_name from subjects s where elective_group_id = '".$row['id']."' and s.school_id='".$_SESSION['school_id']."' and s.is_deleted='0' and s.batch_id = '".$_SESSION['batch_id']."'";
+				 $qry_rslt_sub= mysqli_query($this->connfed,$sql_sub);
+				 if(mysqli_num_rows($qry_rslt_sub)>0)
+				 {
+					 while($row_sub = mysqli_fetch_array($qry_rslt_sub))
+					 {
+						 $subjects[$row['name']][] = trim($row_sub['sub_name']); 
+					 }
+				 }
 			}
 			return $subjects;
 		}
