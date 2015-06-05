@@ -46,7 +46,7 @@ class Users extends Base {
 			$schl_query_res = mysqli_query($this->connfed, $schl_query);
 		  if(mysqli_num_rows($schl_query_res)>0){
 			$school_data=mysqli_fetch_assoc($schl_query_res);
-			$hash_salt_query="select u.id,hashed_password,salt,u.email,batch_id,b.course_id from users u left join students s on s.user_id = u.id left join batches b on b.id = s.batch_id where u.username='".trim($_POST['txtUName'])."' and u.school_id='".$school_data['id']."' and u.admin!=1 and u.employee!=1 and u.student!=0";
+			$hash_salt_query="select u.id,hashed_password,salt,u.email,batch_id,b.course_id,b.start_date,b.end_date from users u left join students s on s.user_id = u.id left join batches b on b.id = s.batch_id where u.username='".trim($_POST['txtUName'])."' and u.school_id='".$school_data['id']."' and u.admin!=1 and u.employee!=1 and u.student!=0";
 			$hash_salt_res = mysqli_query($this->connfed, $hash_salt_query);
 			if(mysqli_num_rows($hash_salt_res)>0){	
 			 	$row=mysqli_fetch_assoc($hash_salt_res);
@@ -59,6 +59,8 @@ class Users extends Base {
 					 $_SESSION['username']=$row['username'];
 					 $_SESSION['user_email']=$row['email'];
 					 $_SESSION['batch_id']=$row['batch_id'];
+					 $_SESSION['start_date']= date("Y-m-d",strtotime($row['start_date']));
+					 $_SESSION['end_date'] = date("Y-m-d",strtotime($row['end_date']));
 					 $_SESSION['school_id']=$school_data['id'];
 					 $_SESSION['course_id']=$row['course_id'];
 					 return 1;

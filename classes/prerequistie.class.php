@@ -16,5 +16,14 @@ class Prerequistie extends Base {
 		$q_res = mysqli_query($this->connrps, $sql);
 		return $q_res;
 	}
-		
+	function getrequistie($subCode)
+	{
+		$sql = "select required_subject_id,required_subject_code from subjects_prerequistie where batch_id='".$_SESSION['batch_id']."' and school_id='".$_SESSION['school_id']."' and status='1' and subject_code='".$subCode."'";
+		$q_res = mysqli_query($this->connrps, $sql);
+		if(mysqli_num_rows($q_res)>=0)
+		{
+			$row = mysqli_fetch_array($q_res);
+			return $row['required_subject_code'];
+		}
+	}		
 }

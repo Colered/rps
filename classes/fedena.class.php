@@ -39,20 +39,9 @@ class Fedena extends Base {
 		  $_SESSION['error_msg'] = $message;
 		}
 	}
-	function getStudentCourse()
-	{
-		$sql="select course_name 
-			  from courses c inner join batches b on b.course_id = c.id
-			  inner join students s on s.batch_id = b.id where s.user_id='".$_SESSION['std_id']."' and s.school_id='".$_SESSION['school_id']."' and s.is_active='1' and b.is_active='1' and b.is_deleted='0' and c.is_deleted='0' and s.is_deleted='0'";
-		$qry_rslt= mysqli_query($this->connfed,$sql);		
-		if(mysqli_num_rows($qry_rslt)>0){
-			$row = mysqli_fetch_array($qry_rslt);
-			return $row['course_name'];
-		}
-	}
 	function getAllSubjects()
 	{
-		$sql="select distinct eg.name,eg.id from subjects s
+		$sql="select distinct eg.name as grp_name,eg.id from subjects s
 			  inner join elective_groups eg on eg.id = s.elective_group_id
 			  where s.batch_id = '".$_SESSION['batch_id']."' and s.school_id='".$_SESSION['school_id']."' and s.is_deleted='0' ";
 		$qry_rslt= mysqli_query($this->connfed,$sql);
@@ -60,13 +49,14 @@ class Fedena extends Base {
 		if(mysqli_num_rows($qry_rslt)>0){			
 			while($row = mysqli_fetch_array($qry_rslt))
 			{
-				 $sql_sub = "select s.id,s.name as sub_name from subjects s where elective_group_id = '".$row['id']."' and s.school_id='".$_SESSION['school_id']."' and s.is_deleted='0' and s.batch_id = '".$_SESSION['batch_id']."'";
+				 $sql_sub = "select s.id,s.name as sub_name,s.code from subjects s where elective_group_id = '".$row['id']."' and s.school_id='".$_SESSION['school_id']."' and s.is_deleted='0' and s.batch_id = '".$_SESSION['batch_id']."'";
 				 $qry_rslt_sub= mysqli_query($this->connfed,$sql_sub);
 				 if(mysqli_num_rows($qry_rslt_sub)>0)
 				 {
 					 while($row_sub = mysqli_fetch_array($qry_rslt_sub))
 					 {
-						 $subjects[$row['name']][] = trim($row_sub['sub_name']); 
+						 $subjects[$row['id']]['name'] = trim($row['grp_name']); 
+						 $subjects[$row['id']]['subjects'][$row_sub['code']] = trim($row_sub['sub_name']);
 					 }
 				 }
 			}
@@ -91,4 +81,12 @@ class Fedena extends Base {
 		$q_res = mysqli_query($this->connfed, $sql);
 		return $q_res;
 	}
+	function getCourseName()
+	{
+		$sql = "select course_name from courses where id='".$_SESSION['course_id']."'";
+		$q_res = mysqli_query($this->connfed, $sql);
+		$row = mysqli_fetch_array($q_res);
+		return $row['course_name'];
+	}
+	
 }
