@@ -95,5 +95,38 @@ switch ($codeBlock) {
 			echo $status;
 		}
 	break;
+	case "save_subject_group":
+		if(isset($_POST['id'])){
+			//get subject group name from Fedena
+			$sql = mysqli_query($db_FED,"select name from elective_groups where id='".$_POST['subject_id']."'");
+			$eg_data = mysqli_fetch_assoc($sql);
+			$sub_grp_name = $eg_data['name'];
+			//get rule name from RAS
+			$qry = mysqli_query($db_RAS,"select rule_name from subject_rule where id='".$_POST['id']."'");
+			$rule_data = mysqli_fetch_assoc($qry);
+			$rule_name = $rule_data['rule_name'];
+			//get confirmation status from rps
+			$sql_slct="select select_status from subjects_preselect where subject_group_id='".$_POST['subject_id']."'";
+			$qry = mysqli_query($db_RPS, $sql_slct);
+			$data = mysqli_fetch_assoc($qry);
+			$status='';
+			if(count($data)>0){
+				if($data['select_status']==1){
+					$status="0";
+				}else{
+					$status="1";
+				}
+				$update="Update subjects_preselect Set select_status = '".$status."' where subject_group_id='".$_POST['subject_id']."'";
+				$qry_update = mysqli_query($db_RPS, $update);
+				echo 1;
+			}else{
+				//insert into rps
+				if(mysqli_query($db_RPS, "INSERT INTO subjects_preselect(std_id, std_username, subject_group_id, subject_group_name, associated_rules_ids, associated_rules_names, select_status, date_add, date_update) VALUES('" . $_SESSION['std_id'] . "', '" . $_SESSION['username'] . "', '" . $_POST['subject_id'] . "', '" . $sub_grp_name . "', '" . $_POST['id'] . "', '" . $rule_name . "', '1', NOW(), NOW());"))
+				{
+					echo 1;
+				}
+			}
+		}
+		break;
 }
 ?>

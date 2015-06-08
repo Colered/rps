@@ -25,5 +25,21 @@ class Prerequistie extends Base {
 			$row = mysqli_fetch_array($q_res);
 			return $row['required_subject_code'];
 		}
-	}		
+	}
+	public function getSubGrpStatus($subject_id)
+	{
+		$sql = "select select_status from subjects_preselect where subject_group_id = '".$subject_id."'";
+		$q_res = mysqli_query($this->connrps, $sql);
+		if(mysqli_num_rows($q_res)>=0)
+		{
+			$row = mysqli_fetch_array($q_res);
+			return $row['select_status'];
+		}
+	}
+	public function getSubGrp($subject_id)
+	{
+		$sql = "select * from subjects_preselect where subject_group_id = '".$subject_id."' and select_status='1'";
+		$q_res = mysqli_query($this->connrps, $sql);
+		return $q_res;
+	}
 }

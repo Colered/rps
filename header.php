@@ -60,7 +60,6 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
                     <?php if(isset($_SESSION['std_id']) && $_SESSION['std_id']!=""){ $urlData = explode("/",$_SERVER['PHP_SELF']); ?>
 					<ul>
 						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='dashboard.php'){ echo "selected"; } ?>"><a href="dashboard.php">Dashboard</a></li>
-						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='subject_pre_selection.php'){ echo "selected"; } ?>"><a href="subject_pre_selection.php">Subject PRE-SELECTION</a></li>
 						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='reports.php'){ echo "selected"; } ?>"><a href="reports.php">Reports</a></li>					
 						<li class="upp right"  style="float:right"><a href="logout.php">Logout</a></li>						
 						<li class="upp right <?php if(isset($urlData[2]) && $urlData[2]=='change_password.php'){ echo "selected"; } ?>"  style="float:right"><a href="change_password.php">Change Password</a></li>		

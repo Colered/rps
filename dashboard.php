@@ -6,7 +6,7 @@ $objP = new Prerequistie();
 $student_subjects=$obj_fedena->getCurrentStuSemSub();
 $course_name = $obj_fedena->getCourseName();
 $all_subjects = $obj_fedena->getAllSubjects();
-//print"<pre>";print_r($all_subjects);die;
+//print"<pre>";print_r($all_subjects);//die;
 ?>
 <div class="custtable_left fontstyles" style="margin-left:20px;width:80%;">
 	<table id="datatables-left" class="display">
@@ -107,33 +107,45 @@ $all_subjects = $obj_fedena->getAllSubjects();
 			foreach($subject_details['subjects'] as $key=>$value)
 			{
 				$sub_code = $objP->getrequistie($key);
+				//echo $sub_code."--".$key;echo "<br/>";
 				if($obj_fedena->search_array($value,$student_subjects))
 				{
 					$cnt++;									
-				}else if($sub_code!="" && $obj_fedena->search_array($sub_code,$student_subjects))
+				}else if(($sub_code!="" && $obj_fedena->search_array($sub_code,$student_subjects)) || $sub_code == "")
 				{				
 					$result_rules = $obj_ras->getRulesofSubject($value,$course_name);
-					$i=0;
-					while($data = $result_rules->fetch_assoc())
-					 {	
-						 if($obj_ras->checkTimetable($data['subject_rule_id']));
-						 {
-							 $subject_rule[$subject_id][$i]['id'] = $data['subject_rule_id'];
-							 $subject_rule[$subject_id][$i]['name'] = $data['rule_name'];
-						 }
-					$i++;
+					if($result_rules->num_rows>0)
+					{
+						$i=0;
+						while($data = $result_rules->fetch_assoc())
+						 {	
+							 if($obj_ras->checkTimetable($data['subject_rule_id']))
+							 {
+								 $subject_rule[$subject_id][$i]['id'] = $data['subject_rule_id'];
+								 $subject_rule[$subject_id][$i]['name'] = $data['rule_name'];
+							 }else{
+								 $cnt++;
+							 }
+						$i++;
+						}
+					}else{
+						$cnt++;
 					}
-				}else{
-					$cnt++;
 				}
 			}
+		//print"<pre>";print_r($_SESSION);die;
 			if($cnt != $sub_cnt)
 			{
+				$status = $objP->getSubGrpStatus($subject_id);				
 			?>		
 				<tr>
-					<td class="align-center"><?php echo $subject_details['name'];?></td>                       
-					<td class="align-center"><span class="subject-heading-1"><a href="#" onclick="saveSubGrp();">Confirm SG:</a></span><?php if(isset($subject_rule[$subject_id])) {echo $subject_rule[$subject_id]['0']['name'];} else echo 'No Rule';?></td>
-					<td class="align-center"><span class="subject-heading-1"><a href='#' class='basic-sub-grp'  id="<?php echo $i;?>">See other availaible SG</a></span></td>	
+					<td class="align-center"><?php echo $subject_details['name'];?></td> 
+					<?php if(isset($subject_rule[$subject_id])){?>
+					<td class="align-center"><span class="subject-heading-1"><a href="#" onclick="saveSubGrp('<?php echo $subject_id;?>','<?php echo $subject_rule[$subject_id]['0']['id'];?>');"><?php if($status == 1) { echo "<span style='color:red'>Unconfirm SG: </span>";}else{ echo "Confirm SG:";}?></a></span><?php echo $subject_rule[$subject_id]['0']['name'];?></td>
+					<?php }else{ ?>
+					<td class="align-center"><span class="subject-heading-1"><a href="#">Confirm SG:</a></span><?php echo "None";?></td>
+					<?php } ?>
+					<td class="align-center"><span class="subject-heading-1"><a href="subject_pre_selection.php?id=<?php echo $subject_id;?>" class='basic-sub-grp'>See other availaible SG</a></span></td>	
 				</tr>				
 		<?php }
 		}?>					

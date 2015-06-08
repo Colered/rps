@@ -257,3 +257,27 @@ $(document).ready(function(){
 		return false;
 	});
 });*/
+function saveSubGrp($subject_id,$id)
+{
+	if($id==""){
+		alert("Please select a subject group to confirm");
+		return false;
+	}else {
+	    $.ajax({
+                type: "POST",
+                url: "ajax_common.php",
+                data: {
+					'id': $id,
+					'subject_id': $subject_id,
+					'codeBlock': 'save_subject_group',
+				},
+                success: function($succ){
+					if($succ==1){
+						window.location.href = 'dashboard.php';
+					}else{
+						alert('Data cannot be saved. Please try again');
+					}
+                }
+        });
+    }
+}

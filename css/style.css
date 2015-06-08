@@ -579,8 +579,9 @@ font-weight: bold;
 #datatables-right{ 
 	border: 1px solid #CCCCCC; 
 	margin: 10px; 
-	width: 72%!important;
+	width: 22%!important;
 	border-spacing:0;
+	float:left;
 	  
 }
 #datatables-left{ 
