@@ -119,7 +119,7 @@ $all_subjects = $obj_fedena->getAllSubjectsDetails();
 				</div>
 			<?php } $k++;
 		}?>
-			
+		<input type="hidden" id="page" name="page" value="<?php echo $_GET['id'];?>"/>
 		</tbody>
 	</table>	
 	<table id="datatables-right" class="display">
@@ -139,7 +139,7 @@ $all_subjects = $obj_fedena->getAllSubjectsDetails();
 				<td class="align-center">30</td>
 				<?php $status = $objP->getSubGrpStatus($_GET['id']);
 				$statusTxt = ($status==1?"Unselect":"Select");?>
-				<td class="align-center"><span class="subject-heading-1"><a href="#" onclick="saveSubGrp('<?php echo $_GET['id'];?>','<?php echo $value['id'];?>');"><?php echo $statusTxt;?></a></span></td>				
+				<td class="align-center"><span class="subject-heading-1"><a href="#" onclick="saveSubGrp('<?php echo $_GET['id'];?>','<?php echo $value['id'];?>','subject_pre_selection');"><?php echo $statusTxt;?></a></span></td>				
 			</tr>
 		<?php } ?>
 		</tbody>

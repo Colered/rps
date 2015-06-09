@@ -257,8 +257,9 @@ $(document).ready(function(){
 		return false;
 	});
 });
-function saveSubGrp($subject_id,$id)
+function saveSubGrp($subject_id,$id,$page)
 {
+	var page_id = $('#page').val();
 	if($id==""){
 		alert("Please select a subject group to confirm");
 		return false;
@@ -273,7 +274,12 @@ function saveSubGrp($subject_id,$id)
 				},
                 success: function($succ){
 					if($succ==1){
-						window.location.href = 'dashboard.php';
+						if($page == 'subject_pre_selection')
+						{
+							window.location.href = 'subject_pre_selection.php?id='+page_id;
+						}else{
+							window.location.href = 'dashboard.php';
+						}
 					}else{
 						alert('Data cannot be saved. Please try again');
 					}
