@@ -145,7 +145,7 @@ $all_subjects = $obj_fedena->getAllSubjects();
 					<?php }else{ ?>
 					<td class="align-center"><span class="subject-heading-1"><a href="#">Confirm SG:</a></span><?php echo "None";?></td>
 					<?php } ?>
-					<td class="align-center"><span class="subject-heading-1"><a href="subject_pre_selection.php?id=<?php echo $subject_id;?>" class='basic-sub-grp'>See other availaible SG</a></span></td>	
+					<td class="align-center"><span class="subject-heading-1"><a href="subject_pre_selection.php?id=<?php echo $subject_id;?>">See other availaible SG</a></span></td>	
 				</tr>				
 		<?php }
 		}?>					
