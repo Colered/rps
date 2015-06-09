@@ -248,7 +248,7 @@ function setStatus($id){
         });
     }
  }
- /* To open pop up for other available subject groups 
+ // To open pop up for other available subject groups 
 $(document).ready(function(){
 	$('.basic-sub-grp').click(function (e) {
 		var subject_grp_link_id=$(this).attr("id");
@@ -256,7 +256,7 @@ $(document).ready(function(){
 		$(sub_grp_id).modal();
 		return false;
 	});
-});*/
+});
 function saveSubGrp($subject_id,$id)
 {
 	if($id==""){

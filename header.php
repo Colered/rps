@@ -25,6 +25,10 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
 		 if ($pos == true) {?>	
 			<script type='text/javascript' src='js/jquery.simplemodal.js'></script> 
 		<?php }?>
+		<?php $pos = strpos($_SERVER['SCRIPT_NAME'], 'subject_pre_selection');
+		 if ($pos == true) {?>	
+			<script type='text/javascript' src='js/jquery.simplemodal.js'></script> 
+		<?php }?>
 		<script type="text/javascript">
             $(function() {
                 $(".box .h_title").not(this).next("ul").hide("normal");

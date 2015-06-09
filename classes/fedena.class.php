@@ -88,5 +88,33 @@ class Fedena extends Base {
 		$row = mysqli_fetch_array($q_res);
 		return $row['course_name'];
 	}
+	function getAllSubjectsDetails()
+	{
+		$sql="select distinct eg.name as grp_name,eg.id from subjects s
+			  inner join elective_groups eg on eg.id = s.elective_group_id
+			  where s.batch_id = '".$_SESSION['batch_id']."' and s.school_id='".$_SESSION['school_id']."' and s.is_deleted='0' ";
+		$qry_rslt= mysqli_query($this->connfed,$sql);
+		$subjects = array();
+		if(mysqli_num_rows($qry_rslt)>0){			
+			while($row = mysqli_fetch_array($qry_rslt))
+			{
+				 $sql_sub = "select s.id,s.name as sub_name,s.code,s.max_weekly_classes,s.credit_hours,s.amount,s.no_exams from subjects s where elective_group_id = '".$row['id']."' and s.school_id='".$_SESSION['school_id']."' and s.is_deleted='0' and s.batch_id = '".$_SESSION['batch_id']."'";
+				 $qry_rslt_sub= mysqli_query($this->connfed,$sql_sub);
+				 if(mysqli_num_rows($qry_rslt_sub)>0)
+				 {
+					 while($row_sub = mysqli_fetch_array($qry_rslt_sub))
+					 {
+						 $subjects[$row['id']]['name'] = trim($row['grp_name']); 
+						 $subjects[$row['id']]['subjects'][$row_sub['code']]['name'] = trim($row_sub['sub_name']);
+						 $subjects[$row['id']]['subjects'][$row_sub['code']]['max_weekly_classes'] = trim($row_sub['max_weekly_classes']);
+						 $subjects[$row['id']]['subjects'][$row_sub['code']]['credit_hours'] = trim($row_sub['credit_hours']);
+						 $subjects[$row['id']]['subjects'][$row_sub['code']]['amount'] = trim($row_sub['amount']);
+						 $subjects[$row['id']]['subjects'][$row_sub['code']]['no_exams'] = trim($row_sub['no_exams']);
+					 }
+				 }
+			}
+			return $subjects;
+		}
+	}
 	
 }
