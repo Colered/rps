@@ -114,18 +114,18 @@ $all_subjects = $obj_fedena->getAllSubjects();
 					$result_rules = $obj_ras->getRulesofSubject($value,$course_name);
 					if($result_rules->num_rows>0)
 					{
-						$i=0;
+						$i=0;$rule_cnt=0;
 						while($data = $result_rules->fetch_assoc())
 						 {	
 							 if($obj_ras->checkTimetable($data['subject_rule_id']))
 							 {
 								 $subject_rule[$subject_id][$i]['id'] = $data['subject_rule_id'];
 								 $subject_rule[$subject_id][$i]['name'] = $data['rule_name'];
-							 }else{
-								 $cnt++;
-							 }
-						$i++;
+								 $rule_cnt++;$i++;
+							 }						
 						}
+						if($rule_cnt == 0)
+							$cnt++;
 					}else{
 						$cnt++;
 					}

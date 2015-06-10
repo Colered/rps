@@ -32,7 +32,7 @@ $all_subjects = $obj_fedena->getAllSubjectsDetails();
 					$result_rules = $obj_ras->getRulesofSubject($value['name'],$course_name);
 					if($result_rules->num_rows>0)
 					{
-						$i=0;
+						$i=0;$rule_cnt=0;
 						while($data = $result_rules->fetch_assoc())
 						 {	
 							 if($obj_ras->checkTimetable($data['subject_rule_id']))
@@ -45,11 +45,11 @@ $all_subjects = $obj_fedena->getAllSubjectsDetails();
 								 $subjects[$subject_id]['credit_hours'] = $value['credit_hours'];
 								 $subjects[$subject_id]['amount'] = $value['amount'];
 								 $subjects[$subject_id]['no_exams'] = $value['no_exams'];
-							 }else{
-								 $cnt++;
-							 }
-						$i++;
+								 $rule_cnt++;$i++;
+							 }						
 						}
+						if($rule_cnt == 0)
+							$cnt++;
 					}else{
 						$cnt++;
 					}
