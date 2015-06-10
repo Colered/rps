@@ -6,7 +6,6 @@ $objP = new Prerequistie();
 $student_subjects=$obj_fedena->getCurrentStuSemSub();
 $course_name = $obj_fedena->getCourseName();
 $all_subjects = $obj_fedena->getAllSubjects();
-//print"<pre>";print_r($student_subjects);//die;
 ?>
 <div class="custtable_left fontstyles" style="margin-left:20px;width:80%;">
 	<table id="datatables-left" class="display">
@@ -107,7 +106,6 @@ $all_subjects = $obj_fedena->getAllSubjects();
 			foreach($subject_details['subjects'] as $key=>$value)
 			{
 				$sub_code = $objP->getrequistie($key);
-				//echo $sub_code."--".$key;echo "<br/>";
 				if($obj_fedena->search_array($value,$student_subjects))
 				{
 					$cnt++;									
@@ -133,7 +131,6 @@ $all_subjects = $obj_fedena->getAllSubjects();
 					}
 				}
 			}
-		//print"<pre>";print_r($_SESSION);die;
 			if($cnt != $sub_cnt)
 			{
 				$status = $objP->getSubGrpStatus($subject_id);				
@@ -141,11 +138,11 @@ $all_subjects = $obj_fedena->getAllSubjects();
 				<tr>
 					<td class="align-center"><?php echo $subject_details['name'];?></td> 
 					<?php if(isset($subject_rule[$subject_id])){?>
-					<td class="align-center"><span class="subject-heading-1"><a href="#" onclick="saveSubGrp('<?php echo $subject_id;?>','<?php echo $subject_rule[$subject_id]['0']['id'];?>');"><?php if($status == 1) { echo "<span style='color:red'>Unconfirm SG: </span>";}else{ echo "Confirm SG:";}?></a></span><?php echo $subject_rule[$subject_id]['0']['name'];?></td>
+					<td class="align-center"><span class="subject-heading-1"><a href="#" onclick="saveSubGrp('<?php echo $subject_id;?>','<?php echo $subject_rule[$subject_id]['0']['id'];?>');"><?php if($status == 1) { echo "<span style='color:red'>Unconfirm SG: </span>";}else{ echo "Confirm SG:";}?></a></span><?php echo $subject_rule[$subject_id]['0']['name'];?><a href="<?php echo SERVER_URL ?>/web_calendar_rps/month.php?subGrpId=<?php echo $subject_id;?>&subRuleId=<?php echo $subject_rule[$subject_id]['0']['id'];?>" class="see_cal">see cal</a></td>
 					<?php }else{ ?>
 					<td class="align-center"><span class="subject-heading-1"><a href="#">Confirm SG:</a></span><?php echo "None";?></td>
 					<?php } ?>
-					<td class="align-center"><span class="subject-heading-1"><a href="subject_pre_selection.php?id=<?php echo $subject_id;?>">See other availaible SG</a></span></td>	
+					<td class="align-center"><span class="subject-heading-1"><a href="subject_pre_selection.php?id=<?php echo $subject_id;?>">See other availaible SG</a></span></td
 				</tr>				
 		<?php }
 		}?>					

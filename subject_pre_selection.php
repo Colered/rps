@@ -6,7 +6,6 @@ $objP = new Prerequistie();
 $student_subjects=$obj_fedena->getCurrentStuSemSub();
 $course_name = $obj_fedena->getCourseName();
 $all_subjects = $obj_fedena->getAllSubjectsDetails();
-//print"<pre>";print_r($all_subjects);die;
 ?>
 <div class="custtable_left fontstyles" style="margin-left:20px;width:80%;">
 	<table id="datatables-left" class="display">
@@ -56,7 +55,6 @@ $all_subjects = $obj_fedena->getAllSubjectsDetails();
 					}
 				}
 			}
-			//print"<pre>";print_r($subjects);//die;
 			if($cnt != $sub_cnt)
 			{
 				if($subject_id==$_GET['id'])

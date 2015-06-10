@@ -1,10 +1,17 @@
 <?php
-require_once('config.php');
-if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']=='/admin/forgot.php'){
+//echo "'http://".$_SERVER['SERVER_NAME']."/rps/config.php'";
+$calender = strpos($_SERVER['SCRIPT_NAME'], 'web_calendar_rps');
+if ($calender == true) {	
+	require_once('../config.php');
+}else{
+	require_once('config.php');
+}
+if($_SERVER['REQUEST_URI']==SERVER_URL.'admin/forgot.php' || $_SERVER['REQUEST_URI']==SERVER_URL.'admin/forgot.php'){
 		//Do Nothing
 }elseif(!isset($_SESSION['std_id'])){
 		unset($_SESSION['std_id']);
 		header('Location: index.php');
+		
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -12,18 +19,23 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
     <head>
         <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
         <title>SUBJECT PRE-SELECTION MODULE</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="css/navi.css" media="screen" />
+		<?php if ($calender == true) {	?>
+        <link rel="stylesheet" type="text/css" href="<?php echo SERVER_URL; ?>css/style-cal.css" media="screen" />
+		<?php }else{ ?>
+        <link rel="stylesheet" type="text/css" href="<?php echo SERVER_URL; ?>css/style.css" media="screen" />
+		<?php }?>
+		
+        <link rel="stylesheet" type="text/css" href="<?php echo SERVER_URL; ?>css/navi.css" media="screen" />
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-		<link rel="icon" href="favicon.ico" type="image/x-icon">
-		<link rel="stylesheet" href="js/jquery-ui.css">
-		<script src="js/jquery-1.10.2.js"></script>
-		<script src="js/jquery-ui.js"></script>
-		<script src="js/jquery.validate.js"></script>
-		<script src="js/common.js"></script>
+		<link rel="icon" href="favicon.ico" type="<?php echo SERVER_URL; ?>image/x-icon">
+		<link rel="stylesheet" href="<?php echo SERVER_URL; ?>js/jquery-ui.css">
+		<script src="<?php echo SERVER_URL; ?>js/jquery-1.10.2.js"></script>
+		<script src="<?php echo SERVER_URL; ?>js/jquery-ui.js"></script>
+		<script src="<?php echo SERVER_URL; ?>js/jquery.validate.js"></script>
+		<script src="<?php echo SERVER_URL; ?>js/common.js"></script>
 		<?php $pos = strpos($_SERVER['SCRIPT_NAME'], 'dashboard');
 		 if ($pos == true) {?>	
-			<script type='text/javascript' src='js/jquery.simplemodal.js'></script> 
+			<script type='text/javascript' src='<?php echo SERVER_URL; ?>js/jquery.simplemodal.js'></script> 
 		<?php }?>
 		<?php $pos = strpos($_SERVER['SCRIPT_NAME'], 'subject_pre_selection');
 		 if ($pos == true) {?>	
@@ -44,7 +56,7 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
             <div id="header">
                 <div id="top">
                     <div class="left" style="width:506px;">
-                        <a href="index.php"><img src="images/logo.png"  border="0" class="logo-img"/></a>
+                        <a href="index.php"><img src="<?php echo SERVER_URL; ?>images/logo.png"  border="0" class="logo-img"/></a>
 						<div class="header-title">REGISTRATION PRE-SELECTION SOLUTION</div>
                     </div>
                     <div class="right">
@@ -63,10 +75,10 @@ if($_SERVER['REQUEST_URI']=='/rps/admin/forgot.php' || $_SERVER['REQUEST_URI']==
                 <div id="nav">
                     <?php if(isset($_SESSION['std_id']) && $_SESSION['std_id']!=""){ $urlData = explode("/",$_SERVER['PHP_SELF']); ?>
 					<ul>
-						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='dashboard.php'){ echo "selected"; } ?>"><a href="dashboard.php">Dashboard</a></li>
-						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='reports.php'){ echo "selected"; } ?>"><a href="reports.php">Reports</a></li>					
+						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='dashboard.php'){ echo "selected"; } ?>"><a href="<?php echo SERVER_URL; ?>dashboard.php">Dashboard</a></li>
+						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='reports.php'){ echo "selected"; } ?>"><a href="<?php echo SERVER_URL; ?>reports.php">Reports</a></li>					
 						<li class="upp right"  style="float:right"><a href="logout.php">Logout</a></li>						
-						<li class="upp right <?php if(isset($urlData[2]) && $urlData[2]=='change_password.php'){ echo "selected"; } ?>"  style="float:right"><a href="change_password.php">Change Password</a></li>		
+						<li class="upp right <?php if(isset($urlData[2]) && $urlData[2]=='change_password.php'){ echo "selected"; } ?>"  style="float:right"><a href="<?php echo SERVER_URL; ?>change_password.php">Change Password</a></li>		
                     </ul>
 					<?php } ?>
 					</div>

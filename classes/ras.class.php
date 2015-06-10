@@ -27,7 +27,74 @@ class RAS extends Base {
 		if(mysqli_num_rows($qry_rslt)>0){
 			return 1;
 		}		
+	}	
+	//getting the detail of subject of a student
+	public function subDetailFromRAS($sub_id)
+	{
+		$sql = "select td.id,DATE_FORMAT(td.date,'%Y%m%d'),td.timeslot,t.teacher_name,tt.teacher_type_name,py.name program_year_name,p.company,u.name as unit,t.payrate,s.session_name,a.area_name,su.subject_name,s.case_number,s.technical_notes,r.room_name,sr.rule_name,sr.start_date,sr.end_date from timetable_detail td 
+		left join teacher t on t.id = td.teacher_id 
+		left join subject su on su.id = td.subject_id 
+		left join program_years py on py.id = td.program_year_id 
+		left join program p on p.id = py.program_id 
+		left join unit u on u.id = p.unit 
+		left join subject_session s on s.id = td.session_id 
+		left join subject_rule_mapping srm on srm.session_id = td.session_id
+		left join subject_rule sr on sr.id = srm.subject_rule_id
+		left join area a on a.id = su.area_id 
+		left join room r on r.id = td.room_id 
+		left join teacher_type tt on tt.id = t.teacher_type 
+		where td.subject_id='".$sub_id."'";
+		$data=array();
+		$qry_rslt= mysqli_query($this->connras,$sql);		
+		if(mysqli_num_rows($qry_rslt)>0){
+			while($row=$qry_rslt->fetch_assoc()){
+				$data[]=$row;
+			}
+		}
+		return 	$data;
 	}
+	//getting the subject detail of a program 
+	public function getProgramSub(){
+	  $obj_fed=new Fedena();
+	  $course_name=$obj_fed->getCourseName();
+	  $sql = "select pg.id ,py.id as prgm_year_id from program pg inner join program_years py on py.program_id = pg.id where pg.program_name='".trim($course_name)."'";
+	  $q_res = mysqli_query($this->connras, $sql);
+	  if(mysqli_num_rows($q_res)>0){
+		while($data=$q_res->fetch_assoc()){
+			$prgm_year_ids[]=$data['prgm_year_id'];
+		}
+		$pgrm_year_id=implode(',',$prgm_year_ids);
+		$sql_sub = "select id as ras_subject_id,program_year_id,subject_name,subject_code,cycle_no as cycle_id from subject where program_year_id IN ($pgrm_year_id)"; 
+		$q_res1 = mysqli_query($this->connras, $sql_sub);
+		while($data1=$q_res1->fetch_assoc()){
+			$subject_name[]=$data1;
+		}
+		return $subject_name;
+	  }else{
+	  	return 0;
+	  }
+	 }
+    //getting all subject of a rule to a student
+	public function ruleAllSubject($subRuleId,$subject_name){
+		$sql="SELECT session_id	 FROM  subject_rule_mapping where subject_rule_id='".$subRuleId."'";
+		$q_res = mysqli_query($this->connras, $sql);	  
+	    if(mysqli_num_rows($q_res)>0){
+			while($data=$q_res->fetch_assoc()){
+				$session_id[]=$data['session_id'];
+			}
+			$session_id=implode(',',$session_id);	
+			$sql_sub = "select s.id as ras_sub_id ,s.subject_name  from subject s inner join subject_session ss   where ss.id IN ($session_id) and s.subject_name='".$subject_name."' group by  s.id" ;
+			$q_res1 = mysqli_query($this->connras, $sql_sub);
+			while($data1=$q_res1->fetch_assoc()){
+				$subject_id_arr[]=$data1['ras_sub_id'];
+			}
+			return $subject_id_arr;   
+	    }else{
+			return 0;
+		}
+		
+	 }
+	
 }
 
 	
