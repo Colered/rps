@@ -1014,7 +1014,11 @@ function display_month ( $thismonth, $thisyear, $demo = false ) {
         <td class="weekcell"><a title="' . $weekStr . ' ' . $tmp . '" href="'
        . ( $demo ? '' : 'week.php?date=' . date ( 'Ymd', $i + 86400 ) )
        . ( ! empty ( $user ) && $user != $login ? '&amp;user=' . $user : '' )
-       . ( empty ( $cat_id ) ? '' : '&amp;cat_id=' . $cat_id ) . '"' . '>';
+       . ( empty ( $cat_id ) ? '' : '&amp;cat_id=' . $cat_id ) 
+	   . ( empty ( $_GET['subGrpId'] ) ? '' : '&amp;subGrpId=' .$_GET['subGrpId'] )
+	   . ( empty ( $_GET['subRuleId'] ) ? '' : '&amp;subRuleId=' .$_GET['subRuleId'] )
+	   . ( empty ( $_GET['subject_id'] ) ? '' : '&amp;subject_id=' .$_GET['subject_id'] )
+	   . '"' . '>';
 
       $wkStr = $WKStr . $tmp;
       $wkStr2 = '';
@@ -1168,7 +1172,10 @@ function display_small_month ( $thismonth, $thisyear, $showyear,
   $nextStr = translate ( 'Next' );
   $prevStr = translate ( 'Previous' );
   $u_url = ( $user != $login && ! empty ( $user )
-    ? 'user=' . $user . '&amp;' : '' );
+    ? 'user=' . $user . '&amp;' : '' )
+	   . ( empty ( $_GET['subGrpId'] ) ? '' : '&amp;subGrpId=' .$_GET['subGrpId'] )
+	   . ( empty ( $_GET['subRuleId'] ) ? '' : '&amp;subRuleId=' .$_GET['subRuleId'] )
+	   . ( empty ( $_GET['subject_id'] ) ? '' : '&amp;subject_id=' .$_GET['subject_id'] ).'&amp;';
   $weekStr = translate ( 'Week' );
 
   // Start the minical table for each month.
@@ -4424,9 +4431,11 @@ function print_date_entries ( $date, $user, $ssi = false ) {
       $tmp = $moons[$date];
     $moon_title = ( empty ( $tmp ) ? '' : translate ( ucfirst ( $tmp )
      . ( strpos ( 'fullnew', $tmp ) !== false ? '' : ' Quarter' ) . ' Moon' ) );
-    $ret = ( $can_add ? '' : '' ) . '
-        <a class="dayofmonth" href="day.php?' . $userCatStr . 'date=' . $date
-     . '">' . substr ( $date, 6, 2 ) . '</a>' . ( empty ( $tmp )
+    $ret = ( $can_add ? '' : '' ) 
+	   . '<a class="dayofmonth" href="day.php?' . $userCatStr . 'date=' . $date
+       . ( empty ( $_GET['subGrpId'] ) ? '' : '&amp;subGrpId=' .$_GET['subGrpId'] )
+	   . ( empty ( $_GET['subRuleId'] ) ? '' : '&amp;subRuleId=' .$_GET['subRuleId'] )
+	   . ( empty ( $_GET['subject_id'] ) ? '' : '&amp;subject_id=' .$_GET['subject_id'] ). '">'. substr ( $date, 6, 2 ) . '</a>' . ( empty ( $tmp )
       ? '' : '<img src="images/' . $tmp . 'moon.gif" title="' . $moon_title
       . '" alt="' . $moon_title . '" />' ) . "<br />\n";
     $cnt++;

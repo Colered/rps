@@ -16,7 +16,6 @@ if ( empty ( $user ) )
   load_user_layers ();
 
 $cat_id = getValue ( 'cat_id', '-?[0-9,\-]*', true );
-$subject_filter_id=(isset($_REQUEST['subject_id']))?$_REQUEST['subject_id']:'';
 load_user_categories ();
 
 $next = mktime ( 0, 0, 0, $thismonth + 1, 1, $thisyear );
@@ -48,6 +47,7 @@ if ( $BOLD_DAYS_IN_YEAR == 'Y' ) {
 $events=$sub_data=array();
 $subRuleId=(isset($_GET['subRuleId'])? $_GET['subRuleId']:'');
 $subGrpId=(isset($_GET['subGrpId'])? $_GET['subGrpId']:'');
+$subject_filter_id=(isset($_REQUEST['subject_id']))?$_REQUEST['subject_id']:'';
 if($subRuleId !="" && $subGrpId!=''){
 	$obj_fedena=new Fedena();
 	$obj_ras=new RAS();

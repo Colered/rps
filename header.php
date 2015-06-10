@@ -56,7 +56,7 @@ if($_SERVER['REQUEST_URI']==SERVER_URL.'admin/forgot.php' || $_SERVER['REQUEST_U
             <div id="header">
                 <div id="top">
                     <div class="left" style="width:506px;">
-                        <a href="index.php"><img src="<?php echo SERVER_URL; ?>images/logo.png"  border="0" class="logo-img"/></a>
+                        <a href="<?php echo SERVER_URL; ?>index.php"><img src="<?php echo SERVER_URL; ?>images/logo.png"  border="0" class="logo-img"/></a>
 						<div class="header-title">REGISTRATION PRE-SELECTION SOLUTION</div>
                     </div>
                     <div class="right">

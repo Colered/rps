@@ -3,6 +3,13 @@
 include_once 'includes/init.php';
 include_once '../header.php';
 
+/*echo '<pre>';
+print_r($_GET);
+die;*/
+
+$subRuleId=(isset($_GET['subRuleId'])? $_GET['subRuleId']:'');
+$subGrpId=(isset($_GET['subGrpId'])? $_GET['subGrpId']:'');
+$subject_filter_id=(isset($_GET['subject_id']))?$_GET['subject_id']:'';
 //check UAC
 if ( ! access_can_access_function ( ACCESS_WEEK ) || 
   ( ! empty ( $user ) && ! access_user_calendar ( 'view', $user ) )  )
@@ -58,14 +65,42 @@ if ( $DISPLAY_SM_MONTH == 'Y' && $BOLD_DAYS_IN_YEAR == 'Y' ) {
 /* Pre-load the non-repeating events for quicker access. */
 // Start the search ONE_WEEK early to account for cross-day events.
 //$subject='162';
-$subject_filter_id=(isset($_REQUEST['subject_id']))?$_REQUEST['subject_id']:'';
+/*$subject_filter_id=(isset($_REQUEST['subject_id']))?$_REQUEST['subject_id']:'';
 if($subject_filter_id!=""){
 	$subject_id=$subject_filter_id;
 }else{
 	$subject_id='162';
-}
-$events = read_events_student_sub_next_sem (( strlen ( $user ) ? $user : $login ), $evStart - 604800, $evEnd, $cat_id ,$subject_id);
+}*/
+//$events = read_events_student_sub_next_sem (( strlen ( $user ) ? $user : $login ), $evStart - 604800, $evEnd, $cat_id ,$subject_id);
 //$events = read_events ( ( strlen ( $user ) ? $user : $login ), $evStart - 604800, $evEnd, $cat_id);
+
+$events=$sub_data=array();
+if($subRuleId !="" && $subGrpId!=''){
+	$obj_fedena=new Fedena();
+	$obj_ras=new RAS();
+	$student_subjects=$obj_fedena->getCurrentStuSemSub();
+	$course_name = $obj_fedena->getCourseName();
+	$all_subjects = $obj_fedena->getAllSubjectsDetails();
+	foreach($all_subjects as $subgrp_id=>$subgrp_detail ){
+		if($subgrp_id==$subGrpId){
+			$sub_cnt =  count($subgrp_detail['subjects']);
+			if($sub_cnt>0){
+				foreach($subgrp_detail['subjects'] as $sub_code=>$sub_detail){
+					if(!$obj_fedena->search_array($sub_detail['name'],$student_subjects)){
+						$sub_ids=$obj_ras->ruleAllSubject($subRuleId,$sub_detail['name']);
+						$sub_data = read_events_student_sub_next_sem (( strlen ( $user ) ? $user : $login ), $evStart - 604800, $evEnd, $cat_id ,$sub_ids[0]);
+						$events=array_merge($events,$sub_data);	
+					}
+				}
+		  	}	
+		}
+	}
+}elseif($subject_filter_id!=''){
+	$events = read_events_student_sub_next_sem (( strlen ( $user ) ? $user : $login ), $evStart - 604800, $evEnd, $cat_id ,$subject_filter_id);
+}
+
+
+
 
 if ( empty ( $DISPLAY_TASKS_IN_GRID ) || $DISPLAY_TASKS_IN_GRID == 'Y' )
   /* Pre-load tasks for quicker access. */
@@ -90,7 +125,10 @@ for ( $i = $start_ind; $i <= $end_ind; $i++ ) {
   $headerStr .= '
               <th ' . $class . '>'
    . ( $can_add ? html_for_add_icon ( $dateYmd, '', '', $user ) : '' )
-   . '<p style="margin:.75em 0 0 0"><a href="day.php?' . $u_url . 'date=' . $dateYmd . $caturl . '">'
+   . '<p style="margin:.75em 0 0 0"><a href="day.php?' . $u_url . 'date=' . $dateYmd . $caturl 
+   . ( empty ( $_GET['subGrpId'] ) ? '' : '&amp;subGrpId=' .$_GET['subGrpId'] )
+   . ( empty ( $_GET['subRuleId'] ) ? '' : '&amp;subRuleId=' .$_GET['subRuleId'] )
+   . ( empty ( $_GET['subject_id'] ) ? '' : '&amp;subject_id=' .$_GET['subject_id'] ). '">'
    . $header[$i] . '</a></p></th>';
 
   $date = date ( 'Ymd', $days[$i] );

@@ -4,6 +4,10 @@ include_once 'includes/init.php';
 include_once '../header.php';
 
 //check UAC
+$subRuleId=(isset($_GET['subRuleId'])? $_GET['subRuleId']:'');
+$subGrpId=(isset($_GET['subGrpId'])? $_GET['subGrpId']:'');
+$subject_filter_id=(isset($_GET['subject_id']))?$_GET['subject_id']:'';
+
 if ( ! access_can_access_function ( ACCESS_DAY ) || 
   ( ! empty ( $user ) && ! access_user_calendar ( 'view', $user ) )  )
   send_to_preferred_view ();
@@ -44,13 +48,39 @@ $printerStr = $unapprovedStr = '';
 
 /* Pre-load the non-repeating events for quicker access */
 //$events = read_events ( empty ( $user ) ? $login : $user, $startdate, $enddate, $cat_id );
-$subject_filter_id=(isset($_REQUEST['subject_id']))?$_REQUEST['subject_id']:'';
+/*$subject_filter_id=(isset($_REQUEST['subject_id']))?$_REQUEST['subject_id']:'';
 if($subject_filter_id!=""){
 	$subject_id=$subject_filter_id;
 }else{
 	$subject_id='162';
+}*/
+
+$events=$sub_data=array();
+if($subRuleId !="" && $subGrpId!=''){
+	$obj_fedena=new Fedena();
+	$obj_ras=new RAS();
+	$student_subjects=$obj_fedena->getCurrentStuSemSub();
+	$course_name = $obj_fedena->getCourseName();
+	$all_subjects = $obj_fedena->getAllSubjectsDetails();
+	foreach($all_subjects as $subgrp_id=>$subgrp_detail ){
+		if($subgrp_id==$subGrpId){
+			$sub_cnt =  count($subgrp_detail['subjects']);
+			if($sub_cnt>0){
+				foreach($subgrp_detail['subjects'] as $sub_code=>$sub_detail){
+					if(!$obj_fedena->search_array($sub_detail['name'],$student_subjects)){
+						$sub_ids=$obj_ras->ruleAllSubject($subRuleId,$sub_detail['name']);
+						$sub_data= read_events_student_sub_next_sem ( ( ! empty ( $user ) && strlen ( $user ) ) ? $user : $login, $startdate, $enddate, $cat_id ,$sub_ids[0]);
+						$sub_data = read_events_student_sub_next_sem ( ( ! empty ( $user ) && strlen ( $user ) ) ? $user : $login, $startdate, $enddate, $cat_id ,$sub_ids[0]);
+						$events=array_merge($events,$sub_data);	
+					}
+				}
+		  	}	
+		}
+	}
+}elseif($subject_filter_id!=''){
+  $events = read_events_student_sub_next_sem ( ( ! empty ( $user ) && strlen ( $user ) ) ? $user : $login, $startdate, $enddate, $cat_id ,$subject_filter_id);
 }
-$events = read_events_student_sub_next_sem ( ( ! empty ( $user ) && strlen ( $user ) ) ? $user : $login, $startdate, $enddate, $cat_id ,$subject_id);
+//$events = read_events_student_sub_next_sem ( ( ! empty ( $user ) && strlen ( $user ) ) ? $user : $login, $startdate, $enddate, $cat_id ,$subject_id);
 if ( empty ( $DISPLAY_TASKS_IN_GRID ) || $DISPLAY_TASKS_IN_GRID == 'Y' )
   /* Pre-load tasks for quicker access */
   $tasks = read_tasks ( ! empty ( $user ) && strlen ( $user ) && $is_assistant
