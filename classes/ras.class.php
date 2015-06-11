@@ -94,6 +94,57 @@ class RAS extends Base {
 		}
 		
 	 }
+	 //getting all subject of a rule to a student
+	public function reportStuSubject(){
+	    //echo '<pre>';
+		$sql="SELECT subject_group_id,associated_rules_ids FROM subjects_preselect where select_status='1'";
+		$all_record=array();
+		$q_res = mysqli_query($this->connrps, $sql);	
+		if(mysqli_num_rows($q_res)>0){
+			while($data=$q_res->fetch_assoc()){
+			   $subject_record=$this->stuSubRasData($data['subject_group_id'],$data['associated_rules_ids'],'');
+			   $all_record=array_merge($all_record,$subject_record);
+			}
+	    }
+		return $all_record;
+		
+	 }
+	 public function stuSubRasData($subGrpId,$subRuleId,$subject_filter_id){
+	 	    $events=$sub_data=array();
+			if($subRuleId !="" && $subGrpId!=''){
+				$obj_fedena=new Fedena();
+				$obj_ras=new RAS();
+				$student_subjects=$obj_fedena->getCurrentStuSemSub();
+				$course_name = $obj_fedena->getCourseName();
+				$all_subjects = $obj_fedena->getAllSubjectsDetails();
+				foreach($all_subjects as $subgrp_id=>$subgrp_detail ){
+					if($subgrp_id==$subGrpId){
+						$sub_cnt =  count($subgrp_detail['subjects']);
+						if($sub_cnt>0){
+							foreach($subgrp_detail['subjects'] as $sub_code=>$sub_detail){
+								if(!$obj_fedena->search_array($sub_detail['name'],$student_subjects)){
+									$sub_ids=$obj_ras->ruleAllSubject($subRuleId,$sub_detail['name']);
+									$rowNewArr=array(array());$row=array();
+									$row = $obj_ras->subDetailFromRAS($sub_ids[0]);
+									  if(count($row)>0){
+											for($i=0;$i<count($row);$i++){
+												  $j=0;
+												  foreach($row[$i] as $key=>$val){
+												  $rowNewArr[$i][$j]=$val;
+												  $j++;
+												}
+											}
+										}
+									$rows=$rowNewArr;
+									$events=array_merge($events,$rows);
+								}
+							}
+						}	
+					}
+				}
+			}
+			return $events;
+	 }
 	
 }
 

@@ -1,5 +1,8 @@
 <?php
-include('header.php');?>
+include('header.php');
+$objR=new RAS();
+$confirmSubData=$objR->reportStuSubject();
+?>
 <script src="js/jquery.dataTables.js" type="text/javascript"></script>
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function(){
@@ -26,65 +29,31 @@ $(document).ready(function(){
 				<th >Subject Name</th>
 				<th >Subject Schedule</th>
 				<th >Subject Room</th>
-				<th >Credits</th>
+				<th >Date</th>
 				<th>Teachers </th>		
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td class="align-center"><strong>Pre-selected</strong></td>
-				<td class="align-center">SBJCT011 - T- 001</td>                        
-				<td class="align-center">SUBJECT 11</td>
-				<td class="align-center">S-8:00-12:00</td>
-				<td class="align-center">A3- 310</td>	
-				<td class="align-center">4</td>
-				<td class="align-center">Prof. Julia Smith </td>
-			</tr>
-			<tr>
-				<td class="align-center"><strong>Pre-selected</strong></td>
-				<td class="align-center">SBJCT011 - T- 001</td>                        
-				<td class="align-center">SUBJECT 11</td>
-				<td class="align-center">S-8:00-12:00</td>
-				<td class="align-center">A3- 310</td>	
-				<td class="align-center">4</td>
-				<td class="align-center">Rohit </td>
-			</tr>
-			<tr>
-				<td class="align-center"><strong>Pre-selected</strong></td>
-				<td class="align-center">SBJCT011 - T- 001</td>                        
-				<td class="align-center">SUBJECT 11</td>
-				<td class="align-center">S-8:00-12:00</td>
-				<td class="align-center">A3- 310</td>	
-				<td class="align-center">4</td>
-				<td class="align-center">Prof. Julia Smith </td>
-			</tr>
-			<tr>
-				<td class="align-center"><strong>Pre-selected</strong></td>
-				<td class="align-center">SBJCT011 - T- 001</td>                        
-				<td class="align-center">SUBJECT 11</td>
-				<td class="align-center">S-8:00-12:00</td>
-				<td class="align-center">A3- 310</td>	
-				<td class="align-center">4</td>
-				<td class="align-center">Prof. Julia Smith </td>
-			</tr>
-			<tr>
-				<td class="align-center"><strong>Pre-selected</strong></td>
-				<td class="align-center">SBJCT011 - T- 001</td>                        
-				<td class="align-center">SUBJECT 11</td>
-				<td class="align-center">S-8:00-12:00</td>
-				<td class="align-center">A3- 310</td>	
-				<td class="align-center">4</td>
-				<td class="align-center">Prof. Julia Smith </td>
-			</tr>
-			<tr>
-				<td class="align-center"><strong>Pre-selected</strong></td>
-				<td class="align-center">SBJCT011 - T- 001</td>                        
-				<td class="align-center">SUBJECT 11</td>
-				<td class="align-center">S-8:00-12:00</td>
-				<td class="align-center">A3- 310</td>	
-				<td class="align-center">4</td>
-				<td class="align-center">Prof. Julia Smith </td>
-			</tr>
+		<?php 
+		if(count($confirmSubData)>0){
+			foreach ($confirmSubData as $key=>$value){	
+				if(!empty($value)){?>	
+				 <tr>
+					<td class="align-center"><strong>Pre-selected</strong></td>
+					<td class="align-center"><?php echo $value['9']; ?></td>                        
+					<td class="align-center"><?php echo $value['11']; ?></td>
+					<td class="align-center"><?php echo $value['2']; ?></td>
+					<td class="align-center"><?php echo $value['14']; ?></td>	
+					<td class="align-center"><?php echo date('Y-m-d',strtotime($value['1'])); ?></td>
+					<td class="align-center"><?php echo $value['3']; ?> </td>
+				</tr> 
+			<?php }	
+			 }
+		 }else{ ?>
+		 	 <tr>
+					<td class="align-center" colspan="7">No Record</strong></td>
+			 </tr>		
+		<?php }?>
 		</tbody>
 	</table>			 
 </div>
@@ -93,4 +62,3 @@ $(document).ready(function(){
 <?php include('sidebar_right.php');
 	  include('footer.php');
 ?>
-
