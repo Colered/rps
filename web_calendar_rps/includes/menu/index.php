@@ -75,6 +75,7 @@ if ( $single_user != 'Y' ) {
     if ( ! empty ( $new_task_url ) )
       $new_task_url .= '&user=' . $user;
   }
+  
   // List Unapproved.
   if ( $login != '__public__' && ! $is_nonuser && $readonly == 'N' &&
     ( $REQUIRE_APPROVALS == 'Y' || $PUBLIC_ACCESS == 'Y' ) )

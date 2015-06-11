@@ -172,7 +172,10 @@ echo '  body {
   p,
   input,
   select {
-    font-size:12px;
+    font-size:11px;
+  }
+  .subejct_cls {
+  	width:200px;
   }
   textarea {
     font-size:12px;

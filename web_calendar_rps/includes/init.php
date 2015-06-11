@@ -328,7 +328,14 @@ function print_menu_dates ( $menu = false ) {
      . ( ! empty ( $cat_id ) && $CATEGORIES_ENABLED == 'Y' &&
       ( ! $user || $user == $login ) ? '
               <input type="hidden" name="cat_id" value="'
-       . $cat_id . '" />' : '' ) . '
+     . $cat_id . '" />' : '' ) 
+	 . ( !empty ( $_GET['subGrpId'] ) ? '
+			  <input type="hidden" value="'.$_GET['subGrpId'].'" name="subGrpId">' : '' )
+	 . ( !empty ( $_GET['subRuleId'] ) ? '
+			  <input type="hidden" value="'.$_GET['subRuleId'].'" name="subRuleId">' : '' )
+	 . ( !empty ( $_GET['subject_id'] ) ? '
+			  <input type="hidden" value="'.$_GET['subject_id'].'" name="subject_id">' : '' )
+	 . '
               <label for="monthselect"><a '
      . 'href="javascript:document.SelectMonth.submit()">'
      . translate ( 'Month' ) . '</a>:&nbsp;</label>
@@ -396,7 +403,15 @@ function print_menu_dates ( $menu = false ) {
      . ( ! empty ( $cat_id ) && $CATEGORIES_ENABLED == 'Y' &&
       ( ! $user || $user == $login ) ? '
               <input type="hidden" name="cat_id" value="'
-       . $cat_id . '" />' : '' ) . '
+     . $cat_id . '" />' : '' ) 
+	 . ( !empty ( $_GET['subGrpId'] ) ? '
+			  <input type="hidden" value="'.$_GET['subGrpId'].'" name="subGrpId">' : '' )
+	 . ( !empty ( $_GET['subRuleId'] ) ? '
+			  <input type="hidden" value="'.$_GET['subRuleId'].'" name="subRuleId">' : '' )
+	 . ( !empty ( $_GET['subject_id'] ) ? '
+			  <input type="hidden" value="'.$_GET['subject_id'].'" name="subject_id">' : '' )
+	   
+	 . '
               <label for="weekselect"><a '
      . 'href="javascript:document.SelectWeek.submit()">'
      . translate ( 'Week' ) . '</a>:&nbsp;</label>
@@ -466,7 +481,14 @@ function print_menu_dates ( $menu = false ) {
      . ( ! empty ( $cat_id ) && $CATEGORIES_ENABLED == 'Y' &&
       ( ! $user || $user == $login ) ? '
               <input type="hidden" name="cat_id" value="'
-       . $cat_id . '" />' : '' ) . '
+       . $cat_id . '" />' : '' ) 
+	   . ( !empty ( $_GET['subGrpId'] ) ? '
+			  <input type="hidden" value="'.$_GET['subGrpId'].'" name="subGrpId">' : '' )
+	   . ( !empty ( $_GET['subRuleId'] ) ? '
+			  <input type="hidden" value="'.$_GET['subRuleId'].'" name="subRuleId">' : '' )
+	   . ( !empty ( $_GET['subject_id'] ) ? '
+			  <input type="hidden" value="'.$_GET['subject_id'].'" name="subject_id">' : '' )	  
+	   . '
               <label for="yearselect"><a '
      . 'href="javascript:document.SelectYear.submit()">'
      . translate ( 'Year' ) . '</a>:&nbsp;</label>

@@ -77,7 +77,7 @@ if($_SERVER['REQUEST_URI']==SERVER_URL.'admin/forgot.php' || $_SERVER['REQUEST_U
 					<ul>
 						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='dashboard.php'){ echo "selected"; } ?>"><a href="<?php echo SERVER_URL; ?>dashboard.php">Dashboard</a></li>
 						<li class="upp <?php if(isset($urlData[2]) && $urlData[2]=='reports.php'){ echo "selected"; } ?>"><a href="<?php echo SERVER_URL; ?>reports.php">Reports</a></li>					
-						<li class="upp right"  style="float:right"><a href="logout.php">Logout</a></li>						
+						<li class="upp right"  style="float:right"><a href="<?php echo SERVER_URL; ?>logout.php">Logout</a></li>						
 						<li class="upp right <?php if(isset($urlData[2]) && $urlData[2]=='change_password.php'){ echo "selected"; } ?>"  style="float:right"><a href="<?php echo SERVER_URL; ?>change_password.php">Change Password</a></li>		
                     </ul>
 					<?php } ?>

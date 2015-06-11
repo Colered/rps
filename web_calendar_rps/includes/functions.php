@@ -6282,7 +6282,7 @@ function print_subject_menu ( $form, $date = '', $cat_id = '',$subject_filter_id
     <form action="' . $form . '.php" method="get" name="SelectProgramSubject" ' . 'class="categories subject-filter-form">' . ( empty ( $date ) ? '' : '<input type="hidden" name="' . ( $form != 'year' ? 'date' : 'year' ). '" value="' .( $form != 'year' ?  $date: strtok(date('Y-m-d',strtotime($date)), "-")). '" />' )
    . ( ! empty ( $user ) && $user != $login ? '<input type="hidden" name="user" value="' . $user . '" />' : '' )
    . $catStr . ':
-      <select name="subject_id" class="subejct_program_fed" onchange="document.SelectProgramSubject.submit()">';
+      <select name="subject_id" class="subejct_cls" onchange="document.SelectProgramSubject.submit()">';
 
   // 'None' and 'All' are added during load_user_categories
   if ( is_array ( $subjectData ) ) {
