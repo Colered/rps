@@ -123,7 +123,7 @@ $all_subjects = $obj_fedena->getAllSubjectsDetails();
 	<table id="datatables-right" class="display">
 		<thead>
 			<tr>
-				<th >Groups for {Sem Name} for <br /> <?php echo $course_name;?> For <?php echo ucfirst($user_name['first_name'])." ".ucfirst($user_name['last_name']);?></th>
+				<th >Groups for <br /> <?php echo $course_name;?> For <?php echo ucfirst($user_name['first_name'])." ".ucfirst($user_name['last_name']);?></th>
 				<th >Credits</th>                        
 				<th >Seats</th>
 				<th >Action</th>							

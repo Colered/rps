@@ -64,7 +64,7 @@ if($_SERVER['REQUEST_URI']==SERVER_URL.'admin/forgot.php' || $_SERVER['REQUEST_U
 						Welcome <B> <?php if(isset($_SESSION['std_id']) && $_SESSION['std_id']!=""){ 
 											$objU = new Users();
 											$user_name = $objU->getStuUname($_SESSION['std_id']);
-											echo ucfirst($user_name['username']);
+											echo ucfirst($user_name['first_name'])." ".ucfirst($user_name['last_name']);
 										} ?>
 									  </B>
 						
