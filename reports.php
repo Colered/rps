@@ -1,6 +1,23 @@
 <?php
 include('header.php');?>
-<div class="custtable_left fontstyles" style="margin-left:20px;width:80%;">
+<script src="js/jquery.dataTables.js" type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+	$('#datatables').dataTable({
+		"sPaginationType":"full_numbers",
+		"aaSorting":[[0, "asc"]],
+		"bJQueryUI":true
+	});
+})
+</script>
+<style type="text/css">
+	@import "css/demo_table_jui.css";
+	@import "css/jquery-ui-1.8.4.custom.css";
+</style>
+<div id="content" style="margin-left:20px;width:80%;">
+    <div id="main">
+<div class="custtable_left fontstyles full_w" >
+	<div class="h_title">Prerequisite Subject Report</div>
 	<table id="datatables" class="display">
 		<thead>
 			<tr>
@@ -30,7 +47,7 @@ include('header.php');?>
 				<td class="align-center">S-8:00-12:00</td>
 				<td class="align-center">A3- 310</td>	
 				<td class="align-center">4</td>
-				<td class="align-center">Prof. Julia Smith </td>
+				<td class="align-center">Rohit </td>
 			</tr>
 			<tr>
 				<td class="align-center"><strong>Pre-selected</strong></td>
@@ -70,6 +87,8 @@ include('header.php');?>
 			</tr>
 		</tbody>
 	</table>			 
+</div>
+</div>
 </div>
 <?php include('sidebar_right.php');
 	  include('footer.php');
