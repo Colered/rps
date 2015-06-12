@@ -116,5 +116,16 @@ class Fedena extends Base {
 			return $subjects;
 		}
 	}
+	function getSubjects($course_id='')
+	{
+		$sql="select s.id as sub_id,s.name,s.code,s.batch_id,eg.name as subject_group_name,eg.id as sub_grp_id from subjects s inner join elective_groups eg on eg.id = s.elective_group_id inner join batches b on b.id=s.batch_id where s.school_id='".$_SESSION['school_id']."' and s.is_deleted='0'";
+		if($course_id!='')
+		{
+			$sql .= "and b.course_id='".$course_id."'";
+		}
+		//echo $sql;
+		$q_res = mysqli_query($this->connfed, $sql);
+		return $q_res;
+	}
 	
 }

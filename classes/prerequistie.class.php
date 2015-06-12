@@ -42,4 +42,17 @@ class Prerequistie extends Base {
 		$q_res = mysqli_query($this->connrps, $sql);
 		return $q_res;
 	}
+	public function getPreSelectedSub($sub_grp_id)
+	{
+		$sql = "select count(id) as total from subjects_preselect where subject_group_id='".$sub_grp_id."' and select_status = '1'";
+		$q_res = mysqli_query($this->connrps, $sql);
+		$row = mysqli_fetch_assoc($q_res);
+		return $row['total'];
+	}
+	public function getSeats($sub_id,$batch_id)
+	{
+		$sql = "select max_students,cost from subjects_prerequistie where batch_id='".$batch_id."' and subject_id='".$sub_id."' and status = '1' and school_id='".$_SESSION['school_id']."'";
+		$q_res = mysqli_query($this->connrps, $sql);
+		return $q_res;
+	}
 }
