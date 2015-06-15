@@ -61,7 +61,7 @@ if($subRuleId !="" && $subGrpId!=''){
 				foreach($subgrp_detail['subjects'] as $sub_code=>$sub_detail){
 					if(!$obj_fedena->search_array($sub_detail['name'],$student_subjects)){
 						$sub_ids=$obj_ras->ruleAllSubject($subRuleId,$sub_detail['name']);
-						$sub_data= read_events_student_sub_next_sem ( ( ! empty ( $user ) && strlen ( $user ) ) ? $user : $login, $startdate, $enddate, $cat_id ,$sub_ids[0]);
+						$sub_data= read_events_student_sub_next_sem ( ( ! empty ( $user ) && strlen ( $user ) ) ? $user : $login, $startdate, $enddate, $cat_id ,$sub_ids[0],$subRuleId);
 						$events=array_merge($events,$sub_data);	
 					}
 				}

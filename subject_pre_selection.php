@@ -125,7 +125,7 @@ $all_subjects = $obj_fedena->getAllSubjectsDetails();
 		<thead>
 			<tr>
 				<th >Groups for <br /> <?php echo $course_name;?> For <?php echo ucfirst($user_name['first_name'])." ".ucfirst($user_name['last_name']);?></th>
-				<th >Credits</th>                        
+				<th >Cal View</th>                        
 				<th >Seats</th>
 				<th >Action</th>							
 			</tr>
@@ -134,10 +134,11 @@ $all_subjects = $obj_fedena->getAllSubjectsDetails();
 		<?php 
 		//print"<pre>";print_r($subject_rule);die;
 		foreach($subject_rule[$_GET['id']] as $id=>$value){
-			foreach($value as $k=>$v){?>				
+			foreach($value as $k=>$v){
+			?>				
 			<tr>
 				<td class="align-center"><?php echo $v['name'];?></td>
-				<td class="align-center">3</td>                        
+				<td class="align-center"><a href="<?php echo SERVER_URL ?>web_calendar_rps/month.php?subGrpId=<?php echo $_GET['id'];?>&subRuleId=<?php echo $v['id'];?>" class="see_cal">see cal</a></td>                        
 				<td class="align-center">30</td>
 				<?php $status = $objP->getSubGrpStatus($_GET['id'],$v['id']);
 				$statusTxt = ($status==1?"Unselect":"Select");?>

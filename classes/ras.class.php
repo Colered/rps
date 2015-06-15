@@ -29,7 +29,7 @@ class RAS extends Base {
 		}		
 	}	
 	//getting the detail of subject of a student
-	public function subDetailFromRAS($sub_id)
+	public function subDetailFromRAS($sub_id,$rule_id)
 	{
 		$sql = "select td.id,DATE_FORMAT(td.date,'%Y%m%d'),td.timeslot,t.teacher_name,tt.teacher_type_name,py.name program_year_name,p.company,u.name as unit,t.payrate,s.session_name,a.area_name,su.subject_name,s.case_number,s.technical_notes,r.room_name,sr.rule_name,sr.start_date,sr.end_date from timetable_detail td 
 		left join teacher t on t.id = td.teacher_id 
@@ -43,7 +43,7 @@ class RAS extends Base {
 		left join area a on a.id = su.area_id 
 		left join room r on r.id = td.room_id 
 		left join teacher_type tt on tt.id = t.teacher_type 
-		where td.subject_id='".$sub_id."'";
+		where td.subject_id='".$sub_id."' and srm.subject_rule_id='".$rule_id."'";
 		$data=array();
 		$qry_rslt= mysqli_query($this->connras,$sql);		
 		if(mysqli_num_rows($qry_rslt)>0){
@@ -96,8 +96,7 @@ class RAS extends Base {
 	 }
 	 //getting all subject of a rule to a student
 	public function reportStuSubject(){
-	    //echo '<pre>';
-		$sql="SELECT subject_group_id,associated_rules_ids FROM subjects_preselect where select_status='1'";
+	    $sql="SELECT subject_group_id,associated_rules_ids FROM subjects_preselect where select_status='1'";
 		$all_record=array();
 		$q_res = mysqli_query($this->connrps, $sql);	
 		if(mysqli_num_rows($q_res)>0){
@@ -125,7 +124,7 @@ class RAS extends Base {
 								if(!$obj_fedena->search_array($sub_detail['name'],$student_subjects)){
 									$sub_ids=$obj_ras->ruleAllSubject($subRuleId,$sub_detail['name']);
 									$rowNewArr=array(array());$row=array();
-									$row = $obj_ras->subDetailFromRAS($sub_ids[0]);
+									$row = $obj_ras->subDetailFromRAS($sub_ids[0],$subRuleId);
 									  if(count($row)>0){
 											for($i=0;$i<count($row);$i++){
 												  $j=0;

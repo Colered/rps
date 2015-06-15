@@ -6130,7 +6130,7 @@ function require_valide_referring_url ()
   }
 }
 //get subject detail with time availability of a student
-function read_events_student_sub_next_sem ( $user, $startdate, $enddate, $cat_id = '',$subject_id='') {
+function read_events_student_sub_next_sem ( $user, $startdate, $enddate, $cat_id = '',$subject_id='',$rule_id) {
   global $layers, $login;
   // Shift date/times to UTC.
   $start_date = gmdate ( 'Ymd', $startdate );
@@ -6141,9 +6141,9 @@ function read_events_student_sub_next_sem ( $user, $startdate, $enddate, $cat_id
      . ' AND we.cal_date < ' . $end_date . ' ) OR ( we.cal_date = ' . $start_date
      . ' AND we.cal_time >= ' . gmdate ( 'His', $startdate )
      . ' ) OR ( we.cal_date = ' . $end_date . ' AND we.cal_time <= '
-     . gmdate ( 'His', $enddate ) . ' ) )','', $subject_id);
+     . gmdate ( 'His', $enddate ) . ' ) )','', $subject_id,$rule_id);
 }
-function query_events_student_sub_next_sem($user, $want_repeated, $date_filter,$is_task = false,$subject_id=''){
+function query_events_student_sub_next_sem($user, $want_repeated, $date_filter,$is_task = false,$subject_id='',$rule_id){
   global $db_connection_info, $jumpdate, $layers, $login, $max_until,
   $PUBLIC_ACCESS_DEFAULT_VISIBLE, $result, $thismonth, $thisyear;
   global $OVERRIDE_PUBLIC, $OVERRIDE_PUBLIC_TEXT;
@@ -6151,7 +6151,7 @@ function query_events_student_sub_next_sem($user, $want_repeated, $date_filter,$
   $rowNewArr=array(array());$row=array();
   $splitTimeslot=$cloneRepeats = $layers_byuser = $result = $resDates = array ();
   $obj_ras=new RAS();
-  $row = $obj_ras->subDetailFromRAS($subject_id);
+  $row = $obj_ras->subDetailFromRAS($subject_id,$rule_id);
   if(count($row)>0){
 	    for($i=0;$i<count($row);$i++){
 		 	  $j=0;

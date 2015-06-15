@@ -47,14 +47,6 @@ $printerStr = $unapprovedStr = '';
   ? $login : $user, $startdate, $enddate, $cat_id );*/
 
 /* Pre-load the non-repeating events for quicker access */
-//$events = read_events ( empty ( $user ) ? $login : $user, $startdate, $enddate, $cat_id );
-/*$subject_filter_id=(isset($_REQUEST['subject_id']))?$_REQUEST['subject_id']:'';
-if($subject_filter_id!=""){
-	$subject_id=$subject_filter_id;
-}else{
-	$subject_id='162';
-}*/
-
 $events=$sub_data=array();
 if($subRuleId !="" && $subGrpId!=''){
 	$obj_fedena=new Fedena();
@@ -69,8 +61,7 @@ if($subRuleId !="" && $subGrpId!=''){
 				foreach($subgrp_detail['subjects'] as $sub_code=>$sub_detail){
 					if(!$obj_fedena->search_array($sub_detail['name'],$student_subjects)){
 						$sub_ids=$obj_ras->ruleAllSubject($subRuleId,$sub_detail['name']);
-						$sub_data= read_events_student_sub_next_sem ( ( ! empty ( $user ) && strlen ( $user ) ) ? $user : $login, $startdate, $enddate, $cat_id ,$sub_ids[0]);
-						$sub_data = read_events_student_sub_next_sem ( ( ! empty ( $user ) && strlen ( $user ) ) ? $user : $login, $startdate, $enddate, $cat_id ,$sub_ids[0]);
+						$sub_data = read_events_student_sub_next_sem ( ( ! empty ( $user ) && strlen ( $user ) ) ? $user : $login, $startdate, $enddate, $cat_id ,$sub_ids[0],$subRuleId);
 						$events=array_merge($events,$sub_data);	
 					}
 				}

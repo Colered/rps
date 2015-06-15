@@ -21,7 +21,7 @@ $(document).ready(function(){
     <div id="main">
 <div class="custtable_left fontstyles full_w" >
 	<div class="h_title">Prerequisite Subject Report</div>
-	<table id="datatables" class="display">
+    <table id="datatables" class="display">
 		<thead>
 			<tr>
 				<th >Status</th>
