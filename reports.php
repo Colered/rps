@@ -8,7 +8,7 @@ $confirmSubData=$objR->reportStuSubject();
 $(document).ready(function(){
 	$('#datatables').dataTable({
 		"sPaginationType":"full_numbers",
-		"aaSorting":[[0, "asc"]],
+		//"aaSorting":[[0, "asc"]],
 		"bJQueryUI":true
 	});
 })
@@ -49,11 +49,7 @@ $(document).ready(function(){
 				</tr> 
 			<?php }	
 			 }
-		 }else{ ?>
-		 	 <tr>
-					<td class="align-center" colspan="7">No Record</strong></td>
-			 </tr>		
-		<?php }?>
+		 }?>
 		</tbody>
 	</table>			 
 </div>
