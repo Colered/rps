@@ -6,6 +6,7 @@ $objP = new Prerequistie();
 $student_subjects=$obj_fedena->getCurrentStuSemSub();
 $course_name = $obj_fedena->getCourseName();
 $all_subjects = $obj_fedena->getAllSubjects();
+//print"<pre>";print_r($all_subjects);die;
 ?>
 <div class="custtable_left fontstyles" style="margin-left:20px;width:80%;">
 	<table id="datatables-left" class="display">
@@ -101,7 +102,7 @@ $all_subjects = $obj_fedena->getAllSubjects();
 		foreach($all_subjects as $subject_id => $subject_details)
 		{
 			$sub_cnt =  count($subject_details['subjects']);
-			$cnt = 0;
+			$cnt = 0;$k=0;
 			$subject_rule = array();
 			foreach($subject_details['subjects'] as $key=>$value)
 			{
@@ -112,6 +113,7 @@ $all_subjects = $obj_fedena->getAllSubjects();
 				}else if(($sub_code!="" && $obj_fedena->search_array($sub_code,$student_subjects)) || $sub_code == "")
 				{				
 					$result_rules = $obj_ras->getRulesofSubject($value,$course_name);
+					
 					if($result_rules->num_rows>0)
 					{
 						$i=0;$rule_cnt=0;
@@ -119,11 +121,11 @@ $all_subjects = $obj_fedena->getAllSubjects();
 						 {	
 							 if($obj_ras->checkTimetable($data['subject_rule_id']))
 							 {
-								 $subject_rule[$subject_id][$i]['id'] = $data['subject_rule_id'];
-								 $subject_rule[$subject_id][$i]['name'] = $data['rule_name'];
+								 $subject_rule[$subject_id][$k][$i]['id'] = $data['subject_rule_id'];
+								 $subject_rule[$subject_id][$k][$i]['name'] = $data['rule_name'];
 								 $rule_cnt++;$i++;
 							 }						
-						}
+						}$k++;
 						if($rule_cnt == 0)
 							$cnt++;
 					}else{
@@ -131,14 +133,15 @@ $all_subjects = $obj_fedena->getAllSubjects();
 					}
 				}
 			}
+			//print"<pre>";print_r($subject_rule);die;
 			if($cnt != $sub_cnt)
 			{
-				$status = $objP->getSubGrpStatus($subject_id);				
+				$status = $objP->getSubGrpStatus($subject_id,$subject_rule[$subject_id]['0']['0']['id']);				
 			?>		
 				<tr>
 					<td class="align-center"><?php echo $subject_details['name'];?></td> 
 					<?php if(isset($subject_rule[$subject_id])){?>
-					<td class="align-center"><span class="subject-heading-1"><a href="#" onclick="saveSubGrp('<?php echo $subject_id;?>','<?php echo $subject_rule[$subject_id]['0']['id'];?>');"><?php if($status == 1) { echo "<span style='color:red'>Unconfirm SG: </span>";}else{ echo "Confirm SG:";}?></a></span><?php echo $subject_rule[$subject_id]['0']['name'];?><a href="<?php echo SERVER_URL ?>web_calendar_rps/month.php?subGrpId=<?php echo $subject_id;?>&subRuleId=<?php echo $subject_rule[$subject_id]['0']['id'];?>" class="see_cal">see cal</a></td>
+					<td class="align-center"><span class="subject-heading-1"><a href="#" onclick="saveSubGrp('<?php echo $subject_id;?>','<?php echo $subject_rule[$subject_id]['0']['0']['id'];?>');"><?php if($status == 1) { echo "<span style='color:red'>Unconfirm SG: </span>";}else{ echo "Confirm SG:";}?></a></span><?php echo $subject_rule[$subject_id]['0']['0']['name'];?><a href="<?php echo SERVER_URL ?>web_calendar_rps/month.php?subGrpId=<?php echo $subject_id;?>&subRuleId=<?php echo $subject_rule[$subject_id]['0']['0']['id'];?>" class="see_cal">see cal</a></td>
 					<?php }else{ ?>
 					<td class="align-center"><span class="subject-heading-1"><a href="#">Confirm SG:</a></span><?php echo "None";?></td>
 					<?php } ?>

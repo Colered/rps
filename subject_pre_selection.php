@@ -20,7 +20,7 @@ $all_subjects = $obj_fedena->getAllSubjectsDetails();
 		foreach($all_subjects as $subject_id => $subject_details)
 		{
 			$sub_cnt =  count($subject_details['subjects']);
-			$cnt = 0;			
+			$cnt = 0;	$count = 0;		
 			foreach($subject_details['subjects'] as $key=>$value)
 			{
 				$sub_code = $objP->getrequistie($key);
@@ -37,24 +37,24 @@ $all_subjects = $obj_fedena->getAllSubjectsDetails();
 						 {	
 							 if($obj_ras->checkTimetable($data['subject_rule_id']))
 							 {
-								 $subject_rule[$subject_id][$i]['id'] = $data['subject_rule_id'];
-								 $subject_rule[$subject_id][$i]['name'] = $data['rule_name'];
-								 $subjects[$subject_id]['name'] = $value['name'];
-								 $subjects[$subject_id]['code'] = $key;
-								 $subjects[$subject_id]['max_weekly_classes'] = $value['max_weekly_classes'];
-								 $subjects[$subject_id]['credit_hours'] = $value['credit_hours'];
-								 $subjects[$subject_id]['amount'] = $value['amount'];
-								 $subjects[$subject_id]['no_exams'] = $value['no_exams'];
+								 $subject_rule[$subject_id][$count][$i]['id'] = $data['subject_rule_id'];
+								 $subject_rule[$subject_id][$count][$i]['name'] = $data['rule_name'];
+								 $subjects[$subject_id][$count]['name'] = $value['name'];
+								 $subjects[$subject_id][$count]['code'] = $key;
+								 $subjects[$subject_id][$count]['max_weekly_classes'] = $value['max_weekly_classes'];
+								 $subjects[$subject_id][$count]['credit_hours'] = $value['credit_hours'];
+								 $subjects[$subject_id][$count]['amount'] = $value['amount'];
+								 $subjects[$subject_id][$count]['no_exams'] = $value['no_exams'];
 								 $rule_cnt++;$i++;
 							 }						
-						}
+						}$count++;
 						if($rule_cnt == 0)
 							$cnt++;
 					}else{
 						$cnt++;
 					}
 				}
-			}
+			}			
 			if($cnt != $sub_cnt)
 			{
 				if($subject_id==$_GET['id'])
@@ -92,28 +92,29 @@ $all_subjects = $obj_fedena->getAllSubjectsDetails();
 					</div>
 				</div>
 					<?php foreach($subjects as $k=>$v){
-					if($k == $subject_id){?>
-					<div class="SubSessRow">
-						<div class="SubSessCell">
-							<p><?php echo $v['name']?></p>
-						</div>
-						<div class="SubSessCell">
-							<p><?php echo $v['code']?></p>
-						</div>
-						<div class="SubSessCell">
-							<p><?php echo $v['max_weekly_classes']?></p>
-						</div>
-						<div class="SubSessCell">
-							<p><?php echo $v['credit_hours']?></p>
-						</div>
-						<div class="SubSessCell">
-							<p><?php echo $v['amount']?></p>
-						</div>
-						<div class="SubSessCell">
-							<p><?php echo $v['no_exams']?></p>
-						</div>
-					</div>
-				<?php } }?>
+					if($k == $subject_id){
+						foreach($v as $id=>$detail){?>						
+							<div class="SubSessRow">
+								<div class="SubSessCell">
+									<p><?php echo $detail['name']?></p>
+								</div>
+								<div class="SubSessCell">
+									<p><?php echo $detail['code']?></p>
+								</div>
+								<div class="SubSessCell">
+									<p><?php echo $detail['max_weekly_classes']?></p>
+								</div>
+								<div class="SubSessCell">
+									<p><?php echo $detail['credit_hours']?></p>
+								</div>
+								<div class="SubSessCell">
+									<p><?php echo $detail['amount']?></p>
+								</div>
+								<div class="SubSessCell">
+									<p><?php echo $detail['no_exams']?></p>
+								</div>
+							</div>
+					<?php } } }?>
 				</div>
 			<?php } $k++;
 		}?>
@@ -130,16 +131,19 @@ $all_subjects = $obj_fedena->getAllSubjectsDetails();
 			</tr>
 		</thead>
 		<tbody>
-		<?php foreach($subject_rule[$_GET['id']] as $id=>$value){?>
+		<?php 
+		//print"<pre>";print_r($subject_rule);die;
+		foreach($subject_rule[$_GET['id']] as $id=>$value){
+			foreach($value as $k=>$v){?>				
 			<tr>
-				<td class="align-center"><?php echo $value['name'];?></td>
+				<td class="align-center"><?php echo $v['name'];?></td>
 				<td class="align-center">3</td>                        
 				<td class="align-center">30</td>
-				<?php $status = $objP->getSubGrpStatus($_GET['id']);
+				<?php $status = $objP->getSubGrpStatus($_GET['id'],$v['id']);
 				$statusTxt = ($status==1?"Unselect":"Select");?>
-				<td class="align-center"><span class="subject-heading-1"><a href="#" onclick="saveSubGrp('<?php echo $_GET['id'];?>','<?php echo $value['id'];?>','subject_pre_selection');"><?php echo $statusTxt;?></a></span></td>				
+				<td class="align-center"><span class="subject-heading-1"><a href="#" onclick="saveSubGrp('<?php echo $_GET['id'];?>','<?php echo $v['id'];?>','subject_pre_selection');"><?php echo $statusTxt;?></a></span></td>	
 			</tr>
-		<?php } ?>
+		<?php } }?>
 		</tbody>
 	</table>
 	<table id="datatables-right" class="display">

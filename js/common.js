@@ -268,7 +268,7 @@ function saveSubGrp($subject_id,$id,$page)
                 type: "POST",
                 url: "ajax_common.php",
                 data: {
-					'id': $id,
+					'rule_id': $id,
 					'subject_id': $subject_id,
 					'codeBlock': 'save_subject_group',
 				},

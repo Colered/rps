@@ -26,9 +26,9 @@ class Prerequistie extends Base {
 			return $row['required_subject_code'];
 		}
 	}
-	public function getSubGrpStatus($subject_id)
+	public function getSubGrpStatus($subject_id,$rule_id)
 	{
-		$sql = "select select_status from subjects_preselect where subject_group_id = '".$subject_id."'";
+		$sql = "select select_status from subjects_preselect where subject_group_id = '".$subject_id."' and associated_rules_ids='".$rule_id."'";
 		$q_res = mysqli_query($this->connrps, $sql);
 		if(mysqli_num_rows($q_res)>=0)
 		{
