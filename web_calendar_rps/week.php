@@ -3,7 +3,6 @@
 include_once 'includes/init.php';
 include_once '../header.php';
 
-
 $subRuleId=(isset($_GET['subRuleId'])? $_GET['subRuleId']:'');
 $subGrpId=(isset($_GET['subGrpId'])? $_GET['subGrpId']:'');
 $subject_filter_id=(isset($_GET['subject_id']))?$_GET['subject_id']:'';
