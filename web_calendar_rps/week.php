@@ -3,9 +3,6 @@
 include_once 'includes/init.php';
 include_once '../header.php';
 
-/*echo '<pre>';
-print_r($_GET);
-die;*/
 
 $subRuleId=(isset($_GET['subRuleId'])? $_GET['subRuleId']:'');
 $subGrpId=(isset($_GET['subGrpId'])? $_GET['subGrpId']:'');
@@ -86,7 +83,7 @@ if($subRuleId !="" && $subGrpId!=''){
 		}
 	}
 }elseif($subject_filter_id!=''){
-	$events = read_events_student_sub_next_sem (( strlen ( $user ) ? $user : $login ), $evStart - 604800, $evEnd, $cat_id ,$subject_filter_id);
+	$events = read_events_student_sub_next_sem (( strlen ( $user ) ? $user : $login ), $evStart - 604800, $evEnd, $cat_id ,$subject_filter_id,$subRuleId);
 }
 
 

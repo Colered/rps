@@ -1094,6 +1094,8 @@ function display_navigation ( $name, $show_arrows = true, $show_cats = true ) {
   $single_user, $spacer, $thisday, $thismonth, $thisyear, $user, $user_fullname,
   $wkend, $wkstart,$subject_filter_id;
 
+  $rule_id = (isset($_GET['subRuleId']) && $_GET['subRuleId']!='')?$_GET['subRuleId']:'';
+
   if ( empty ( $name ) )
     return;
 
@@ -1142,7 +1144,7 @@ function display_navigation ( $name, $show_arrows = true, $show_cats = true ) {
     ( $is_admin && ! empty ( $user ) && $user == '__public__' )
     ? '<br />-- ' . translate ( 'Admin mode' ) . ' --' : '' )
    . ( $is_assistant ? '<br />-- ' . translate ( 'Assistant mode' ) . ' --' : '' ) . '</span>'
-   . ( $CATEGORIES_ENABLED == 'Y' && $show_cats && ( ! $user || ( $user == $login || $is_assistant ) ) ? '<br /><br />' . print_subject_menu ( $name,sprintf ( "%04d%02d%02d", $thisyear, $thismonth, $thisday ),$cat_id ,$subject_filter_id) : '' ). '
+   . ( $CATEGORIES_ENABLED == 'Y' && $show_cats && ( ! $user || ( $user == $login || $is_assistant ) ) ? '<br /><br />' . print_subject_menu ( $name,sprintf ( "%04d%02d%02d", $thisyear, $thismonth, $thisday ),$cat_id ,$subject_filter_id,$rule_id) : '' ). '
         </div>
       </div><br />';
 }
@@ -6268,7 +6270,7 @@ function query_events_student_sub_next_sem($user, $want_repeated, $date_filter,$
   }
   return $result;
 }
-function print_subject_menu ( $form, $date = '', $cat_id = '',$subject_filter_id ) {
+function print_subject_menu ( $form, $date = '', $cat_id = '',$subject_filter_id,$rule_id ) {
   global $categories, $login, $user, $CATEGORIES_ENABLED;
   
   $obj_ras=new RAS();
@@ -6281,6 +6283,7 @@ function print_subject_menu ( $form, $date = '', $cat_id = '',$subject_filter_id
   $ret = '
     <form action="' . $form . '.php" method="get" name="SelectProgramSubject" ' . 'class="categories subject-filter-form">' . ( empty ( $date ) ? '' : '<input type="hidden" name="' . ( $form != 'year' ? 'date' : 'year' ). '" value="' .( $form != 'year' ?  $date: strtok(date('Y-m-d',strtotime($date)), "-")). '" />' )
    . ( ! empty ( $user ) && $user != $login ? '<input type="hidden" name="user" value="' . $user . '" />' : '' )
+   . ( '<input type="hidden" name="subRuleId" value="' . $rule_id . '" />')
    . $catStr . ':
       <select name="subject_id" class="subejct_cls" onchange="document.SelectProgramSubject.submit()">';
 

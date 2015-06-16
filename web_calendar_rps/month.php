@@ -69,7 +69,7 @@ if($subRuleId !="" && $subGrpId!=''){
 		}
 	}
 }elseif($subject_filter_id!=''){
-   $events= read_events_student_sub_next_sem ( ( ! empty ( $user ) && strlen ( $user ) ) ? $user : $login, $startdate, $enddate, $cat_id ,$subject_filter_id);
+   $events= read_events_student_sub_next_sem ( ( ! empty ( $user ) && strlen ( $user ) ) ? $user : $login, $startdate, $enddate, $cat_id ,$subject_filter_id,$subRuleId);
 }
 if ( $DISPLAY_TASKS_IN_GRID == 'Y' )
   /* Pre-load tasks for quicker access */

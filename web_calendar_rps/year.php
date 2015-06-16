@@ -38,12 +38,6 @@ $enddate = mktime ( 23, 59, 59, 12, 31, $year );
 if ( $ALLOW_VIEW_OTHER != 'Y' && ! $is_admin )
   $user = '';
 
-/*$subject_filter_id=(isset($_REQUEST['subject_id']))?$_REQUEST['subject_id']:'';
-if($subject_filter_id!=""){
-	$subject_id=$subject_filter_id;
-}else{
-	$subject_id='162';
-}*/
 $boldDays = false;
 $catSelectStr = '';
 if ( ! empty ( $BOLD_DAYS_IN_YEAR ) && $BOLD_DAYS_IN_YEAR == 'Y' ) {
@@ -76,7 +70,7 @@ if($subRuleId !="" && $subGrpId!=''){
 		}
 	}
 }elseif($subject_filter_id!=''){
-   $events = read_events_student_sub_next_sem ( ( ! empty ( $user ) && strlen ( $user ) ) ? $user : $login, $startdate, $enddate, $cat_id ,$subject_filter_id);
+   $events = read_events_student_sub_next_sem ( ( ! empty ( $user ) && strlen ( $user ) ) ? $user : $login, $startdate, $enddate, $cat_id ,$subject_filter_id,$subRuleId);
 }
   $boldDays = true;
   $navStr = display_navigation ( 'year' );
