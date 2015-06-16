@@ -6153,7 +6153,7 @@ function query_events_student_sub_next_sem($user, $want_repeated, $date_filter,$
   $rowNewArr=array(array());$row=array();
   $splitTimeslot=$cloneRepeats = $layers_byuser = $result = $resDates = array ();
   $obj_ras=new RAS();
-  $row = $obj_ras->subDetailFromRAS($subject_id,$rule_id);
+  $row = $obj_ras->subDetailFromRAS($subject_id,$rule_id,'','');
   if(count($row)>0){
 	    for($i=0;$i<count($row);$i++){
 		 	  $j=0;

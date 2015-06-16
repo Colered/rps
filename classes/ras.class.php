@@ -29,8 +29,13 @@ class RAS extends Base {
 		}		
 	}	
 	//getting the detail of subject of a student
-	public function subDetailFromRAS($sub_id,$rule_id)
-	{
+	public function subDetailFromRAS($sub_id,$rule_id,$subGrpId,$report)
+	{	
+	    if($report!=''){
+			$sql_grp = "select subject_group_name from subjects_preselect where subject_group_id= '".$subGrpId."' and select_status=1 group by subject_group_name";
+			$qry_rslt_grp= mysqli_query($this->connrps,$sql_grp);
+			$grp_name = $qry_rslt_grp->fetch_assoc();
+		}
 		$sql = "select td.id,DATE_FORMAT(td.date,'%Y%m%d'),td.timeslot,t.teacher_name,tt.teacher_type_name,py.name program_year_name,p.company,u.name as unit,t.payrate,s.session_name,a.area_name,su.subject_name,s.case_number,s.technical_notes,r.room_name,sr.rule_name,sr.start_date,sr.end_date from timetable_detail td 
 		left join teacher t on t.id = td.teacher_id 
 		left join subject su on su.id = td.subject_id 
@@ -48,7 +53,11 @@ class RAS extends Base {
 		$qry_rslt= mysqli_query($this->connras,$sql);		
 		if(mysqli_num_rows($qry_rslt)>0){
 			while($row=$qry_rslt->fetch_assoc()){
-				$data[]=$row;
+			    if($report!=''){
+				 $data[]=array_merge($grp_name,$row);
+				}else{
+				 $data[]=$row;
+				}
 			}
 		}
 		return 	$data;
@@ -95,20 +104,20 @@ class RAS extends Base {
 		
 	 }
 	 //getting all subject of a rule to a student
-	public function reportStuSubject(){
+	public function reportStuSubject($report){
 	    $sql="SELECT subject_group_id,associated_rules_ids FROM subjects_preselect where select_status='1'";
 		$all_record=array();
 		$q_res = mysqli_query($this->connrps, $sql);	
 		if(mysqli_num_rows($q_res)>0){
 			while($data=$q_res->fetch_assoc()){
-			   $subject_record=$this->stuSubRasData($data['subject_group_id'],$data['associated_rules_ids'],'');
+			   $subject_record=$this->stuSubRasData($data['subject_group_id'],$data['associated_rules_ids'],$report);
 			   $all_record=array_merge($all_record,$subject_record);
 			}
 	    }
 		return $all_record;
 		
 	 }
-	 public function stuSubRasData($subGrpId,$subRuleId,$subject_filter_id){
+	 public function stuSubRasData($subGrpId,$subRuleId,$report){
 	 	    $events=$sub_data=array();
 			if($subRuleId !="" && $subGrpId!=''){
 				$obj_fedena=new Fedena();
@@ -124,7 +133,7 @@ class RAS extends Base {
 								if(!$obj_fedena->search_array($sub_detail['name'],$student_subjects)){
 									$sub_ids=$obj_ras->ruleAllSubject($subRuleId,$sub_detail['name']);
 									$rowNewArr=array(array());$row=array();
-									$row = $obj_ras->subDetailFromRAS($sub_ids[0],$subRuleId);
+									$row = $obj_ras->subDetailFromRAS($sub_ids[0],$subRuleId,$subGrpId,$report);
 									  if(count($row)>0){
 											for($i=0;$i<count($row);$i++){
 												  $j=0;

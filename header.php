@@ -10,8 +10,7 @@ if($_SERVER['REQUEST_URI']==SERVER_URL.'admin/forgot.php' || $_SERVER['REQUEST_U
 		//Do Nothing
 }elseif(!isset($_SESSION['std_id'])){
 		unset($_SESSION['std_id']);
-		header('Location: index.php');
-		
+		header('Location:'.SERVER_URL.'index.php');
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

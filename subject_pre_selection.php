@@ -6,6 +6,17 @@ $objP = new Prerequistie();
 $student_subjects=$obj_fedena->getCurrentStuSemSub();
 $course_name = $obj_fedena->getCourseName();
 $all_subjects = $obj_fedena->getAllSubjectsDetails();
+$date='';
+$objs=new Spsconfig();
+$sps_result=$objs->getAllConfig();
+if($sps_result->num_rows >0){
+	while ($data=$sps_result->fetch_assoc()){
+		$sps_st_date=$data['sps_start_date'];
+		$sps_en_date=$data['sps_end_date'];
+	}
+	$now = date("Y-m-d");
+	$date=$objs->check_in_range($sps_st_date,$sps_en_date,$now);
+}
 ?>
 <div class="custtable_left fontstyles" style="margin-left:20px;width:80%;">
 	<table id="datatables-left" class="display">
@@ -145,7 +156,13 @@ $all_subjects = $obj_fedena->getAllSubjectsDetails();
 				<td class="align-center">0</td>
 				<?php $status = $objP->getSubGrpStatus($_GET['id'],$v['id']);
 				$statusTxt = ($status==1?"Unselect":"Select");?>
-				<td class="align-center"><span class="subject-heading-1"><a href="#" onclick="saveSubGrp('<?php echo $_GET['id'];?>','<?php echo $v['id'];?>','subject_pre_selection');"><?php echo $statusTxt;?></a></span></td>	
+				<td class="align-center">
+				<?php if($date){?>
+				   <span class="subject-heading-1"><a href="#" onclick="saveSubGrp('<?php echo $_GET['id'];?>','<?php echo $v['id'];?>','subject_pre_selection');"><?php echo $statusTxt;?></a></span>
+			     <?php }else{?>
+				   <span class="subject-heading-1"><?php echo $statusTxt;?></span>
+				 <?php } ?>
+				</td>	
 			</tr>
 		<?php } }?>
 		</tbody>

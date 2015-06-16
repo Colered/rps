@@ -1,7 +1,5 @@
 <?php
 include('header.php');
-$objR=new RAS();
-$confirmSubData=$objR->reportStuSubject();
 ?>
 <script src="js/jquery.dataTables.js" type="text/javascript"></script>
 <script type="text/javascript" charset="utf-8">
@@ -21,12 +19,18 @@ $(document).ready(function(){
     <div id="main">
 <div class="custtable_left fontstyles full_w" >
 	<div class="h_title">Prerequisite Subject Report</div>
+	<input type="hidden" name="stu_report" id="stu_report" value="stu_report"  />
+	<?php 
+	   $objR=new RAS();
+	   $report='report';
+	   $confirmSubData=$objR->reportStuSubject($report);?>
     <table id="datatables" class="display">
 		<thead>
 			<tr>
 				<th >Status</th>
-				<th >Subject Group / Class</th>                        
-				<th >Subject Name</th>
+				<th >Subject Group</th> 
+				<th >Subject Name</th>                        
+				<th >Subject Session</th>
 				<th >Subject Schedule</th>
 				<th >Subject Room</th>
 				<th >Date</th>
@@ -40,12 +44,13 @@ $(document).ready(function(){
 				if(!empty($value)){?>	
 				 <tr>
 					<td class="align-center"><strong>Pre-selected</strong></td>
-					<td class="align-center"><?php echo $value['9']; ?></td>                        
-					<td class="align-center"><?php echo $value['11']; ?></td>
-					<td class="align-center"><?php echo $value['2']; ?></td>
-					<td class="align-center"><?php echo $value['14']; ?></td>	
-					<td class="align-center"><?php echo date('Y-m-d',strtotime($value['1'])); ?></td>
-					<td class="align-center"><?php echo $value['3']; ?> </td>
+					<td class="align-center"><?php echo $value['0']; ?></td>
+					<td class="align-center"><?php echo $value['12']; ?></td>                        
+					<td class="align-center"><?php echo $value['10']; ?></td>
+					<td class="align-center"><?php echo $value['3']; ?></td>
+					<td class="align-center"><?php echo $value['15']; ?></td>	
+					<td class="align-center"><?php echo date('Y-m-d',strtotime($value['2'])); ?></td>
+					<td class="align-center"><?php echo $value['4']; ?> </td>
 				</tr> 
 			<?php }	
 			 }
