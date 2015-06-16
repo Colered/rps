@@ -45,7 +45,7 @@ class Prerequistie extends Base {
 	}
 	public function getSubGrp($subject_id)
 	{
-		$sql = "select * from subjects_preselect where subject_group_id = '".$subject_id."' and select_status='1'";
+		$sql = "select * from subjects_preselect where select_status='1'";
 		$q_res = mysqli_query($this->connrps, $sql);
 		return $q_res;
 	}

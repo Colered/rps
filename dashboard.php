@@ -112,8 +112,7 @@ $all_subjects = $obj_fedena->getAllSubjects();
 					$cnt++;									
 				}else if(($sub_code!="" && $obj_fedena->search_array($sub_code,$student_subjects)) || $sub_code == "")
 				{				
-					$result_rules = $obj_ras->getRulesofSubject($value,$course_name);
-					
+					$result_rules = $obj_ras->getRulesofSubject($value,$course_name);					
 					if($result_rules->num_rows>0)
 					{
 						$i=0;$rule_cnt=0;
@@ -125,15 +124,22 @@ $all_subjects = $obj_fedena->getAllSubjects();
 								 $subject_rule[$subject_id][$k][$i]['name'] = $data['rule_name'];
 								 $rule_cnt++;$i++;
 							 }						
-						}$k++;
+						}
 						if($rule_cnt == 0)
+						{
 							$cnt++;
+						}else{
+							$k++;
+						}
 					}else{
 						$cnt++;
 					}
+				}elseif($sub_code!="" && !$obj_fedena->search_array($sub_code,$student_subjects))
+				{
+					$cnt++;
 				}
 			}
-			//print"<pre>";print_r($subject_rule);die;
+				
 			if($cnt != $sub_cnt)
 			{
 				$status = $objP->getSubGrpStatus($subject_id,$subject_rule[$subject_id]['0']['0']['id']);				
@@ -141,9 +147,9 @@ $all_subjects = $obj_fedena->getAllSubjects();
 				<tr>
 					<td class="align-center"><?php echo $subject_details['name'];?></td> 
 					<?php if(isset($subject_rule[$subject_id])){?>
-					<td class="align-center"><span class="subject-heading-1"><a href="#" onclick="saveSubGrp('<?php echo $subject_id;?>','<?php echo $subject_rule[$subject_id]['0']['0']['id'];?>');"><?php if($status == 1) { echo "<span style='color:red'>Unconfirm SG: </span>";}else{ echo "Confirm SG:";}?></a></span><?php echo $subject_rule[$subject_id]['0']['0']['name'];?><a href="<?php echo SERVER_URL ?>web_calendar_rps/month.php?subGrpId=<?php echo $subject_id;?>&subRuleId=<?php echo $subject_rule[$subject_id]['0']['0']['id'];?>" class="see_cal">see cal</a></td>
+					<td class="align-center"><span class="subject-heading-1"><a href="#" onclick="saveSubGrp('<?php echo $subject_id;?>','<?php echo $subject_rule[$subject_id]['0']['0']['id'];?>');"><?php if($status == 1) { echo "<span style='color:red'>Unconfirm SG: </span>";}else{ echo "Confirm SG: ";}?></a></span><?php echo $subject_rule[$subject_id]['0']['0']['name'];?><a href="<?php echo SERVER_URL ?>web_calendar_rps/month.php?subGrpId=<?php echo $subject_id;?>&subRuleId=<?php echo $subject_rule[$subject_id]['0']['0']['id'];?>" class="see_cal">see cal</a></td>
 					<?php }else{ ?>
-					<td class="align-center"><span class="subject-heading-1"><a href="#">Confirm SG:</a></span><?php echo "None";?></td>
+					<td class="align-center"><span class="subject-heading-1"><a href="#">Confirm SG: </a></span><?php echo "None";?></td>
 					<?php } ?>
 					<td class="align-center"><span class="subject-heading-1"><a href="subject_pre_selection.php?id=<?php echo $subject_id;?>">See other availaible SG</a></span></td
 				></tr>				

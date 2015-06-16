@@ -57,7 +57,7 @@ $(document).ready(function(){
 			<tr>
 				<th >SUBJECT NAME</th>
 				<th >BATCH NAME</th>
-				<th >SUBJECT GROUP ID</th>                        
+				<th >SUBJECT GROUP</th>                        
 				<th >NUMBER OF STUDENTS SUBSCRIBED</th>
 				<th >NUMBER OF SUBSCRIPTIONS AVAILABLE</th>
 				<th >ESTIMATED FEE COLLECTION BY GROUP</th>

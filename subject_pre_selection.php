@@ -53,6 +53,9 @@ $all_subjects = $obj_fedena->getAllSubjectsDetails();
 					}else{
 						$cnt++;
 					}
+				}elseif($sub_code!="" && !$obj_fedena->search_array($sub_code,$student_subjects))
+				{
+					$cnt++;
 				}
 			}			
 			if($cnt != $sub_cnt)
@@ -69,7 +72,7 @@ $all_subjects = $obj_fedena->getAllSubjectsDetails();
 			</tr>
 			<div id="<?php echo 'sub_grp_detail_'.$k;?>"  class="SubSessTbl" style="display:none;">				 
 				<div class="SubSessTitle">
-					<p>Subject's Session detail</p>
+					<p>Subject Details</p>
 				</div>
 				<div class="SubSessHeading">
 					<div class="SubSessCell">
@@ -139,7 +142,7 @@ $all_subjects = $obj_fedena->getAllSubjectsDetails();
 			<tr>
 				<td class="align-center"><?php echo $v['name'];?></td>
 				<td class="align-center"><a href="<?php echo SERVER_URL ?>web_calendar_rps/month.php?subGrpId=<?php echo $_GET['id'];?>&subRuleId=<?php echo $v['id'];?>" class="see_cal">see cal</a></td>                        
-				<td class="align-center">30</td>
+				<td class="align-center">0</td>
 				<?php $status = $objP->getSubGrpStatus($_GET['id'],$v['id']);
 				$statusTxt = ($status==1?"Unselect":"Select");?>
 				<td class="align-center"><span class="subject-heading-1"><a href="#" onclick="saveSubGrp('<?php echo $_GET['id'];?>','<?php echo $v['id'];?>','subject_pre_selection');"><?php echo $statusTxt;?></a></span></td>	
