@@ -65,7 +65,7 @@ class Fedena extends Base {
 	}
 	function getAllCourses()
 	{
-		$sql="select id,course_name,code from courses where school_id='".$_SESSION['school_id']."' and is_deleted='0' ";
+		$sql="select id,course_name,code,section_name from courses where school_id='".$_SESSION['school_id']."' and is_deleted='0' ";
 		$q_res = mysqli_query($this->connfed, $sql);
 		return $q_res;
 	}
@@ -118,12 +118,13 @@ class Fedena extends Base {
 	}
 	function getSubjects($course_id='')
 	{
-		$sql="select s.id as sub_id,s.name,s.code,s.batch_id,eg.name as subject_group_name,eg.id as sub_grp_id from subjects s inner join elective_groups eg on eg.id = s.elective_group_id inner join batches b on b.id=s.batch_id where s.school_id='".$_SESSION['school_id']."' and s.is_deleted='0'";
+		$sql="select s.id as sub_id,s.name,s.code,s.batch_id,eg.name as subject_group_name,eg.id as sub_grp_id,b.name as batch_name from subjects s left join elective_groups eg on eg.id = s.elective_group_id left join batches b on b.id=s.batch_id where s.school_id='".$_SESSION['school_id']."' and s.is_deleted='0' and s.elective_group_id!=''";
 		if($course_id!='')
 		{
 			$sql .= "and b.course_id='".$course_id."'";
 		}
-		//echo $sql;
+		$sql .= "order by s.name";
+		//echo $sql;die;
 		$q_res = mysqli_query($this->connfed, $sql);
 		return $q_res;
 	}

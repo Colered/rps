@@ -65,7 +65,7 @@ $all_subjects = $obj_fedena->getAllSubjectsDetails();
 				}
 				?>
 			<tr <?php echo $style;?>>
-				<td class="align-center"><?php echo $subject_details['name'];?> <span class="subject-heading-1"><a href="#" class="basic-sub-grp" id="<?php echo $k;?>">See Details</a></span></td>
+				<td class="align-center"><a href="subject_pre_selection.php?id=<?php echo $subject_id;?>"><?php echo $subject_details['name'];?></a><span class="subject-heading-1"><a href="#" class="basic-sub-grp" id="<?php echo $k;?>"> See Details</a></span></td>
 			</tr>
 			<div id="<?php echo 'sub_grp_detail_'.$k;?>"  class="SubSessTbl" style="display:none;">				 
 				<div class="SubSessTitle">

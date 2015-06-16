@@ -94,31 +94,23 @@ $(document).ready(function(){
 		return false;
 	});
 });
-//getting subjects for career 
+//getting batches for career
 $(document).ready(function() {
   $('#career').on('change', function(){
 	var selected=$("#career option:selected").map(function(){ return this.value }).get().join(",");
-	var subject="subject";
-	ajaxCommonSubjects(selected,subject);
+	var batch="batch";
+	ajaxCommonBatches(selected,batch);
   });
 });
-$(document).ready(function() {
-  $('#subject').on('change', function(){
-	var selected=$("#subject option:selected").map(function(){ return this.value }).get().join(",");
-	var subject_requistie="subject_requistie";
-	var career=$("#career option:selected").val();
-	ajaxCommonSubjectsRequistie(selected,subject_requistie,career);
-  });
-});
-//ajax function for fetching subjects
-function ajaxCommonSubjects(selectedVal,slctID){
+//ajax function for fetching batches
+function ajaxCommonBatches(selectedVal,slctID){
 	var slctID = '#'+slctID;
 $.ajax({
         url: "../ajax_common.php",
         type: "POST",
         data: {
 			'course': selectedVal,
-			'codeBlock': 'getSubjects'
+			'codeBlock': 'getBatches'
             },
         success: function(data) {
 			 $(slctID).html(data);
@@ -128,6 +120,67 @@ $.ajax({
         }
     });	
 }
+//getting subject groups for batches
+$(document).ready(function() {
+  $('#batch').on('change', function(){
+	var selected=$("#batch option:selected").map(function(){ return this.value }).get().join(",");
+	var subject_grp="subject_grp";
+	ajaxCommonSubjectGroups(selected,subject_grp);
+  });
+});
+//ajax function for fetching subjects
+function ajaxCommonSubjectGroups(selectedVal,slctID){
+	var slctID = '#'+slctID;
+$.ajax({
+        url: "../ajax_common.php",
+        type: "POST",
+        data: {
+			'batch': selectedVal,
+			'codeBlock': 'getSubjectGroups'
+            },
+        success: function(data) {
+			 $(slctID).html(data);
+        },
+        error: function(errorThrown) {
+            console.log(errorThrown);
+        }
+    });	
+}
+//getting subject for subject groups
+$(document).ready(function() {
+  $('#subject_grp').on('change', function(){
+	var selected=$("#subject_grp option:selected").map(function(){ return this.value }).get().join(",");
+	var subject="subject";
+	ajaxCommonSubjects(selected,subject);
+  });
+});
+//ajax function for fetching subjects
+function ajaxCommonSubjects(selectedVal,slctID){
+	var slctID = '#'+slctID;
+$.ajax({
+        url: "../ajax_common.php",
+        type: "POST",
+        data: {
+			'subject_group': selectedVal,
+			'codeBlock': 'getSubjectofGroup'
+            },
+        success: function(data) {
+			 $(slctID).html(data);
+        },
+        error: function(errorThrown) {
+            console.log(errorThrown);
+        }
+    });	
+}
+//getting subject requistie for subjects
+$(document).ready(function() {
+  $('#subject').on('change', function(){
+	var selected=$("#subject option:selected").map(function(){ return this.value }).get().join(",");
+	var subject_requistie="subject_requistie";
+	var career=$("#career option:selected").val();
+	ajaxCommonSubjectsRequistie(selected,subject_requistie,career);
+  });
+});
 function ajaxCommonSubjectsRequistie(selectedVal,slctID,career){
 	var slctID = '#'+slctID;
 $.ajax({

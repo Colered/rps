@@ -7,7 +7,14 @@ class Prerequistie extends Base {
 	{
 		if(isset($_POST) && $_POST != "")
 		{
-		//	$sql = "INSERT INTO subjects_prerequistie(course_name,course_code,subject_name,subject_code,required_subject_name,required_subject_code,max_students,min_students,credits,cost) values()";
+			//print"<pre>";print_r($_POST);die;
+			$career = explode("-",$_POST['career']);
+			$batch = explode("-",$_POST['batch']);
+			$subject_grp = explode("-",$_POST['subject_grp']);
+			$subject = explode("-",$_POST['subject']);
+			$sql = "INSERT INTO subjects(subject_id,name,course_id,course_name,batch_id,batch_name,subject_group_id,subject_group_name,max_students,min_students,subject_cost) values('".$subject[0]."','".$subject[1]."','".$career[0]."','".$career[1]."','".$batch[0]."','".$batch[1]."','".$subject_grp[0]."','".$subject_grp[1]."','".$_POST['max_students']."','".$_POST['min_students']."','".$_POST['subject_cost']."')";
+			if($q_res = mysqli_query($this->connrps, $sql))
+				return 1;
 		}
 	}
 	public function getPreRequistie()
@@ -52,6 +59,12 @@ class Prerequistie extends Base {
 	public function getSeats($sub_id,$batch_id)
 	{
 		$sql = "select max_students,cost from subjects_prerequistie where batch_id='".$batch_id."' and subject_id='".$sub_id."' and status = '1' and school_id='".$_SESSION['school_id']."'";
+		$q_res = mysqli_query($this->connrps, $sql);
+		return $q_res;
+	}
+	public function getSubjects()
+	{
+		$sql = "select * from subjects";
 		$q_res = mysqli_query($this->connrps, $sql);
 		return $q_res;
 	}

@@ -52,6 +52,45 @@ switch ($codeBlock) {
 			}
 			echo $options;
 			break;
+		case "getBatches":
+			if(isset($_POST['course'])){
+				$sql = "select b.id,b.name,c.code from batches b inner join courses c on c.id = b.course_id where b.course_id='".$_POST['course']."' and b.is_deleted='0'";
+				$q_res = mysqli_query($db_FED, $sql);				
+				if(mysqli_affected_rows($db_FED)>0){
+					$options .='<option value="">--Select--</option>';
+					while($batch_data= mysqli_fetch_array($q_res)){
+						$options .='<option value="'.$batch_data['id'].'-'.$batch_data['code'].'-'.$batch_data['name'].'">'.$batch_data['code'].'-'.$batch_data['name'].'</option>';
+					}					
+				}			
+			}
+			echo $options;
+			break;
+		case "getSubjectGroups":
+			if(isset($_POST['batch'])){
+				$sql = "select eg.id,eg.name from elective_groups eg where eg.batch_id='".$_POST['batch']."' and is_deleted='0'";
+				$q_res = mysqli_query($db_FED, $sql);				
+				if(mysqli_affected_rows($db_FED)>0){
+					$options .='<option value="">--Select--</option>';
+					while($group_data= mysqli_fetch_array($q_res)){
+						$options .='<option value="'.$group_data['id'].'-'.$group_data['name'].'">'.$group_data['name'].'</option>';
+					}					
+				}			
+			}
+			echo $options;
+			break;
+		case "getSubjectofGroup":
+			if(isset($_POST['subject_group'])){
+				$sql = "select s.id,s.name from subjects s where elective_group_id='".$_POST['subject_group']."' and is_deleted='0'";
+				$q_res = mysqli_query($db_FED, $sql);				
+				if(mysqli_affected_rows($db_FED)>0){
+					$options .='<option value="">--Select--</option>';
+					while($subject_data= mysqli_fetch_array($q_res)){
+						$options .='<option value="'.$subject_data['id'].'-'.$subject_data['name'].'">'.$subject_data['name'].'</option>';
+					}					
+				}			
+			}
+			echo $options;
+			break;
 		case "updatePrerequistie":
 			if(isset($_POST['Id']) && isset($_POST['maxStudents']) && isset($_POST['minStudents']))
 			{

@@ -56,6 +56,7 @@ $(document).ready(function(){
 		<thead>
 			<tr>
 				<th >SUBJECT NAME</th>
+				<th >BATCH NAME</th>
 				<th >SUBJECT GROUP ID</th>                        
 				<th >NUMBER OF STUDENTS SUBSCRIBED</th>
 				<th >NUMBER OF SUBSCRIPTIONS AVAILABLE</th>
@@ -77,6 +78,7 @@ $(document).ready(function(){
 		 ?>
 			<tr>
 				<td class="align-center"><?php echo $data['name'];?></td>
+				<td class="align-center"><?php echo $data['batch_name'];?></td>
 				<td class="align-center"><?php echo $data['subject_group_name'];?></td>                        
 				<td class="align-center"><?php echo $no_students;?></td>
 				<td class="align-center"><?php echo $max_students;?></td>
