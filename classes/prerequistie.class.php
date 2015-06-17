@@ -23,6 +23,16 @@ class Prerequistie extends Base {
 		$q_res = mysqli_query($this->connrps, $sql);
 		return $q_res;
 	}
+	public function getAllPreRequistie($sub_id,$batch_id)
+	{
+		$sql = "select required_subject_id,required_subject_name from subjects_prerequistie where batch_id='".$batch_id."' and school_id='".$_SESSION['school_id']."' and status='1' and subject_id='".$sub_id."'";
+		$q_res = mysqli_query($this->connrps, $sql);
+		if(mysqli_num_rows($q_res)>=0)
+		{
+			$row = mysqli_fetch_array($q_res);
+			return $row['required_subject_name'];
+		}
+	}
 	function getrequistie($subCode)
 	{
 		$sql = "select required_subject_id,required_subject_code from subjects_prerequistie where batch_id='".$_SESSION['batch_id']."' and school_id='".$_SESSION['school_id']."' and status='1' and subject_code='".$subCode."'";
@@ -51,7 +61,7 @@ class Prerequistie extends Base {
 	}
 	public function getPreSelectedSub($sub_grp_id)
 	{
-		$sql = "select count(id) as total from subjects_preselect where subject_group_id='".$sub_grp_id."' and select_status = '1'";
+		$sql = "select count( distinct std_id) as total from subjects_preselect where subject_group_id='".$sub_grp_id."' and select_status = '1'";
 		$q_res = mysqli_query($this->connrps, $sql);
 		$row = mysqli_fetch_assoc($q_res);
 		return $row['total'];
