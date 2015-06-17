@@ -32,7 +32,7 @@ class RAS extends Base {
 	public function subDetailFromRAS($sub_id,$rule_id,$subGrpId,$report)
 	{	
 	    if($report!=''){
-			$sql_grp = "select subject_group_name from subjects_preselect where subject_group_id= '".$subGrpId."' and select_status=1 group by subject_group_name";
+			$sql_grp = "select subject_group_name from subjects_preselect where subject_group_id= '".$subGrpId."' and select_status='1' group by subject_group_name";
 			$qry_rslt_grp= mysqli_query($this->connrps,$sql_grp);
 			$grp_name = $qry_rslt_grp->fetch_assoc();
 		}
