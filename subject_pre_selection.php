@@ -15,7 +15,7 @@ if($sps_result->num_rows >0){
 		$sps_en_date=$data['sps_end_date'];
 	}
 	$now = date("Y-m-d");
-	$date=$objs->check_in_range($sps_st_date,$sps_en_date,$now);
+	$date=$objs->checkInRange($sps_st_date,$sps_en_date,$now);
 }
 ?>
 <div class="custtable_left fontstyles" style="margin-left:20px;width:80%;">

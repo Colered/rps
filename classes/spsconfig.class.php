@@ -78,7 +78,7 @@ class Spsconfig extends Base {
 			}
 			return $div;
 	}
-	function check_in_range($start_date, $end_date, $now)
+	function checkInRange($start_date, $end_date, $now)
 	{
 	  $start_ts = strtotime($start_date);
 	  $end_ts = strtotime($end_date);

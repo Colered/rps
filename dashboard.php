@@ -15,7 +15,7 @@ if($sps_result->num_rows >0){
 		$sps_en_date=$data['sps_end_date'];
 	}
 	$now = date("Y-m-d");
-	$date=$objs->check_in_range($sps_st_date,$sps_en_date,$now);
+	$date=$objs->checkInRange($sps_st_date,$sps_en_date,$now);
 }
 
 //print"<pre>";print_r($all_subjects);die;
@@ -42,7 +42,7 @@ if($sps_result->num_rows >0){
 				 foreach($val as $k=>$v){
 				 	if($j==1){?>
 					<div class="SubSessTitle">
-						<p>Subject's Session detail</p>
+						<p>Group Detail</p>
 					</div>
 					<div class="SubSessHeading">
 						<div class="SubSessCell">
