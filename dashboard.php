@@ -167,7 +167,7 @@ if($sps_result->num_rows >0){
 							<?php if($status == 1) { echo "<span style='color:red'>Unconfirm SG: </span>";}else{ echo "Confirm SG:";}?>
 					<?php } ?>
 					</span><?php echo $subject_rule[$subject_id]['0']['0']['name'];?>
-					<a href="<?php echo SERVER_URL ?>web_calendar_rps/month.php?subGrpId=<?php echo $subject_id;?>&subRuleId=<?php echo $subject_rule[$subject_id]['0']['0']['id'];?>" class="see_cal">see cal</a>
+					<a href="/web_calendar_rps/month.php?subGrpId=<?php echo $subject_id;?>&subRuleId=<?php echo $subject_rule[$subject_id]['0']['0']['id'];?>" class="see_cal">see cal</a>
 					</td>
 					<?php }else{ ?>
 					<td class="align-center"><span class="subject-heading-1"><a href="#">Confirm SG:</a></span><?php echo "None";?></td>
