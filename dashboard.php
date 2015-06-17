@@ -137,12 +137,19 @@ if($sps_result->num_rows >0){
 								 $subject_rule[$subject_id][$k][$i]['name'] = $data['rule_name'];
 								 $rule_cnt++;$i++;
 							 }						
-						}$k++;
+						}
 						if($rule_cnt == 0)
+						{
 							$cnt++;
+						}else{
+							$k++;
+						}
 					}else{
 						$cnt++;
 					}
+				}elseif($sub_code!="" && !$obj_fedena->search_array($sub_code,$student_subjects))
+				{
+					$cnt++;
 				}
 			}
 			//print"<pre>";print_r($subject_rule);die;
