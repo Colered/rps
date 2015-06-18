@@ -32,7 +32,7 @@ class RAS extends Base {
 	public function subDetailFromRAS($sub_id,$rule_id,$subGrpId,$report)
 	{	
 	    if($report!=''){
-			$sql_grp = "select subject_group_name from subjects_preselect where subject_group_id= '".$subGrpId."' and select_status='1' group by subject_group_name";
+			$sql_grp = "select subject_group_name from subjects_preselect where subject_group_id= '".$subGrpId."' and select_status='1' and std_id='".$_SESSION['std_id']."' group by subject_group_name";
 			$qry_rslt_grp= mysqli_query($this->connrps,$sql_grp);
 			$grp_name = $qry_rslt_grp->fetch_assoc();
 		}
@@ -105,7 +105,7 @@ class RAS extends Base {
 	 }
 	 //getting all subject of a rule to a student
 	public function reportStuSubject($report){
-	    $sql="SELECT subject_group_id,associated_rules_ids FROM subjects_preselect where select_status='1'";
+	    $sql="SELECT subject_group_id,associated_rules_ids FROM subjects_preselect where select_status='1' and std_id='".$_SESSION['std_id']."' ";
 		$all_record=array();
 		$q_res = mysqli_query($this->connrps, $sql);	
 		if(mysqli_num_rows($q_res)>0){
