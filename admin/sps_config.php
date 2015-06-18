@@ -42,9 +42,12 @@ $sps_end_date = isset($_GET['edit']) ? $row['sps_end_date'] : (isset($_POST['toS
 				<div class="txtfield">
 					<input type="text" required="true" id="toSPS" name="toSPS" value="<?php echo $sps_end_date ; ?>" size="13">					
 				</div>
-				<div class="clear"></div>			
-				<div class="txtfield" style="padding-left:41px; padding-top:10px;">
-					<input type="submit" name="btnSPSConfig" class="buttonsub btnSPSConfig" value="<?php echo $buttonName = ($sps_start_date!="") ? "Update":"Save" ?>">				
+				<div class="clear"></div>
+				<div class="custtd_left"></div>			
+				<div class="txtfield" >
+					<input type="submit" name="btnSPSConfig" class="buttonsub btnSPSConfig" value="<?php echo $buttonName = ($sps_start_date!="") ? "Update":"Save" ?>">
+				</div>					
+				<div class="txtfield" >
 					<input type="button" name="btnCancel" class="buttonsub" value="Cancel" onclick="location.href = 'sps_config_view.php';">
 				</div>
             </div>	

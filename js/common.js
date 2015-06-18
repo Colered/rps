@@ -3,11 +3,6 @@ $(document).ready(function(){
 		//validating admin and student change password				   
 		$( "#changePwdForm" ).validate({
 			rules: {
-			currentPassword: {
-				required: true,
-				minlength: 6,
-				maxlength: 20
-			},	
 			newPassword: {
 				required: true,
 				minlength: 6,
