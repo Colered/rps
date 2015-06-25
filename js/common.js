@@ -225,6 +225,7 @@ function deleteConf($id){
     }
     return false;
 }
+//function to update Prerequistie details
 function updatePrerequistie(){
 		max = $("#total_rows").val();
 		for ( var i = 1; i <= max; i++ ){
@@ -310,6 +311,7 @@ $(document).ready(function(){
 		return false;
 	});
 });
+//function to save subject group
 function saveSubGrp($subject_id,$id,$page)
 {
 	var page_id = $('#page').val();

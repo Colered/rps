@@ -3,11 +3,11 @@ class Prerequistie extends Base {
     public function __construct(){
    		 parent::__construct();
    	}
+	//function to save subject prequistie into the database
 	public function savePreRequistie()
 	{
 		if(isset($_POST) && $_POST != "")
 		{
-			//print"<pre>";print_r($_POST);die;
 			$career = explode("-",$_POST['career']);
 			$batch = explode("-",$_POST['batch']);
 			$subject_grp = explode("-",$_POST['subject_grp']);
@@ -17,12 +17,14 @@ class Prerequistie extends Base {
 				return 1;
 		}
 	}
+	//function to get all the prerequistie details
 	public function getPreRequistie()
 	{
 		$sql = "select * from subjects_prerequistie";
 		$q_res = mysqli_query($this->connrps, $sql);
 		return $q_res;
 	}
+	//function to get all the prerequistie details of a batch
 	public function getAllPreRequistie($sub_id,$batch_id)
 	{
 		$sql = "select required_subject_id,required_subject_name from subjects_prerequistie where batch_id='".$batch_id."' and school_id='".$_SESSION['school_id']."' and status='1' and subject_id='".$sub_id."'";
@@ -33,6 +35,7 @@ class Prerequistie extends Base {
 			return $row['required_subject_name'];
 		}
 	}
+	//function to get all the prerequistie details of a batch
 	function getrequistie($subCode)
 	{
 		$sql = "select required_subject_id,required_subject_code from subjects_prerequistie where batch_id='".$_SESSION['batch_id']."' and school_id='".$_SESSION['school_id']."' and status='1' and subject_code='".$subCode."'";
@@ -43,6 +46,7 @@ class Prerequistie extends Base {
 			return $row['required_subject_code'];
 		}
 	}
+	//function to get selected subject groups by student according to rule ids
 	public function getSubGrpStatus($subject_id,$rule_id)
 	{
 		$sql = "select select_status from subjects_preselect where subject_group_id = '".$subject_id."' and associated_rules_ids='".$rule_id."'";
@@ -53,12 +57,14 @@ class Prerequistie extends Base {
 			return $row['select_status'];
 		}
 	}
+	//function to get selected subject groups by student
 	public function getSubGrp($subject_id)
 	{
 		$sql = "select * from subjects_preselect where select_status='1'";
 		$q_res = mysqli_query($this->connrps, $sql);
 		return $q_res;
 	}
+	//function to get number of students enrolled in a particular subject group
 	public function getPreSelectedSub($sub_grp_id)
 	{
 		$sql = "select count( distinct std_id) as total from subjects_preselect where subject_group_id='".$sub_grp_id."' and select_status = '1'";
@@ -66,12 +72,14 @@ class Prerequistie extends Base {
 		$row = mysqli_fetch_assoc($q_res);
 		return $row['total'];
 	}
+	//function to get seats for a subject
 	public function getSeats($sub_id,$batch_id)
 	{
 		$sql = "select max_students,cost from subjects_prerequistie where batch_id='".$batch_id."' and subject_id='".$sub_id."' and status = '1' and school_id='".$_SESSION['school_id']."'";
 		$q_res = mysqli_query($this->connrps, $sql);
 		return $q_res;
 	}
+	//function to get all subjects from rps
 	public function getSubjects()
 	{
 		$sql = "select * from subjects";

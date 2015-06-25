@@ -3,7 +3,7 @@ class Fedena extends Base {
     public function __construct(){
    		 parent::__construct();
    	}
-	//getting the student subject of a current semester
+	//function to get the student subject of a current semester
 	function getCurrentStuSemSub(){
 		$uesr_id=$_SESSION['std_id'];
 		$sub_name_arr=$stu_sub_arr=array();
@@ -39,6 +39,7 @@ class Fedena extends Base {
 		  $_SESSION['error_msg'] = $message;
 		}
 	}
+	//function to get all subjects of next semester with their details
 	function getAllSubjects()
 	{
 		$sql="select distinct eg.name as grp_name,eg.id from subjects s
@@ -63,24 +64,28 @@ class Fedena extends Base {
 			return $subjects;
 		}
 	}
+	//function to get all courses of school
 	function getAllCourses()
 	{
 		$sql="select id,course_name,code,section_name from courses where school_id='".$_SESSION['school_id']."' and is_deleted='0' ";
 		$q_res = mysqli_query($this->connfed, $sql);
 		return $q_res;
 	}
+	//function to get all batches of a course
 	function getAllBatches($course_id)
 	{
 		$sql="select id,name from batches where course_id = '".$course_id."' and school_id='".$_SESSION['school_id']."' and is_deleted='0' and is_active='1' ";
 		$q_res = mysqli_query($this->connfed, $sql);
 		return $q_res;
 	}
+	//function to get all subject names of a particular batch
 	function getSubjectList($batch_id)
 	{
 		$sql = "select id,name from elective_groups where batch_id='".$batch_id."' and school_id='".$_SESSION['school_id']."' and is_deleted='0'";
 		$q_res = mysqli_query($this->connfed, $sql);
 		return $q_res;
 	}
+	//function to get course name by id
 	function getCourseName()
 	{
 		$sql = "select course_name from courses where id='".$_SESSION['course_id']."'";
@@ -88,6 +93,7 @@ class Fedena extends Base {
 		$row = mysqli_fetch_array($q_res);
 		return $row['course_name'];
 	}
+	//function to get all subjects of next semester with their details
 	function getAllSubjectsDetails()
 	{
 		$sql="select distinct eg.name as grp_name,eg.id from subjects s
@@ -116,6 +122,7 @@ class Fedena extends Base {
 			return $subjects;
 		}
 	}
+	//function to get all subjects, groups, courses, batches details for reports.
 	function getSubjects($course_id='')
 	{
 		$sql="select s.id as sub_id,s.name,s.code,s.batch_id,eg.name as subject_group_name,eg.id as sub_grp_id,b.name as batch_name from subjects s left join elective_groups eg on eg.id = s.elective_group_id left join batches b on b.id=s.batch_id where s.school_id='".$_SESSION['school_id']."' and s.is_deleted='0' and s.elective_group_id!=''";
@@ -124,7 +131,6 @@ class Fedena extends Base {
 			$sql .= "and b.course_id='".$course_id."'";
 		}
 		$sql .= "order by s.name";
-		//echo $sql;die;
 		$q_res = mysqli_query($this->connfed, $sql);
 		return $q_res;
 	}

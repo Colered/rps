@@ -3,6 +3,7 @@ class RAS extends Base {
     public function __construct(){
    		 parent::__construct();
    	}
+	//function to get matching subject from ras db
 	public function matchSubject($name)
 	{
 		$sql = "select * from timetable_detail td
@@ -13,12 +14,14 @@ class RAS extends Base {
 			return 1;
 		}
 	}
+	//function to get rules associated to a subject
 	public function getRulesofSubject($name,$course_name)
 	{
 		$sql = "select distinct srm.subject_rule_id, sr.rule_name from subject_rule_mapping srm inner join subject_session ss on ss.id = srm.session_id inner join subject s on ss.subject_id = s.id inner join subject_rule sr on sr.id = srm.subject_rule_id inner join program_years py on py.id = s.program_year_id inner join cycle c on c.program_year_id = py.id where s.subject_name = '".$name."' and py.name like '".trim($course_name)."%' and c.start_week='".$_SESSION['start_date']."' and c.end_week='".$_SESSION['end_date']."'";	
 		$qry_rslt= mysqli_query($this->connras,$sql);
 		return $qry_rslt;
 	}
+	//function to check if any activity created by rule is allocated in timetable
 	public function checkTimetable($rule_id)
 	{
 		$sql = "select td.* from subject_rule_mapping srm 
@@ -32,7 +35,7 @@ class RAS extends Base {
 	public function subDetailFromRAS($sub_id,$rule_id,$subGrpId,$report)
 	{	
 	    if($report!=''){
-			$sql_grp = "select subject_group_name from subjects_preselect where subject_group_id= '".$subGrpId."' and select_status=1 group by subject_group_name";
+			$sql_grp = "select subject_group_name from subjects_preselect where subject_group_id= '".$subGrpId."' and select_status='1' group by subject_group_name";
 			$qry_rslt_grp= mysqli_query($this->connrps,$sql_grp);
 			$grp_name = $qry_rslt_grp->fetch_assoc();
 		}
