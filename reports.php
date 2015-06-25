@@ -18,7 +18,7 @@ $(document).ready(function(){
 <div id="content" style="margin-left:20px;width:80%;">
     <div id="main">
 <div class="custtable_left fontstyles full_w" >
-	<div class="h_title">Prerequisite Subject Report</div>
+	<div class="h_title">Pre-Selected Subject Report</div>
 	<input type="hidden" name="stu_report" id="stu_report" value="stu_report"  />
 	<?php 
 	   $objR=new RAS();

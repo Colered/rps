@@ -72,6 +72,8 @@ $all_courses = $obj_fedena->getAllCourses();?>
                         <input type="text" class="inp_txt required" id="subject_cost" maxlength="50" name="subject_cost" value="">
                     </div>
 					<div class="clear"></div>
+					<div class="custtd_left">
+                     </div>
 					<div class="txtfield">
                         <input type="submit" name="btnAdd" id="btnAdd" class="buttonsub btnSave" value="Save">
                         <input type="button" name="btnCancel" class="buttonsub" value="Cancel" onclick="location.href = ''">

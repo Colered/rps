@@ -311,7 +311,7 @@ div.custtd_right {
 }
 div.txtfield {
    /*border-left: 1px dotted #BEBEBE;*/ 
-    float: right;
+    float: left;
     padding-bottom: 10px;
     padding-left: 12px;
     text-align: right;
@@ -620,7 +620,7 @@ font-weight: bold;
 	min-height:120px;
 }
 .highFont{font-size:32px; font-weight:normal;}
-.btnSPSConfig{margin-left:195px;}
+/*.btnSPSConfig{margin-left:195px;}*/
 /*To see detail div pop up  */
 .SubSessTbl{display: table;width:95%;margin: 0 auto;}
 .SubSessTitle{display: table-caption;text-align: center;font-weight: bold;font-size: larger;}
